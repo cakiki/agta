@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agta"
+version = "0.1.0"
+description = "Agent-based Generative Traffic Agents"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "mesa-llm>=0.3.2",
+    "movingpandas",
+    "pynndescent",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
