@@ -1,11 +1,14 @@
 from mesa_llm.memory.memory import Memory
 from agta.memory.working import WorkingMemory
-
+from agta.memory.semantic import SemanticMemory
+from agta.memory.episodic import EpisodicMemory
 
 class MemoryManager(Memory):
     def __init__(self, agent, display=True):
         super().__init__(agent=agent, display=display)
         self.working = WorkingMemory()
+        self.semantic = SemanticMemory()
+        self.episodic = EpisodicMemory()
 
     def get_prompt_ready(self) -> str:
         lines = []
@@ -16,6 +19,10 @@ class MemoryManager(Memory):
             lines.append("Today's trips:")
             for t in self.working.trips_today:
                 lines.append(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode}")
+        semantic_str = self.semantic.to_prompt_string()
+        if semantic_str:
+            lines.append("Your transport attitudes and beliefs:")
+            lines.append(semantic_str)
         return "\n".join(lines)
 
     def get_communication_history(self) -> str:

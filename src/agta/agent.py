@@ -1,14 +1,18 @@
-import json
+from agta.util import extract_json_from
 from mesa_llm.llm_agent import LLMAgent
-from mesa_llm.reasoning import Reasoning
+from mesa_llm.reasoning.reasoning import Reasoning
 from agta.models import TripContext, TripDecision, TripRecord, RouteOption
 from agta.memory.memory_manager import MemoryManager
 from agta.prompt.mode_choice import build_trip_prompt
+from mesa_llm.reasoning.reasoning import Reasoning as BaseReasoning, Plan
 
+class NoOpReasoning(BaseReasoning):
+    def plan(self, prompt=None, obs=None, ttl=1, selected_tools=None, tool_calls="auto"):
+        return Plan(step=0, llm_plan=None, ttl=ttl)
 
 class MobilityAgent(LLMAgent):
     def __init__(self, model, agent_id, persona, seed, schedule, attitudes=None, **kwargs):
-        super().__init__(model=model, reasoning=Reasoning, **kwargs)
+        super().__init__(model=model, reasoning=NoOpReasoning, **kwargs)
         self.agent_id = agent_id
         self.persona = persona
         self.seed = seed
@@ -39,9 +43,14 @@ class MobilityAgent(LLMAgent):
             trip=filtered_trip,
         )
 
+        if len(self.memory.working.trips_today) >= 2:
+            print("=== PROMPT FOR TRIP", len(self.memory.working.trips_today) + 1, "===")
+            print(prompt)
+            print("=== END ===")
+    
         response = self.llm.generate(prompt)
         text = response.choices[0].message.content
-        parsed = json.loads(text)
+        parsed = extract_json_from(text)
 
         vehicle_state_before = {
             "car": self.memory.working.car_location,

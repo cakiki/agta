@@ -1,6 +1,6 @@
 from agta.loader import load_from_json
 from agta.simulation import BerlinMobilityModel
-
+from agta.eval import evaluate
 
 def run(data_path, llm_model, num_days=1, limit=None):
     agents_data, routes_data = load_from_json(data_path, limit=limit)
@@ -15,13 +15,17 @@ def run(data_path, llm_model, num_days=1, limit=None):
         for agent in model.agents:
             for trip in routes_data[agent.agent_id]:
                 agent.decide_trip(trip, day=day)
-
+        for agent in model.agents:
+            print(f"\nAgent {agent.agent_id}:")
+            for t in agent.memory.working.trips_today:
+                print(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode} ({t.reasoning})")
     return model
 
 
 if __name__ == "__main__":
     model = run(
         data_path="data/agents_4a_route_options.json",
-        llm_model="huggingface/openai/gpt-oss-120b",
-        limit=10,
+        llm_model="huggingface/Qwen/Qwen2.5-7B-Instruct",
+        limit=1,
     )
+    evaluate(model.agents)
