@@ -26,7 +26,8 @@ class MemoryManager(Memory):
         return "\n".join(lines)
 
     def get_episodic_context(self, to_activity: str, k: int = 3) -> str:
-        return self.episodic.to_prompt_string(to_activity, k)
+        current_day = self.agent.model.current_day
+        return self.episodic.to_prompt_string(to_activity, current_day, k)
 
     def get_communication_history(self) -> str:
         return ""

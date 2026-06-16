@@ -9,6 +9,7 @@ try:
     def _get_st_model():
         global _st_model
         if _st_model is None:
+            from sentence_transformers import SentenceTransformer
             _st_model = SentenceTransformer("all-MiniLM-L6-v2")
         return _st_model
 
@@ -20,7 +21,7 @@ except ImportError:
 
     def embed(texts: list[str]) -> np.ndarray:
         url = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
-        headers = {"Authorization": f"Bearer {os.environ['HUGGINGFACE_API_KEY']}", "Content-Type": "application/json"}
+        headers = {"Authorization": f"Bearer {os.environ.get('HUGGINGFACE_API_KEY', os.environ.get('HF_TOKEN', ''))}", "Content-Type": "application/json"}
         req = urllib.request.Request(url, data=json.dumps({"inputs": texts}).encode(), headers=headers)
         with urllib.request.urlopen(req) as resp:
             return np.array(json.loads(resp.read()))

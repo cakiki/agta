@@ -22,7 +22,7 @@ class SparseRetriever:
         if not self.records:
             return
         texts = pd.Series([record_to_text(r) for r in self.records])
-        self._indexed = SearchArray.index(texts)
+        self._indexed = pd.Series(SearchArray.index(texts))
         self._dirty = False
 
     def score(self, query: str, k: int = 10) -> list[tuple[int, float]]:
@@ -31,8 +31,6 @@ class SparseRetriever:
         if self._dirty:
             self._rebuild_index()
         tokens = query.lower().split()
-        scores = np.zeros(len(self.records))
-        for token in tokens:
-            scores += self._indexed.array.bm25(token)
+        scores = self._indexed.array.score(tokens)
         top_indices = np.argsort(-scores)[:k]
-        return [(i, scores[i]) for i in top_indices if scores[i] > 0]
+        return [(int(i), float(scores[i])) for i in top_indices if scores[i] > 0]
