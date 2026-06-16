@@ -1,0 +1,29 @@
+services:
+  otp:
+    image: opentripplanner/opentripplanner:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/var/opentripplanner
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx18g
+    # Build graph: docker compose run otp --build --save
+    # Serve graph: docker compose up otp
+    command: ["--load", "--serve"]
+
+sumo:
+    build:
+      context: .
+      dockerfile: Dockerfile.sumo
+    platform: linux/amd64
+    ports:
+      - "8813:8813"
+    volumes:
+      - ./data/open_street_map:/data/open_street_map
+    # WARNING: SUMO TraCI is single-client. Do NOT probe port 8813
+    # (no socket checks, no curl, no health checks). Any connection
+    # counts as a client session. Wait for SUMO to finish loading,
+    # then connect exactly once with traci.init().
+    command: >
+      --net-file /data/open_street_map/berlin/berlin.net.xml
+      --remote-port 8813

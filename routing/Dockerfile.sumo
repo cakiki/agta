@@ -1,0 +1,14 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    software-properties-common \
+    gpg-agent \
+    && add-apt-repository ppa:sumo/stable \
+    && apt-get update && apt-get install -y --no-install-recommends sumo sumo-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV SUMO_HOME=/usr/share/sumo
+
+ENTRYPOINT ["sumo"]
