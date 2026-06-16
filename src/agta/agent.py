@@ -85,5 +85,5 @@ class MobilityAgent(LLMAgent):
             },
         )
         self.memory.working.trips_today.append(record)
-
+        self.memory.episodic.add(record)
         return decision

@@ -6,6 +6,12 @@ def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext) ->
     lines = []
     lines.append(f"You are:\n{persona}")
     lines.append(f"\nCurrent state:\n{memory.get_prompt_ready()}")
+
+    episodic_str = memory.get_episodic_context(trip.to_activity)
+    if episodic_str:
+        lines.append(f"\nRelevant past experiences:")
+        lines.append(episodic_str)
+
     lines.append(f"\nYour next trip:")
     lines.append(f"  {trip.from_time} {trip.from_activity} -> {trip.to_activity}")
     lines.append(f"\nAvailable options:")
@@ -18,6 +24,6 @@ def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext) ->
         lines.append(", ".join(parts))
     if trip.weather:
         lines.append(f"\nWeather: {trip.weather}")
-    lines.append('\nChoose your transport mode. Explain your reasoning in one sentence. Consider your earlier trips today and your current state when deciding')
+    lines.append('\nChoose your transport mode. Explain your reasoning in one sentence. Consider your earlier trips today and your current state when deciding.')
     lines.append('Return JSON: {"mode": "...", "reasoning": "..."}')
     return "\n".join(lines)

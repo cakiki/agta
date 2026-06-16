@@ -25,6 +25,9 @@ class MemoryManager(Memory):
             lines.append(semantic_str)
         return "\n".join(lines)
 
+    def get_episodic_context(self, to_activity: str, k: int = 3) -> str:
+        return self.episodic.to_prompt_string(to_activity, k)
+
     def get_communication_history(self) -> str:
         return ""
 
