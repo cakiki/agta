@@ -12,6 +12,7 @@ dependencies = [
     "mesa-llm>=0.3.2",
     "movingpandas",
     "pynndescent",
+    "searcharray",
 ]
 
 [tool.setuptools.packages.find]
