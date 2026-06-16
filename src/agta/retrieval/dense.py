@@ -30,7 +30,7 @@ def record_to_text(r: TripRecord) -> str:
     return f"{r.time} {r.from_activity} to {r.to_activity} by {r.mode}, {r.distance_km}km, {r.duration_min}min"
 
 
-class HybridRetriever:
+class DenseRetriever:
     def __init__(self):
         self.records: list[TripRecord] = []
         self.embeddings: np.ndarray | None = None
@@ -50,29 +50,16 @@ class HybridRetriever:
             self.index = NNDescent(self.embeddings, metric="cosine", n_neighbors=min(10, len(self.records)))
         self._dirty = False
 
-    def retrieve(self, query_activity: str, current_day: int, k: int = 3, recency_weight: float = 0.3) -> list[TripRecord]:
+    def score(self, query: str, k: int = 10) -> list[tuple[int, float]]:
         if not self.records:
             return []
         if self._dirty:
             self._rebuild_index()
-
-        query_text = f"trip to {query_activity}"
-        query_embedding = embed([query_text])
-
+        query_embedding = embed([query])
         if self.index and len(self.records) >= 10:
-            indices, distances = self.index.query(query_embedding, k=min(k * 3, len(self.records)))
-            candidates = [(self.records[i], 1 - d) for i, d in zip(indices[0], distances[0])]
+            indices, distances = self.index.query(query_embedding, k=min(k, len(self.records)))
+            return [(i, 1 - d) for i, d in zip(indices[0], distances[0])]
         else:
             sims = (self.embeddings @ query_embedding.T).flatten()
-            top_indices = np.argsort(-sims)[:k * 3]
-            candidates = [(self.records[i], sims[i]) for i in top_indices]
-
-        scored = []
-        for record, sim in candidates:
-            days_ago = max(current_day - record.day, 0)
-            recency = np.exp(-0.3 * days_ago)
-            score = (1 - recency_weight) * sim + recency_weight * recency
-            scored.append((record, score))
-
-        scored.sort(key=lambda x: -x[1])
-        return [r for r, _ in scored[:k]]
+            top_indices = np.argsort(-sims)[:k]
+            return [(i, sims[i]) for i in top_indices]
