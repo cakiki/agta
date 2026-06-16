@@ -2,13 +2,14 @@ import mesa
 from agta.agent import MobilityAgent
 
 
-class BerlinMobilityModel(mesa.Model):
+class MobilityModel(mesa.Model):
     def __init__(self, agents_data, routes_data, llm_model, num_days=1, **kwargs):
         super().__init__(**kwargs)
         self.current_day = 0
         self.num_days = num_days
         self.routes_data = routes_data
         self.results = []
+        self.verbose = kwargs.pop("verbose", False)
 
         for agent_id, data in agents_data.items():
             MobilityAgent(

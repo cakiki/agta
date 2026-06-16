@@ -54,7 +54,7 @@ class MobilityAgent(LLMAgent):
             trip=filtered_trip,
         )
 
-        if len(self.memory.working.trips_today) >= 2:
+        if self.model.verbose:
             print("=== PROMPT FOR TRIP", len(self.memory.working.trips_today) + 1, "===")
             print(prompt)
             print("=== END ===")
