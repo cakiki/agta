@@ -19,6 +19,8 @@ def run(data_path, llm_model, num_days=1, limit=None):
             print(f"\nAgent {agent.agent_id}:")
             for t in agent.memory.working.trips_today:
                 print(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode} ({t.reasoning})")
+        for agent in model.agents:
+            agent.reflect(day=day)
     return model
 
 
@@ -27,5 +29,11 @@ if __name__ == "__main__":
         data_path="data/agents_4a_route_options.json",
         llm_model="huggingface/Qwen/Qwen2.5-7B-Instruct",
         limit=1,
+        num_days=2,
     )
-    evaluate(model.agents)
+    for agent in model.agents:
+        print(f"\nAgent {agent.agent_id}:")
+        print(f"  Episodic records: {len(agent.memory.episodic.records)}")
+        print(f"  Beliefs: {agent.memory.semantic.beliefs}")
+        for r in agent.memory.episodic.records:
+            print(f"  Day {r.day}, {r.time}: {r.from_activity} -> {r.to_activity}: {r.mode}")

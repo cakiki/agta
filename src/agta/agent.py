@@ -20,6 +20,17 @@ class MobilityAgent(LLMAgent):
         self.attitudes = attitudes
         self.memory = MemoryManager(agent=self)
 
+    def reflect(self, day: int):
+        from agta.prompt.reflection import build_reflection_prompt
+        prompt = build_reflection_prompt(self.persona, self.memory, day)
+        if not prompt:
+            return
+        response = self.llm.generate(prompt)
+        text = response.choices[0].message.content
+        parsed = extract_json_from(text)
+        for belief in parsed.get("beliefs", []):
+            self.memory.semantic.add_belief(belief)
+
     def decide_trip(self, trip: TripContext, day: int = 0) -> TripDecision:
         available = [o for o in trip.route_options if o.mode in self.memory.working.available_modes(trip)]
         if not available:
