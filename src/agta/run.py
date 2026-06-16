@@ -1,6 +1,7 @@
 from agta.loader import load_from_json
 from agta.simulation import BerlinMobilityModel
 from agta.eval import evaluate
+from agta.output import save_results
 
 def run(data_path, llm_model, num_days=1, limit=None):
     agents_data, routes_data = load_from_json(data_path, limit=limit)
@@ -37,3 +38,5 @@ if __name__ == "__main__":
         print(f"  Beliefs: {agent.memory.semantic.beliefs}")
         for r in agent.memory.episodic.records:
             print(f"  Day {r.day}, {r.time}: {r.from_activity} -> {r.to_activity}: {r.mode}")
+    save_results(model)
+    

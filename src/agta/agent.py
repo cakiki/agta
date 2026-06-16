@@ -94,7 +94,9 @@ class MobilityAgent(LLMAgent):
                 "car": self.memory.working.car_location,
                 "bicycle": self.memory.working.bicycle_location,
             },
+            available_options=[{"mode": o.mode, "distance_km": o.distance_km, "duration_min": o.duration_min} for o in available],
         )
         self.memory.working.trips_today.append(record)
         self.memory.episodic.add(record)
         return decision
+    
