@@ -3,7 +3,6 @@ from pynndescent import NNDescent
 from agta.models import TripRecord
 
 try:
-    from sentence_transformers import SentenceTransformer
     _st_model = None
 
     def _get_st_model():

@@ -19,6 +19,7 @@ class MobilityAgent(LLMAgent):
         self.schedule = schedule
         self.attitudes = attitudes
         self.memory = MemoryManager(agent=self)
+        self.belief_consolidation_threshold = kwargs.pop("belief_consolidation_threshold", 10)
 
     def reflect(self, day: int):
         from agta.prompt.reflection import build_reflection_prompt

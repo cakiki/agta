@@ -22,6 +22,10 @@ def run(data_path, llm_model, num_days=1, limit=None):
                 print(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode} ({t.reasoning})")
         for agent in model.agents:
             agent.reflect(day=day)
+        for agent in model.agents:
+            agent.reflect(day=day)
+            if len(agent.memory.semantic.beliefs) >= model.belief_consolidation_threshold:
+                agent.consolidate_beliefs()
     return model
 
 
