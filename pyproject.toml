@@ -15,6 +15,7 @@ dependencies = [
     "searcharray",
     "jinja2",
     "pyyaml",
+    "tqdm"
 ]
 
 [tool.setuptools.packages.find]
