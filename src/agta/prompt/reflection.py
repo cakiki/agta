@@ -1,29 +1,22 @@
+from pathlib import Path
+from jinja2 import Template
 from agta.memory.memory_manager import MemoryManager
 
+_reflection = Template((Path(__file__).parent / "templates" / "reflection.jinja").read_text())
+_procedural = Template((Path(__file__).parent / "templates" / "procedural_reflection.jinja").read_text())
+_consolidation = Template((Path(__file__).parent / "templates" / "consolidation.jinja").read_text())
 
 def build_reflection_prompt(persona: str, memory: MemoryManager, day: int) -> str:
     trips = memory.episodic.retrieve_by_day(day)
     if not trips:
         return ""
-    lines = []
-    lines.append(f"You are:\n{persona}")
-    lines.append(f"\nToday's trips:")
-    for t in trips:
-        lines.append(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode} ({t.reasoning})")
-    lines.append(f"\nBased on today's travel, what general beliefs or preferences about your transport habits can you extract?")
-    lines.append('Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}')
-    return "\n".join(lines)
+    return _reflection.render(persona=persona, trips=trips)
 
 def build_procedural_reflection_prompt(persona: str, memory: MemoryManager, day: int) -> str:
     trips = memory.episodic.retrieve_by_day(day)
     if not trips:
         return ""
-    lines = []
-    lines.append(f"You are:\n{persona}")
-    lines.append(f"\nToday's trips:")
-    for t in trips:
-        lines.append(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode} ({t.reasoning})")
-    lines.append(f"\nBased on today's travel patterns, what if-then decision rules should guide your future transport choices?")
-    lines.append(f"Examples: 'If distance is under 2km, walk', 'If bike is available and weather is good, cycle'")
-    lines.append('Return JSON: {"rules": ["rule 1", "rule 2", ...]}')
-    return "\n".join(lines)
+    return _procedural.render(persona=persona, trips=trips)
+
+def build_consolidation_prompt(beliefs: list[str]) -> str:
+    return _consolidation.render(beliefs=beliefs)

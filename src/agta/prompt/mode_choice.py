@@ -1,29 +1,18 @@
+from pathlib import Path
+from jinja2 import Template
 from agta.models import TripContext
 from agta.memory.memory_manager import MemoryManager
 
+_template = Template((Path(__file__).parent / "templates" / "mode_choice.jinja").read_text())
 
 def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext) -> str:
-    lines = []
-    lines.append(f"You are:\n{persona}")
-    lines.append(f"\nCurrent state:\n{memory.get_prompt_ready()}")
-
-    episodic_str = memory.get_episodic_context(trip.to_activity)
-    if episodic_str:
-        lines.append(f"\nRelevant past experiences:")
-        lines.append(episodic_str)
-
-    lines.append(f"\nYour next trip:")
-    lines.append(f"  {trip.from_time} {trip.from_activity} -> {trip.to_activity}")
-    lines.append(f"\nAvailable options:")
-    for option in trip.route_options:
-        parts = [f"  {option.mode}: {option.distance_km}km, {option.duration_min}min"]
-        if option.cost_eur is not None:
-            parts.append(f"{option.cost_eur}EUR")
-        if option.transfers is not None:
-            parts.append(f"{option.transfers} transfers")
-        lines.append(", ".join(parts))
-    if trip.weather:
-        lines.append(f"\nWeather: {trip.weather}")
-    lines.append('\nChoose your transport mode. Explain your reasoning in one sentence. Consider your earlier trips today and your current state when deciding.')
-    lines.append('Return JSON: {"mode": "...", "reasoning": "..."}')
-    return "\n".join(lines)
+    return _template.render(
+        persona=persona,
+        memory_state=memory.get_prompt_ready(),
+        episodic_context=memory.get_episodic_context(trip.to_activity),
+        from_time=trip.from_time,
+        from_activity=trip.from_activity,
+        to_activity=trip.to_activity,
+        options=trip.route_options,
+        weather=trip.weather,
+    )

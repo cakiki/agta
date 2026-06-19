@@ -40,15 +40,12 @@ class MobilityAgent(LLMAgent):
         parsed = extract_json_from(text)
         for rule in parsed.get("rules", []):
             self.memory.procedural.add_rule(rule)
-            
+
     def consolidate_beliefs(self):
         if len(self.memory.semantic.beliefs) < 5:
             return
-        prompt = "Here are transport beliefs about a person:\n"
-        for b in self.memory.semantic.beliefs:
-            prompt += f"  - {b}\n"
-        prompt += "\nMerge duplicates and remove redundancies. Return a consolidated list.\n"
-        prompt += 'Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}'
+        from agta.prompt.reflection import build_consolidation_prompt
+        prompt = build_consolidation_prompt(self.memory.semantic.beliefs)
         response = self.llm.generate(prompt)
         text = response.choices[0].message.content
         parsed = extract_json_from(text)
