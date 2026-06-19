@@ -30,7 +30,17 @@ class MobilityAgent(LLMAgent):
         for belief in parsed.get("beliefs", []):
             self.memory.semantic.add_belief(belief)
     
-
+    def reflect_procedural(self, day: int):
+        from agta.prompt.reflection import build_procedural_reflection_prompt
+        prompt = build_procedural_reflection_prompt(self.persona, self.memory, day)
+        if not prompt:
+            return
+        response = self.llm.generate(prompt)
+        text = response.choices[0].message.content
+        parsed = extract_json_from(text)
+        for rule in parsed.get("rules", []):
+            self.memory.procedural.add_rule(rule)
+            
     def consolidate_beliefs(self):
         if len(self.memory.semantic.beliefs) < 5:
             return

@@ -1,4 +1,5 @@
 from mesa_llm.memory.memory import Memory
+from agta.memory.procedural import ProceduralMemory
 from agta.memory.working import WorkingMemory
 from agta.memory.semantic import SemanticMemory
 from agta.memory.episodic import EpisodicMemory
@@ -9,6 +10,7 @@ class MemoryManager(Memory):
         self.working = WorkingMemory()
         self.semantic = SemanticMemory()
         self.episodic = EpisodicMemory()
+        self.procedural = ProceduralMemory()
 
     def get_prompt_ready(self) -> str:
         lines = []
@@ -23,6 +25,10 @@ class MemoryManager(Memory):
         if semantic_str:
             lines.append("Your transport attitudes and beliefs:")
             lines.append(semantic_str)
+        procedural_str = self.procedural.to_prompt_string()
+        if procedural_str:
+            lines.append("Your decision rules:")
+            lines.append(procedural_str)
         return "\n".join(lines)
 
     def get_episodic_context(self, to_activity: str, k: int = 3) -> str:
