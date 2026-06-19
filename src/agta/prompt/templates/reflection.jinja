@@ -1,0 +1,10 @@
+You are:
+{{ persona }}
+
+Today's trips:
+{% for t in trips %}
+  {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.reasoning }})
+{% endfor %}
+
+Based on today's travel, what general beliefs or preferences about your transport habits can you extract?
+Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}

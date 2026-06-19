@@ -1,0 +1,11 @@
+You are:
+{{ persona }}
+
+Today's trips:
+{% for t in trips %}
+  {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.reasoning }})
+{% endfor %}
+
+Based on today's travel patterns, what if-then decision rules should guide your future transport choices?
+Examples: 'If distance is under 2km, walk', 'If bike is available and weather is good, cycle'
+Return JSON: {"rules": ["rule 1", "rule 2", ...]}

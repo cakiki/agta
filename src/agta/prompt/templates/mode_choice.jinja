@@ -1,0 +1,25 @@
+You are:
+{{ persona }}
+
+Current state:
+{{ memory_state }}
+{% if episodic_context %}
+
+Relevant past experiences:
+{{ episodic_context }}
+{% endif %}
+
+Your next trip:
+  {{ from_time }} {{ from_activity }} -> {{ to_activity }}
+
+Available options:
+{% for option in options %}
+  {{ option.mode }}: {{ option.distance_km }}km, {{ option.duration_min }}min
+  {%- if option.cost_eur is not none %}, {{ option.cost_eur }}EUR{% endif %}
+  {%- if option.transfers is not none %}, {{ option.transfers }} transfers{% endif %}
+{% endfor %}
+{% if weather %}
+Weather: {{ weather }}
+{% endif %}
+Choose your transport mode. Explain your reasoning in one sentence. Consider your earlier trips today and your current state when deciding.
+Return JSON: {"mode": "...", "reasoning": "..."}

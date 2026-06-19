@@ -1,0 +1,7 @@
+Here are transport beliefs about a person:
+{% for b in beliefs %}
+  - {{ b }}
+{% endfor %}
+
+Merge duplicates and remove redundancies. Return a consolidated list.
+Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}
