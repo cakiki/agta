@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "timestamp": "2026-06-16T13:08:45.546462",
-    "num_agents": 1,
+    "timestamp": "2026-06-19T15:35:57.419201",
+    "num_agents": 2,
     "num_days": 2
   },
   "agents": {
@@ -9,16 +9,24 @@
       "persona": "Markus, a 51‑year‑old male living in a spacious Berlin apartment with his spouse and two teenage children, holds a university degree and works full‑time as a senior project manager at a tech firm in the city centre. He commutes daily by a combination of S‑train and his own city bike, as the household owns no car and prefers sustainable mobility. With a net household income of between €5,000 and €6,000, the family enjoys a high economic status, affording a well‑fitted kitchen, regular cultural outings, and a modest savings plan, while his partner, also employed, shares the responsibilities of household management. Although he does not work from home, their home office space is set up for occasional remote tasks, and the household’s primary transport tool is the bike, reflecting their environmentally conscious lifestyle.",
       "transport_attitudes": {},
       "learned_beliefs": [
-        "Prefers public transport for efficiency and time savings, especially for longer distances.",
-        "Values consistency in transport mode to maintain a routine and avoid the effort of changing methods frequently.",
-        "Chooses walking for shorter distances as a way to get exercise and align with an environmentally conscious lifestyle.",
-        "Considers sustainability a priority in daily decisions, including travel choices.",
-        "Uses public transport for multiple trips in a day to avoid the inconvenience of walking long distances repeatedly.",
-        "Prefers public transport for longer trips to maintain efficiency and consistency.",
-        "Chooses to walk for shorter distances to maintain a sustainable lifestyle and get exercise.",
-        "Considers environmental impact and sustainability in daily travel decisions.",
-        "Consistently uses the same mode of transport for multiple trips in a day to maintain routine.",
-        "Values time efficiency, especially for commuting and longer trips."
+        "Prefers public transport for efficiency and time-saving, especially for longer distances or when multiple trips are involved in a day.",
+        "Values consistency in transport mode to maintain efficiency and reduce planning complexity.",
+        "Chooses walking for short distances to stay active and reduce public transport usage, aligning with an environmentally conscious lifestyle.",
+        "Considers environmental impact and sustainability in daily travel decisions, opting for biking and walking when possible.",
+        "Uses public transport for trips to and from the conference centre due to its distance and the impracticality of other modes.",
+        "Consistency in transport mode is important, maintaining the same mode for similar trips to avoid switching.",
+        "Efficiency and practicality are key factors in choosing transport modes, especially for commuting and daily activities."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and time allows, walk",
+        "If bike is available and weather is good, cycle",
+        "If public transport is faster and more efficient for the given distance, use public transport",
+        "If the destination is within walking distance but public transport has already been used multiple times, walk to maintain consistency and reduce public transport usage",
+        "If the destination is a conference center or other location that is not within walking distance, use public transport",
+        "If the destination is a school and the distance is the same for both options, walk to stay active and reduce public transport usage",
+        "If multiple public transport trips have been used and the next trip is within the same mode, continue using public transport for efficiency and consistency",
+        "If the destination is within walking distance and the time is suitable, walk to stay active and reduce public transport usage",
+        "If the distance is over 2km and the destination is not within walking distance, use public transport for efficiency and to maintain a consistent mode of transport"
       ],
       "trips": [
         {
@@ -26,8 +34,16 @@
           "time": "09:30",
           "origin": "company",
           "destination": "restaurant",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            385544,
+            5817027
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "The public transport option is significantly faster, saving over 3 hours of travel time compared to walking, which is more practical given the distance.",
+          "reasoning": "The public transport option is faster despite the slightly longer distance, saving me over 100 minutes which is more efficient given my time constraints.",
           "distance_km": 12.58,
           "duration_min": 42.1,
           "available_options": [
@@ -56,8 +72,16 @@
           "time": "12:00",
           "origin": "restaurant",
           "destination": "company",
+          "origin_coordinates": [
+            385544,
+            5817027
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the distance and time constraints of the walk, and since I already used public transport in the morning, it's more efficient to use it again for the return trip.",
+          "reasoning": "Given the distance and time of the trip, public transport is more efficient than walking, especially since I've already used it for the morning commute.",
           "distance_km": 12.55,
           "duration_min": 47.0,
           "available_options": [
@@ -86,8 +110,16 @@
           "time": "13:00",
           "origin": "company",
           "destination": "conference_centre",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            383277,
+            5818517
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have already used public transport for my lunch trips today, and the conference centre is likely not within walking distance, so public transport is the most practical choice.",
+          "reasoning": "I have already used public transport for my lunch trips today, and the conference centre is likely not within walking distance, so public transport is the most practical option.",
           "distance_km": 0.0,
           "duration_min": 0.0,
           "available_options": [
@@ -111,8 +143,16 @@
           "time": "15:30",
           "origin": "conference_centre",
           "destination": "company",
-          "chosen_mode": "walk",
-          "reasoning": "I have already used public transport for both my morning and lunchtime commutes, and the distance to the company from the conference centre is short enough to walk.",
+          "origin_coordinates": [
+            383277,
+            5818517
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have already used public transport for today's morning and lunchtime commutes, and the conference centre is likely far enough that walking is not a viable option.",
           "distance_km": 0.0,
           "duration_min": 0.0,
           "available_options": [
@@ -136,8 +176,16 @@
           "time": "17:30",
           "origin": "company",
           "destination": "school",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            385483,
+            5826247
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have already used public transport for today's trips, and walking a short distance is not a significant inconvenience, so I will use the same mode to maintain consistency and avoid the minor effort of walking.",
+          "reasoning": "Given that I have already used public transport for multiple trips today and the distances are the same, it makes sense to continue using the same mode to maintain consistency and efficiency.",
           "distance_km": 0.6,
           "duration_min": 8.9,
           "available_options": [
@@ -166,8 +214,16 @@
           "time": "18:00",
           "origin": "school",
           "destination": "apartment",
+          "origin_coordinates": [
+            385483,
+            5826247
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
           "chosen_mode": "walk",
-          "reasoning": "Given that both options are the same distance and time, walking is a good way to end the day and get some exercise, aligning with our environmentally conscious lifestyle.",
+          "reasoning": "Since the distance and time are the same for both options, walking is a good choice to stay active and reduce public transport usage, aligning with the family's environmentally conscious lifestyle.",
           "distance_km": 0.6,
           "duration_min": 8.9,
           "available_options": [
@@ -196,8 +252,16 @@
           "time": "19:45",
           "origin": "apartment",
           "destination": "cinema",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            388199,
+            5823554
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the distance and time of day, public transport is more efficient for the longer walk and aligns with my sustainable lifestyle choices.",
+          "reasoning": "Given the previous use of public transport for commuting and the distance being slightly longer than a comfortable walk, public transport is a practical choice.",
           "distance_km": 5.11,
           "duration_min": 25.2,
           "available_options": [
@@ -226,8 +290,16 @@
           "time": "20:30",
           "origin": "cinema",
           "destination": "apartment",
+          "origin_coordinates": [
+            388199,
+            5823554
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the distance and time of the trip, public transport is more efficient and aligns with our sustainable lifestyle, especially since we've been using it throughout the day.",
+          "reasoning": "Given the distance and time, public transport is more efficient and aligns with the family's sustainable mobility choices made throughout the day.",
           "distance_km": 5.08,
           "duration_min": 27.4,
           "available_options": [
@@ -256,8 +328,16 @@
           "time": "09:30",
           "origin": "company",
           "destination": "restaurant",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            385544,
+            5817027
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have already used public transport today for a longer trip, and it saved significant time compared to walking. Given the distance to the restaurant, public transport is the most efficient and consistent choice to maintain my routine.",
+          "reasoning": "The public transport option is faster and more efficient, saving over 100 minutes, which aligns with my preference for efficiency and time-saving, especially for longer distances or when multiple trips are involved in a day.",
           "distance_km": 12.58,
           "duration_min": 42.1,
           "available_options": [
@@ -286,8 +366,16 @@
           "time": "12:00",
           "origin": "restaurant",
           "destination": "company",
+          "origin_coordinates": [
+            385544,
+            5817027
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have already used public transport for both my morning and lunchtime commutes, and it is more efficient and consistent to continue using it for the return trip.",
+          "reasoning": "I have already used public transport multiple times today, and the distance is too far for walking, so using public transport maintains consistency and is more efficient.",
           "distance_km": 12.55,
           "duration_min": 47.0,
           "available_options": [
@@ -316,8 +404,16 @@
           "time": "13:00",
           "origin": "company",
           "destination": "conference_centre",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            383277,
+            5818517
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have already used public transport for my lunch trips today, and the conference centre is likely not within walking distance, so public transport is the most practical and efficient choice to maintain consistency in my travel routine.",
+          "reasoning": "I have already used public transport for my lunch trips today, and the conference centre is likely not within walking distance, so public transport is the most practical and efficient option to maintain consistency in my transport mode choices.",
           "distance_km": 0.0,
           "duration_min": 0.0,
           "available_options": [
@@ -341,8 +437,16 @@
           "time": "15:30",
           "origin": "conference_centre",
           "destination": "company",
-          "chosen_mode": "walk",
-          "reasoning": "I have already used public transport for both my morning and lunchtime commutes, and the distance to the company from the conference centre is short enough to walk, aligning with my preference for sustainability and maintaining a consistent routine.",
+          "origin_coordinates": [
+            383277,
+            5818517
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have already used public transport multiple times today, and the conference centre is likely far enough that walking is not a viable option, maintaining consistency and efficiency.",
           "distance_km": 0.0,
           "duration_min": 0.0,
           "available_options": [
@@ -366,8 +470,16 @@
           "time": "17:30",
           "origin": "company",
           "destination": "school",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            385483,
+            5826247
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have been using public transport for multiple trips today to maintain consistency and avoid the minor effort of walking, so I will continue with the same mode for the remaining distance to the school.",
+          "reasoning": "I have already used public transport for multiple trips today, and the distances are the same, so continuing with the same mode maintains consistency and efficiency.",
           "distance_km": 0.6,
           "duration_min": 8.9,
           "available_options": [
@@ -396,8 +508,16 @@
           "time": "18:00",
           "origin": "school",
           "destination": "apartment",
+          "origin_coordinates": [
+            385483,
+            5826247
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
           "chosen_mode": "walk",
-          "reasoning": "Given the short distance and time, walking is a good way to end the day and get some exercise, aligning with our environmentally conscious lifestyle, as previously decided.",
+          "reasoning": "Since the distance and time are the same for both options, walking is a good choice to stay active and reduce public transport usage, aligning with the family's environmentally conscious lifestyle.",
           "distance_km": 0.6,
           "duration_min": 8.9,
           "available_options": [
@@ -426,8 +546,16 @@
           "time": "19:45",
           "origin": "apartment",
           "destination": "cinema",
+          "origin_coordinates": [
+            385744,
+            5826536
+          ],
+          "destination_coordinates": [
+            388199,
+            5823554
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I have been using public transport for longer trips today, and the cinema is far enough that it would be more efficient and align with my sustainable lifestyle choices to use public transport again.",
+          "reasoning": "Given the previous use of public transport for commuting and the distance being slightly longer than a comfortable walk, public transport remains a practical and efficient choice.",
           "distance_km": 5.11,
           "duration_min": 25.2,
           "available_options": [
@@ -456,8 +584,16 @@
           "time": "20:30",
           "origin": "cinema",
           "destination": "apartment",
+          "origin_coordinates": [
+            388199,
+            5823554
+          ],
+          "destination_coordinates": [
+            385744,
+            5826536
+          ],
           "chosen_mode": "public transport",
-          "reasoning": "I've been using public transport for multiple trips today, which aligns with my preference for consistency and efficiency, especially for longer distances.",
+          "reasoning": "Given the family's preference for consistency in transport mode and the efficiency of public transport, especially for the remaining distance after multiple public transport trips, public transport is the better choice.",
           "distance_km": 5.08,
           "duration_min": 27.4,
           "available_options": [
@@ -470,6 +606,562 @@
               "mode": "public transport",
               "distance_km": 5.08,
               "duration_min": 27.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        }
+      ]
+    },
+    "5175": {
+      "persona": "Thomas, a 51‑year‑old male living in a spacious four‑person family household in Berlin’s Charlottenburg district, holds a university degree and works full‑time as a senior project manager at a consulting firm, commuting daily by public transport and frequently riding his city bike for short trips; his household, which boasts a net monthly income of €5,500, does not own a car, reflects a high economic status, and the family – his spouse and two teenage children – enjoy a blend of cultural activities and outdoor recreation, all while Thomas opts out of home‑office arrangements, preferring the structure of a regular office routine.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Prefers public transport for its efficiency and time-saving benefits, even if it means a slightly longer distance.",
+        "Values maintaining a well-rested state for the day ahead, which influences travel choices.",
+        "Consistently uses public transport for daily commutes and errands to maintain a routine.",
+        "Optimizes travel time over convenience, especially for early morning and late afternoon trips.",
+        "Optimizes travel mode based on the day's schedule and personal preferences, such as avoiding home-office arrangements and maintaining a regular office routine.",
+        "Considers the distance and time constraints when choosing travel modes, favoring public transport for its efficiency."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and weather is good, cycle",
+        "If distance is between 2km and 10km, use public transport",
+        "If distance is over 10km, use public transport or consider carpooling if available",
+        "If time constraints are tight and public transport is faster, use public transport",
+        "If maintaining a well-rested state is important, use public transport for commuting",
+        "If the destination is a sports centre and time is not a critical factor, use public transport",
+        "If the trip is to a restaurant and the distance is significant, use public transport",
+        "If the trip is from the company to the residential area and the time of day allows, use public transport"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:00",
+          "origin": "residential",
+          "destination": "company",
+          "origin_coordinates": [
+            403281,
+            5809369
+          ],
+          "destination_coordinates": [
+            403691,
+            5809226
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "The public transport option is slightly farther but significantly faster, saving over an hour of travel time, which is valuable given the early start and the need to be well-rested for the day ahead.",
+          "distance_km": 5.66,
+          "duration_min": 29.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.39,
+              "duration_min": 69.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.66,
+              "duration_min": 29.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:30",
+          "origin": "company",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            403691,
+            5809226
+          ],
+          "destination_coordinates": [
+            406568,
+            5818034
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the distance and time constraints, public transport is more efficient for this trip compared to walking, especially since I've already used public transport for my morning commute.",
+          "distance_km": 11.1,
+          "duration_min": 45.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.61,
+              "duration_min": 136.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.1,
+              "duration_min": 45.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:00",
+          "origin": "restaurant",
+          "destination": "company",
+          "origin_coordinates": [
+            406568,
+            5818034
+          ],
+          "destination_coordinates": [
+            403691,
+            5809226
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the earlier experience of the public transport being significantly faster, despite the slightly longer distance, it will save time and maintain my well-rested state for the day ahead.",
+          "distance_km": 11.28,
+          "duration_min": 46.3,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.61,
+              "duration_min": 136.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.28,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 0,
+          "time": "13:00",
+          "origin": "company",
+          "destination": "cafe",
+          "origin_coordinates": [
+            403691,
+            5809226
+          ],
+          "destination_coordinates": [
+            403138,
+            5811387
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have already used public transport for most of my trips today, and walking would take a significant amount of time, which is not efficient given my schedule.",
+          "distance_km": 2.74,
+          "duration_min": 15.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.66,
+              "duration_min": 33.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.74,
+              "duration_min": 15.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:30",
+          "origin": "cafe",
+          "destination": "company",
+          "origin_coordinates": [
+            403138,
+            5811387
+          ],
+          "destination_coordinates": [
+            403691,
+            5809226
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the earlier experiences of public transport saving significant time, and considering the need to maintain a well-rested state, the slightly longer distance is outweighed by the time savings.",
+          "distance_km": 2.79,
+          "duration_min": 13.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.66,
+              "duration_min": 33.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.79,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 0,
+          "time": "17:30",
+          "origin": "company",
+          "destination": "sports_centre",
+          "origin_coordinates": [
+            403691,
+            5809226
+          ],
+          "destination_coordinates": [
+            406100,
+            5818349
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the previous trips involving public transport and the distance being manageable, using public transport again will maintain consistency and efficiency in my commute.",
+          "distance_km": 11.08,
+          "duration_min": 42.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.76,
+              "duration_min": 137.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.08,
+              "duration_min": 42.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:15",
+          "origin": "sports_centre",
+          "destination": "residential",
+          "origin_coordinates": [
+            406100,
+            5818349
+          ],
+          "destination_coordinates": [
+            403281,
+            5809369
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the distance and time of the trip, public transport is more efficient than walking, especially since I've been commuting by public transport all day and it aligns with my routine.",
+          "distance_km": 11.5,
+          "duration_min": 52.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.94,
+              "duration_min": 140.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.5,
+              "duration_min": 52.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "07:00",
+          "origin": "residential",
+          "destination": "company",
+          "origin_coordinates": [
+            403281,
+            5809369
+          ],
+          "destination_coordinates": [
+            403691,
+            5809226
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the earlier experiences of public transport saving significant time and the need to maintain a well-rested state for the day ahead, the slightly longer distance is outweighed by the time savings.",
+          "distance_km": 5.66,
+          "duration_min": 29.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.39,
+              "duration_min": 69.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.66,
+              "duration_min": 29.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "10:30",
+          "origin": "company",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            403691,
+            5809226
+          ],
+          "destination_coordinates": [
+            406568,
+            5818034
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the distance and time constraints, public transport is more efficient for this trip compared to walking, especially since I've already used public transport for my morning commute and maintaining a well-rested state is important.",
+          "distance_km": 11.1,
+          "duration_min": 45.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.61,
+              "duration_min": 136.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.1,
+              "duration_min": 45.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "12:00",
+          "origin": "restaurant",
+          "destination": "company",
+          "origin_coordinates": [
+            406568,
+            5818034
+          ],
+          "destination_coordinates": [
+            403691,
+            5809226
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Based on previous experiences, public transport is significantly faster and will help maintain my well-rested state for the day ahead, despite the slightly longer distance.",
+          "distance_km": 11.28,
+          "duration_min": 46.3,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.61,
+              "duration_min": 136.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.28,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "13:00",
+          "origin": "company",
+          "destination": "cafe",
+          "origin_coordinates": [
+            403691,
+            5809226
+          ],
+          "destination_coordinates": [
+            403138,
+            5811387
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the short distance and my need to maintain a well-rested state, using public transport aligns with my preference for efficiency and time-saving benefits, especially since I have already used it for most of my trips today.",
+          "distance_km": 2.74,
+          "duration_min": 15.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.66,
+              "duration_min": 33.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.74,
+              "duration_min": 15.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "15:30",
+          "origin": "cafe",
+          "destination": "company",
+          "origin_coordinates": [
+            403138,
+            5811387
+          ],
+          "destination_coordinates": [
+            403691,
+            5809226
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the earlier experiences of public transport saving significant time and the need to maintain a well-rested state for the day ahead, the slightly longer distance is outweighed by the time savings and efficiency.",
+          "distance_km": 2.79,
+          "duration_min": 13.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.66,
+              "duration_min": 33.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.79,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "17:30",
+          "origin": "company",
+          "destination": "sports_centre",
+          "origin_coordinates": [
+            403691,
+            5809226
+          ],
+          "destination_coordinates": [
+            406100,
+            5818349
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the distance and time constraints, public transport is more efficient and aligns with my preference for maintaining a well-rested state.",
+          "distance_km": 11.08,
+          "duration_min": 42.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.76,
+              "duration_min": 137.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.08,
+              "duration_min": 42.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "home",
+            "bicycle": "home"
+          },
+          "vehicle_locations_after": {
+            "car": "home",
+            "bicycle": "home"
+          }
+        },
+        {
+          "day": 1,
+          "time": "18:15",
+          "origin": "sports_centre",
+          "destination": "residential",
+          "origin_coordinates": [
+            406100,
+            5818349
+          ],
+          "destination_coordinates": [
+            403281,
+            5809369
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the distance and time of the trip, public transport is more efficient than walking, especially since I've been commuting by public transport all day and it aligns with my routine.",
+          "distance_km": 11.5,
+          "duration_min": 52.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.94,
+              "duration_min": 140.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 11.5,
+              "duration_min": 52.9
             }
           ],
           "vehicle_locations_before": {

@@ -10,6 +10,7 @@ license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
     "mesa-llm>=0.3.2",
+    "sentence-transformers",
     "movingpandas",
     "pynndescent",
     "searcharray",

@@ -2,29 +2,23 @@ import numpy as np
 from pynndescent import NNDescent
 from agta.models import TripRecord
 
-try:
+_st_model = None
+_model_name = "all-MiniLM-L6-v2"
+
+def set_embedding_model(name: str):
+    global _model_name, _st_model
+    _model_name = name
     _st_model = None
 
-    def _get_st_model():
-        global _st_model
-        if _st_model is None:
-            from sentence_transformers import SentenceTransformer
-            _st_model = SentenceTransformer("all-MiniLM-L6-v2")
-        return _st_model
+def _get_st_model():
+    global _st_model
+    if _st_model is None:
+        from sentence_transformers import SentenceTransformer
+        _st_model = SentenceTransformer(_model_name)
+    return _st_model
 
-    def embed(texts: list[str]) -> np.ndarray:
-        return _get_st_model().encode(texts, normalize_embeddings=True)
-
-except ImportError:
-    import os, json, urllib.request
-
-    def embed(texts: list[str]) -> np.ndarray:
-        url = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
-        headers = {"Authorization": f"Bearer {os.environ.get('HUGGINGFACE_API_KEY', os.environ.get('HF_TOKEN', ''))}", "Content-Type": "application/json"}
-        req = urllib.request.Request(url, data=json.dumps({"inputs": texts}).encode(), headers=headers)
-        with urllib.request.urlopen(req) as resp:
-            return np.array(json.loads(resp.read()))
-
+def embed(texts):
+    return _get_st_model().encode(texts, normalize_embeddings=True, convert_to_numpy=True)
 
 def record_to_text(r: TripRecord) -> str:
     return f"{r.time} {r.from_activity} to {r.to_activity} by {r.mode}, {r.distance_km}km, {r.duration_min}min"
