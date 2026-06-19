@@ -1,0 +1,17 @@
+data:
+  path: data/agents_4a_route_options.json
+  limit: null
+
+simulation:
+  llm_model: huggingface/Qwen/Qwen2.5-7B-Instruct
+  num_days: 1
+  verbose: false
+  belief_consolidation_threshold: 10
+
+retrieval:
+  dense_weight: 0.4
+  sparse_weight: 0.3
+  recency_weight: 0.3
+
+output:
+  path: results/simulation_output.json

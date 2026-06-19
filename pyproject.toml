@@ -14,6 +14,7 @@ dependencies = [
     "pynndescent",
     "searcharray",
     "jinja2",
+    "pyyaml",
 ]
 
 [tool.setuptools.packages.find]
