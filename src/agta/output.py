@@ -17,6 +17,7 @@ def save_results(model, path="results/simulation_output.json"):
             "persona": agent.persona,
             "transport_attitudes": agent.memory.semantic.attitudes,
             "learned_beliefs": agent.memory.semantic.beliefs,
+            "procedural_rules": agent.memory.procedural.rules,
             "trips": [
                 {
                     "day": r.day,
