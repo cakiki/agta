@@ -1,6 +1,5 @@
 from agta.util import extract_json_from
 from mesa_llm.llm_agent import LLMAgent
-from mesa_llm.reasoning.reasoning import Reasoning
 from agta.models import TripContext, TripDecision, TripRecord, RouteOption
 from agta.memory.memory_manager import MemoryManager
 from agta.prompt.mode_choice import build_trip_prompt
@@ -19,8 +18,7 @@ class MobilityAgent(LLMAgent):
         self.schedule = schedule
         self.attitudes = attitudes
         self.memory = MemoryManager(agent=self)
-        self.belief_consolidation_threshold = kwargs.pop("belief_consolidation_threshold", 10)
-
+        
     def reflect(self, day: int):
         from agta.prompt.reflection import build_reflection_prompt
         prompt = build_reflection_prompt(self.persona, self.memory, day)
@@ -31,6 +29,20 @@ class MobilityAgent(LLMAgent):
         parsed = extract_json_from(text)
         for belief in parsed.get("beliefs", []):
             self.memory.semantic.add_belief(belief)
+    
+
+    def consolidate_beliefs(self):
+        if len(self.memory.semantic.beliefs) < 5:
+            return
+        prompt = "Here are transport beliefs about a person:\n"
+        for b in self.memory.semantic.beliefs:
+            prompt += f"  - {b}\n"
+        prompt += "\nMerge duplicates and remove redundancies. Return a consolidated list.\n"
+        prompt += 'Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}'
+        response = self.llm.generate(prompt)
+        text = response.choices[0].message.content
+        parsed = extract_json_from(text)
+        self.memory.semantic.beliefs = parsed.get("beliefs", self.memory.semantic.beliefs)
 
     def decide_trip(self, trip: TripContext, day: int = 0) -> TripDecision:
         available = [o for o in trip.route_options if o.mode in self.memory.working.available_modes(trip)]

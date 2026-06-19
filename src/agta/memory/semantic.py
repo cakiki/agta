@@ -19,19 +19,6 @@ class SemanticMemory:
         sims = (existing_embs @ new_emb.T).flatten()
         if sims.max() < threshold:
             self.beliefs.append(belief)
-    
-    def consolidate_beliefs(self):
-        if len(self.memory.semantic.beliefs) < 5:
-            return
-        prompt = f"Here are transport beliefs about a person:\n"
-        for b in self.memory.semantic.beliefs:
-            prompt += f"  - {b}\n"
-        prompt += "\nMerge duplicates and remove redundancies. Return a consolidated list.\n"
-        prompt += 'Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}'
-        response = self.llm.generate(prompt)
-        text = response.choices[0].message.content
-        parsed = extract_json_from(text)
-        self.memory.semantic.beliefs = parsed.get("beliefs", self.memory.semantic.beliefs)
 
     def to_prompt_string(self) -> str:
         lines = []
