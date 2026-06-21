@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-06-19T16:00:46.725889",
+    "timestamp": "2026-06-19T16:22:30.427205",
     "num_agents": 1,
     "num_days": 2
   },
@@ -15,8 +15,9 @@
         "Considers environmental impact and sustainability in daily travel decisions, opting for biking and walking when possible.",
         "Uses public transport for trips to and from the conference centre due to its distance and the practicality of the mode of transport.",
         "Prefers public transport for efficiency and consistency",
-        "Values sustainable mobility and uses biking and walking when practical",
-        "Considers time constraints and distance when choosing transport modes"
+        "Values sustainable mobility and uses bicycles for shorter distances",
+        "Considers distance and time constraints when choosing transport modes",
+        "Uses walking for short distances to stay active and reduce public transport usage"
       ],
       "procedural_rules": [
         "If distance is under 2km and time allows, walk",
@@ -26,11 +27,12 @@
         "If multiple trips are made in a day, use the same mode of transport for consistency and efficiency",
         "If time is a critical factor, prioritize public transport for longer distances",
         "If the destination is within walking distance and the weather is pleasant, choose to walk to stay active",
-        "If the trip is to a conference center or similar location, use public transport for its reliability and efficiency",
+        "If the trip is to a conference center or other non-commuting destination, use public transport for its reliability and efficiency",
         "If bike is available and weather is good, cycle",
-        "If multiple trips are made in a day and public transport is efficient, use public transport for consistency",
-        "If the destination is within walking distance after work and the time allows, walk to reduce public transport usage",
-        "If the trip involves a combination of short and long distances, prioritize public transport for longer distances and walking or cycling for shorter ones"
+        "If multiple trips are made in a day and public transport is used for one trip, use public transport for subsequent trips to maintain consistency",
+        "If distance is over 2km and time is constrained, use public transport",
+        "If destination is within walking distance but public transport is already used for the day, walk to reduce public transport usage",
+        "If destination is within cycling distance and weather permits, cycle for environmental and health benefits"
       ],
       "trips": [
         {
@@ -341,7 +343,7 @@
             5817027
           ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the distance and time constraints, public transport is faster and more efficient, aligning with my preference for consistency and time savings.",
+          "reasoning": "The public transport option is faster and more efficient given the time constraints, aligning with my preference for consistency in transport mode and my earlier experience today.",
           "distance_km": 12.58,
           "duration_min": 42.1,
           "available_options": [
@@ -379,7 +381,7 @@
             5826536
           ],
           "chosen_mode": "public transport",
-          "reasoning": "I have already used public transport for the morning and lunchtime trips, and the distance and time constraints make it a practical and efficient choice for the return trip.",
+          "reasoning": "I have already used public transport for the morning and lunchtime trips, and the distance and time constraints make it a practical and efficient choice for the return trip, maintaining consistency and saving time.",
           "distance_km": 12.55,
           "duration_min": 47.0,
           "available_options": [
@@ -559,7 +561,7 @@
             5823554
           ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the previous use of public transport for longer trips and the time efficiency, public transport remains the preferred choice for this distance.",
+          "reasoning": "Given the previous use of public transport for commuting and the distance being slightly longer than a comfortable walk, public transport remains a practical and efficient choice for this trip.",
           "distance_km": 5.11,
           "duration_min": 25.2,
           "available_options": [

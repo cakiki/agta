@@ -2,12 +2,13 @@ import json
 from datetime import datetime
 
 
-def save_results(model, path="results/simulation_output.json"):
+def save_results(model, config=None, path="results/simulation_output.json"):
     output = {
         "metadata": {
             "timestamp": datetime.now().isoformat(),
             "num_agents": len(model.agents),
             "num_days": model.num_days,
+            "config": config,
         },
         "agents": {}
     }

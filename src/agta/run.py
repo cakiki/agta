@@ -28,6 +28,7 @@ def run(config: dict):
         config["simulation"]["num_days"],
         verbose=config["simulation"].get("verbose", False),
         belief_consolidation_threshold=config["simulation"].get("belief_consolidation_threshold", 10),
+        retrieval_config=config.get("retrieval", {}),
     )
 
     for day in tqdm(range(model.num_days), desc="Days"):
@@ -61,4 +62,4 @@ if __name__ == "__main__":
     set_embedding_model(config["retrieval"]["embedding_model"])
     model = run(config)
     evaluate(model.agents)
-    save_results(model, path=config["output"]["path"])
+    save_results(model, config=config, path=config["output"]["path"])

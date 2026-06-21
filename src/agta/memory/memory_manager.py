@@ -3,13 +3,20 @@ from agta.memory.procedural import ProceduralMemory
 from agta.memory.working import WorkingMemory
 from agta.memory.semantic import SemanticMemory
 from agta.memory.episodic import EpisodicMemory
+from agta.retrieval.hybrid import HybridRetriever
 
 class MemoryManager(Memory):
     def __init__(self, agent, display=True):
         super().__init__(agent=agent, display=display)
         self.working = WorkingMemory()
         self.semantic = SemanticMemory()
-        self.episodic = EpisodicMemory()
+        rc = getattr(agent.model, 'retrieval_config', {})
+        retriever = HybridRetriever(
+            dense_weight=rc.get('dense_weight', 0.4),
+            sparse_weight=rc.get('sparse_weight', 0.3),
+            recency_weight=rc.get('recency_weight', 0.3),
+        )
+        self.episodic = EpisodicMemory(retriever=retriever)
         self.procedural = ProceduralMemory()
 
     def get_prompt_ready(self) -> str:
