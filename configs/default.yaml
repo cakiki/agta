@@ -4,7 +4,7 @@ data:
 
 simulation:
   llm_model: huggingface/Qwen/Qwen2.5-7B-Instruct
-  num_days: 5
+  num_days: 2
   verbose: false
   belief_consolidation_threshold: 10
 
@@ -15,4 +15,4 @@ retrieval:
   embedding_model: all-MiniLM-L6-v2
 
 output:
-  path: results/simulation_output_2.json
+  path: results/simulation_output_4.json

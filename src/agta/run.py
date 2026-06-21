@@ -1,5 +1,6 @@
 import logging
 logging.getLogger("mesa_llm.module_llm").setLevel(logging.ERROR)
+logging.getLogger("searcharray").setLevel(logging.ERROR)
 
 import yaml
 import sys
@@ -31,27 +32,8 @@ def run(config: dict):
         retrieval_config=config.get("retrieval", {}),
     )
 
-    for day in tqdm(range(model.num_days), desc="Days"):
-        model.current_day = day
-
-        for agent in model.agents:
-            agent.memory.working.reset_day()
-
-        for agent in tqdm(list(model.agents), desc=f"Day {day} trips", leave=True):
-            for trip in routes_data[agent.agent_id]:
-                agent.decide_trip(trip, day=day)
-
-        if model.verbose:
-            for agent in model.agents:
-                print(f"\nAgent {agent.agent_id}:")
-                for t in agent.memory.working.trips_today:
-                    print(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode} ({t.reasoning})")
-
-        for agent in tqdm(list(model.agents), desc=f"Day {day} reflection", leave=True):
-            agent.reflect(day=day)
-            agent.reflect_procedural(day=day)
-            if len(agent.memory.semantic.beliefs) >= model.belief_consolidation_threshold:
-                agent.consolidate_beliefs()
+    for _ in tqdm(range(model.num_days), desc="Days"):
+        model.step()
 
     return model
 
@@ -62,4 +44,6 @@ if __name__ == "__main__":
     set_embedding_model(config["retrieval"]["embedding_model"])
     model = run(config)
     evaluate(model.agents)
+    print(model.datacollector.get_model_vars_dataframe())
+    print(model.datacollector.get_agent_vars_dataframe())
     save_results(model, config=config, path=config["output"]["path"])

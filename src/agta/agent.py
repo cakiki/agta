@@ -18,7 +18,20 @@ class MobilityAgent(LLMAgent):
         self.schedule = schedule
         self.attitudes = attitudes
         self.memory = MemoryManager(agent=self)
-        
+
+    def reset_day(self):
+        self.memory.working.reset_day()
+
+    def process_day_trips(self, day, routes_data):
+        for trip in routes_data[self.agent_id]:
+            self.decide_trip(trip, day=day)
+
+    def end_of_day(self, day):
+        self.reflect(day=day)
+        self.reflect_procedural(day=day)
+        if len(self.memory.semantic.beliefs) >= self.model.belief_consolidation_threshold:
+            self.consolidate_beliefs()       
+
     def reflect(self, day: int):
         from agta.prompt.reflection import build_reflection_prompt
         prompt = build_reflection_prompt(self.persona, self.memory, day)
