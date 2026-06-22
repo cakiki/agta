@@ -21,14 +21,14 @@ def load_from_json(path: str, limit: int | None = None, seed=None):
     for entry in raw_data:
         agent = json.loads(entry) if isinstance(entry, str) else entry
         agent_id = agent["id"]
-        home_type = agent.get("home", {}).get("parameters", ["home"])[0]
+        first_trip_from = (agent.get("location_changes") or [{}])[0].get("from", {}).get("task", {}).get("building_type", "home")
 
         agents_data[agent_id] = {
             "persona": agent["description"],
             "seed": agent["seed"],
             "schedule": agent.get("day_schedule"),
             "attitudes": None,
-            "home_type": home_type,
+            "home_type": first_trip_from,
         }
         trips = []
         for lc in agent.get("location_changes") or []:
