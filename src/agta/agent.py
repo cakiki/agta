@@ -4,6 +4,19 @@ from agta.models import TripContext, TripDecision, TripRecord, RouteOption
 from agta.memory.memory_manager import MemoryManager
 from agta.prompt.mode_choice import build_trip_prompt
 from mesa_llm.reasoning.reasoning import Reasoning as BaseReasoning, Plan
+import logging
+from functools import wraps
+
+from litellm.exceptions import APIError, BadRequestError, APIConnectionError
+
+def try_llm_call(func):
+    @wraps(func)
+    def wrapper(self, *args, **kwargs):
+        try:
+            return func(self, *args, **kwargs)
+        except (APIError, BadRequestError, APIConnectionError) as e:
+            logging.warning(f"{func.__name__} failed for agent {self.agent_id}: {e}. Skipping.")
+    return wrapper
 
 class NoOpReasoning(BaseReasoning):
     def plan(self, prompt=None, obs=None, ttl=1, selected_tools=None, tool_calls="auto"):
@@ -32,6 +45,7 @@ class MobilityAgent(LLMAgent):
         if len(self.memory.semantic.beliefs) >= self.model.belief_consolidation_threshold:
             self.consolidate_beliefs()       
 
+    @try_llm_call
     def reflect(self, day: int):
         from agta.prompt.reflection import build_reflection_prompt
         prompt = build_reflection_prompt(self.persona, self.memory, day)
@@ -43,6 +57,7 @@ class MobilityAgent(LLMAgent):
         for belief in parsed.get("beliefs", []):
             self.memory.semantic.add_belief(belief)
     
+    @try_llm_call
     def reflect_procedural(self, day: int):
         from agta.prompt.reflection import build_procedural_reflection_prompt
         prompt = build_procedural_reflection_prompt(self.persona, self.memory, day)
@@ -54,6 +69,7 @@ class MobilityAgent(LLMAgent):
         for rule in parsed.get("rules", []):
             self.memory.procedural.add_rule(rule)
 
+    @try_llm_call
     def consolidate_beliefs(self):
         if len(self.memory.semantic.beliefs) < 5:
             return
@@ -99,7 +115,6 @@ class MobilityAgent(LLMAgent):
             mode = parsed["mode"]
             reasoning = parsed["reasoning"]
         except Exception as e:
-            import logging
             logging.warning(f"LLM call failed for agent {self.agent_id}: {e}. Using fallback.")
             fallback = min(available, key=lambda o: o.duration_min)
             mode = fallback.mode
