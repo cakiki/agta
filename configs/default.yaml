@@ -1,10 +1,10 @@
 data:
   path: data/agents_4a_route_options.json
-  limit: 2
+  limit: 5
 
 simulation:
   llm_model: huggingface/Qwen/Qwen2.5-7B-Instruct
-  num_days: 2
+  num_days: 1
   verbose: false
   belief_consolidation_threshold: 10
 
@@ -14,5 +14,10 @@ retrieval:
   recency_weight: 0.3
   embedding_model: all-MiniLM-L6-v2
 
+data:
+  path: data/agents_4a_route_options.json
+  limit: 10
+  seed: 42
+  
 output:
   path: results/simulation_output_4.json

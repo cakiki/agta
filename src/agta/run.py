@@ -22,6 +22,7 @@ def run(config: dict):
     agents_data, routes_data = load_from_json(
         config["data"]["path"],
         limit=config["data"].get("limit"),
+        seed=config["data"].get("seed"),
     )
     model = MobilityModel(
         agents_data, routes_data,

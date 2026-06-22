@@ -1,20 +1,24 @@
 import json
 from agta.models import TripContext, RouteOption
-
+import random
 
 MODE_MAP = {"pedestrian": "walk", "passenger": "car", "bicycle": "bicycle", "public transport": "public transport"}
 
 
-def load_from_json(path: str, limit: int | None = None):
+def load_from_json(path: str, limit: int | None = None, seed=None):
     with open(path) as f:
-        raw = json.load(f)
+        raw_data = json.load(f)
     if limit:
-        raw = raw[:limit]
+        if seed is not None:
+            rng = random.Random(seed)
+            raw_data = rng.sample(raw_data, min(limit, len(raw_data)))
+        else:
+            raw_data = raw_data[:limit]
 
     agents_data = {}
     routes_data = {}
 
-    for entry in raw:
+    for entry in raw_data:
         agent = json.loads(entry) if isinstance(entry, str) else entry
         agent_id = agent["id"]
 
