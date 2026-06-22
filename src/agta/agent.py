@@ -92,9 +92,18 @@ class MobilityAgent(LLMAgent):
             print(prompt)
             print("=== END ===")
     
-        response = self.llm.generate(prompt)
-        text = response.choices[0].message.content
-        parsed = extract_json_from(text)
+        try:
+            response = self.llm.generate(prompt)
+            text = response.choices[0].message.content
+            parsed = extract_json_from(text)
+            mode = parsed["mode"]
+            reasoning = parsed["reasoning"]
+        except Exception as e:
+            import logging
+            logging.warning(f"LLM call failed for agent {self.agent_id}: {e}. Using fallback.")
+            fallback = min(available, key=lambda o: o.duration_min)
+            mode = fallback.mode
+            reasoning = "fallback: LLM unavailable"
 
         vehicle_state_before = {
             "car": self.memory.working.car_location,
@@ -103,8 +112,8 @@ class MobilityAgent(LLMAgent):
 
         decision = TripDecision(
             route_id=trip.route_id,
-            mode=parsed["mode"],
-            reasoning=parsed["reasoning"],
+            mode=mode,
+            reasoning=reasoning,
             vehicle_state=vehicle_state_before,
         )
 
