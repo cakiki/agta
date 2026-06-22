@@ -1,12 +1,13 @@
 {
   "metadata": {
-    "timestamp": "2026-06-22T14:50:34.812755",
-    "num_agents": 5,
+    "timestamp": "2026-06-22T16:38:30.733500",
+    "num_agents": 10,
     "num_days": 1,
     "config": {
       "data": {
         "path": "data/agents_4a_route_options.json",
-        "limit": 5
+        "limit": 10,
+        "seed": 42
       },
       "simulation": {
         "llm_model": "huggingface/Qwen/Qwen2.5-7B-Instruct",
@@ -26,1342 +27,1091 @@
     }
   },
   "agents": {
-    "5174": {
-      "persona": "Markus, a 51‑year‑old male living in a spacious Berlin apartment with his spouse and two teenage children, holds a university degree and works full‑time as a senior project manager at a tech firm in the city centre. He commutes daily by a combination of S‑train and his own city bike, as the household owns no car and prefers sustainable mobility. With a net household income of between €5,000 and €6,000, the family enjoys a high economic status, affording a well‑fitted kitchen, regular cultural outings, and a modest savings plan, while his partner, also employed, shares the responsibilities of household management. Although he does not work from home, their home office space is set up for occasional remote tasks, and the household’s primary transport tool is the bike, reflecting their environmentally conscious lifestyle.",
+    "33402": {
+      "persona": "Maria is a 71‑year‑old woman living alone in a compact, wheelchair‑accessible apartment in Friedrichshain, Berlin. She retired last year after a long career as a municipal administrative clerk and now receives a modest pension that, together with a small supplemental income, places her household net monthly earnings between €1,500 and €2,000. Maria holds a Mittlere Reife (Realschulabschluss) and enjoys a comfortable, middle‑class lifestyle, allocating most of her budget to health care, groceries, and occasional cultural outings such as museum tickets or theatre performances. She does not own a car, preferring to cycle on Berlin’s extensive bike lanes to the nearby Stadtpark or to visit the weekly market, and she relies on public transport for longer trips. Her social circle consists of a few neighbors and a senior‑citizen club where she participates in weekly knitting circles and language exchange evenings.",
       "transport_attitudes": {},
       "learned_beliefs": [
-        "Prefers public transport for efficiency and time savings, especially during peak hours.",
-        "Values punctuality and reliability, choosing public transport for time-sensitive trips.",
-        "Chooses sustainable and environmentally friendly modes of transportation, such as public transport and biking.",
-        "Considers the distance and time of the walk when deciding on the mode of transport, opting for public transport for longer distances.",
-        "Is cost-conscious and likely benefits from the lower cost of public transport compared to other options."
+        "Maria prefers public transport for longer trips due to its efficiency and time-saving benefits.",
+        "Maria values active transportation, such as walking, for shorter distances and when it aligns with her lifestyle preferences.",
+        "Maria is consistent in her travel choices, using the same mode of transport for similar distances throughout the day.",
+        "Maria prioritizes time efficiency, especially in the morning, when she needs to start her day with a trip to the supermarket."
       ],
       "procedural_rules": [
-        "If the destination is within 2 km and the weather is good, then walk.",
-        "If the destination is within 5 km and the weather is good, then cycle.",
-        "If the trip involves a conference or important meeting and time constraints are tight, then use public transport.",
-        "If the trip is to or from work and time is not a critical factor, then use public transport for its efficiency and reliability.",
-        "If the trip is to a cultural outing or leisure activity and the public transport is efficient, then use public transport.",
-        "If the weather is poor or the trip involves a significant amount of luggage, then use public transport."
-      ],
-      "trips": [
-        {
-          "day": 0,
-          "time": "09:30",
-          "origin": "company",
-          "destination": "restaurant",
-          "origin_coordinates": [
-            385744,
-            5826536
-          ],
-          "destination_coordinates": [
-            385544,
-            5817027
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "The public transport option is quicker despite the longer distance, saving over 2 hours of travel time which is more efficient given the time of day and the need to be at the restaurant on time.",
-          "distance_km": 12.58,
-          "duration_min": 42.1,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 11.78,
-              "duration_min": 155.3
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 12.58,
-              "duration_min": 42.1
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "12:00",
-          "origin": "restaurant",
-          "destination": "company",
-          "origin_coordinates": [
-            385544,
-            5817027
-          ],
-          "destination_coordinates": [
-            385744,
-            5826536
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the efficiency of public transport from previous experience, the public transport option is the most suitable for this trip.",
-          "distance_km": 12.55,
-          "duration_min": 47.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 11.78,
-              "duration_min": 155.3
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 12.55,
-              "duration_min": 47.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "13:00",
-          "origin": "company",
-          "destination": "conference_centre",
-          "origin_coordinates": [
-            385744,
-            5826536
-          ],
-          "destination_coordinates": [
-            383277,
-            5818517
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the previous efficiency of public transport and the need to be on time for the conference, the public transport option is the most suitable choice.",
-          "distance_km": 0.0,
-          "duration_min": 0.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.0,
-              "duration_min": 0.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "15:30",
-          "origin": "conference_centre",
-          "destination": "company",
-          "origin_coordinates": [
-            383277,
-            5818517
-          ],
-          "destination_coordinates": [
-            385744,
-            5826536
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the efficiency and timeliness of public transport as demonstrated in previous trips, it is the most suitable choice for the return journey to the company.",
-          "distance_km": 0.0,
-          "duration_min": 0.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.0,
-              "duration_min": 0.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "17:30",
-          "origin": "company",
-          "destination": "school",
-          "origin_coordinates": [
-            385744,
-            5826536
-          ],
-          "destination_coordinates": [
-            385483,
-            5826247
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the efficiency and timeliness of public transport demonstrated in previous trips, it is the most suitable choice for the 17:30 trip to school, especially since it aligns with the time constraints and travel time savings observed earlier today.",
-          "distance_km": 0.6,
-          "duration_min": 8.9,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.6,
-              "duration_min": 8.9
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 0.6,
-              "duration_min": 8.9
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "18:00",
-          "origin": "school",
-          "destination": "apartment",
-          "origin_coordinates": [
-            385483,
-            5826247
-          ],
-          "destination_coordinates": [
-            385744,
-            5826536
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the similar travel time to previous trips and the efficiency of public transport, it is the most suitable choice for the 18:00 trip from school to apartment.",
-          "distance_km": 0.6,
-          "duration_min": 8.9,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.6,
-              "duration_min": 8.9
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 0.6,
-              "duration_min": 8.9
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "19:45",
-          "origin": "apartment",
-          "destination": "cinema",
-          "origin_coordinates": [
-            385744,
-            5826536
-          ],
-          "destination_coordinates": [
-            388199,
-            5823554
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the efficiency of public transport demonstrated in previous trips and the distance of the walk, public transport is the more time-effective option for the 19:45 trip to the cinema.",
-          "distance_km": 5.11,
-          "duration_min": 25.2,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 4.44,
-              "duration_min": 58.1
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 5.11,
-              "duration_min": 25.2
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "20:30",
-          "origin": "cinema",
-          "destination": "apartment",
-          "origin_coordinates": [
-            388199,
-            5823554
-          ],
-          "destination_coordinates": [
-            385744,
-            5826536
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the efficiency and time savings demonstrated with public transport in previous trips, it is the most suitable choice for the 20:30 trip from the cinema to the apartment.",
-          "distance_km": 5.08,
-          "duration_min": 27.4,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 4.44,
-              "duration_min": 58.1
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 5.08,
-              "duration_min": 27.4
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        }
-      ]
-    },
-    "5175": {
-      "persona": "Thomas, a 51‑year‑old male living in a spacious four‑person family household in Berlin’s Charlottenburg district, holds a university degree and works full‑time as a senior project manager at a consulting firm, commuting daily by public transport and frequently riding his city bike for short trips; his household, which boasts a net monthly income of €5,500, does not own a car, reflects a high economic status, and the family – his spouse and two teenage children – enjoy a blend of cultural activities and outdoor recreation, all while Thomas opts out of home‑office arrangements, preferring the structure of a regular office routine.",
-      "transport_attitudes": {},
-      "learned_beliefs": [
-        "Prefers public transport for its efficiency and time-saving benefits, especially during commutes and short trips.",
-        "Optimizes travel time by choosing routes that are faster, even if they are slightly longer in distance.",
-        "Values a regular office routine and does not opt for home-office arrangements, indicating a preference for the structure of a traditional work environment.",
-        "Consistently uses public transport for all trips, suggesting a strong preference for this mode of transportation.",
-        "Balances work and personal time effectively by using public transport for both professional and leisure activities."
-      ],
-      "procedural_rules": [
-        "If distance is under 2km and weather is good, cycle",
-        "If time constraints are tight and public transport is significantly faster, use public transport",
-        "If distance is between 2km and 10km and weather is good, use public transport",
-        "If time constraints are not tight and walking is feasible, walk"
-      ],
-      "trips": [
-        {
-          "day": 0,
-          "time": "07:00",
-          "origin": "residential",
-          "destination": "company",
-          "origin_coordinates": [
-            403281,
-            5809369
-          ],
-          "destination_coordinates": [
-            403691,
-            5809226
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "The public transport option is slightly farther but significantly faster, which is more efficient given the time constraints of a morning commute.",
-          "distance_km": 5.66,
-          "duration_min": 29.6,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 5.39,
-              "duration_min": 69.7
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 5.66,
-              "duration_min": 29.6
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "10:30",
-          "origin": "company",
-          "destination": "restaurant",
-          "origin_coordinates": [
-            403691,
-            5809226
-          ],
-          "destination_coordinates": [
-            406568,
-            5818034
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it is more efficient to use public transport for this trip.",
-          "distance_km": 11.1,
-          "duration_min": 45.4,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 10.61,
-              "duration_min": 136.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 11.1,
-              "duration_min": 45.4
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "12:00",
-          "origin": "restaurant",
-          "destination": "company",
-          "origin_coordinates": [
-            406568,
-            5818034
-          ],
-          "destination_coordinates": [
-            403691,
-            5809226
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it is more efficient to use public transport for this trip, aligning with my earlier choices and the need to save time during the workday.",
-          "distance_km": 11.28,
-          "duration_min": 46.3,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 10.61,
-              "duration_min": 136.4
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 11.28,
-              "duration_min": 46.3
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "13:00",
-          "origin": "company",
-          "destination": "cafe",
-          "origin_coordinates": [
-            403691,
-            5809226
-          ],
-          "destination_coordinates": [
-            403138,
-            5811387
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it is more efficient to use public transport for this trip, aligning with my earlier choices and the need to save time during the workday.",
-          "distance_km": 2.74,
-          "duration_min": 15.2,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 2.66,
-              "duration_min": 33.6
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 2.74,
-              "duration_min": 15.2
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "15:30",
-          "origin": "cafe",
-          "destination": "company",
-          "origin_coordinates": [
-            403138,
-            5811387
-          ],
-          "destination_coordinates": [
-            403691,
-            5809226
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it is more efficient to use public transport for this trip, aligning with my earlier choices and the need to save time during the workday.",
-          "distance_km": 2.79,
-          "duration_min": 13.6,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 2.66,
-              "duration_min": 33.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 2.79,
-              "duration_min": 13.6
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "17:30",
-          "origin": "company",
-          "destination": "sports_centre",
-          "origin_coordinates": [
-            403691,
-            5809226
-          ],
-          "destination_coordinates": [
-            406100,
-            5818349
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the significantly faster travel time with public transport, it aligns with my earlier choices and the need to efficiently manage my commute and personal time.",
-          "distance_km": 11.08,
-          "duration_min": 42.1,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 10.76,
-              "duration_min": 137.7
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 11.08,
-              "duration_min": 42.1
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "18:15",
-          "origin": "sports_centre",
-          "destination": "residential",
-          "origin_coordinates": [
-            406100,
-            5818349
-          ],
-          "destination_coordinates": [
-            403281,
-            5809369
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the distance and time constraints, public transport is more efficient and aligns with my earlier choices for today's trips.",
-          "distance_km": 11.5,
-          "duration_min": 52.9,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 10.94,
-              "duration_min": 140.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 11.5,
-              "duration_min": 52.9
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        }
-      ]
-    },
-    "5176": {
-      "persona": "Markus, a 51‑year‑old male living in a renovated four‑person household in Berlin’s Kreuzberg district, works full‑time as a senior project manager at a tech consultancy and commutes daily without a secondary residence, relying on the extensive public‑transport network and his own bike for the last mile; despite a household net income of €5,000‑€6,000 per month that places his family in the high economic bracket, he and his partner have chosen not to own a car, preferring the city’s bike‑friendly infrastructure and occasional car‑sharing services, and they enjoy a lifestyle centered around sustainable mobility, weekend family outings to parks, and cultural events, reflecting both his university degree background and a strong commitment to environmental stewardship.",
-      "transport_attitudes": {},
-      "learned_beliefs": [
-        "Prefers sustainable mobility options such as public transport and biking.",
-        "Consistently uses public transport for commuting and leisure activities to save time and reduce environmental impact.",
-        "Chooses public transport even when it involves a longer distance to maintain consistency with sustainable practices.",
-        "Values efficient use of time during daily commutes and activities.",
-        "Relies on the extensive public transport network for reliable and convenient travel.",
-        "Prefers car-sharing services over owning a car for flexibility and cost-effectiveness."
-      ],
-      "procedural_rules": [
-        "If distance is under 2km and time allows, walk",
-        "If bike is available and weather is good, cycle",
-        "If destination is within public transport range and time is critical, use public transport",
-        "If destination is within walking distance but time is tight, use public transport",
-        "If destination is within biking distance but time is tight, cycle",
-        "If destination is within car-sharing range but time is critical, use public transport",
-        "If destination is within car-sharing range and time allows, use car-sharing service"
-      ],
-      "trips": [
-        {
-          "day": 0,
-          "time": "08:15",
-          "origin": "residential",
-          "destination": "company",
-          "origin_coordinates": [
-            399166,
-            5823812
-          ],
-          "destination_coordinates": [
-            399638,
-            5822604
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "The public transport option is slightly farther but will save time compared to walking, and it aligns with my preference for sustainable mobility and efficient use of time during my commute.",
-          "distance_km": 3.65,
-          "duration_min": 18.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 1.89,
-              "duration_min": 24.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 3.65,
-              "duration_min": 18.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "12:00",
-          "origin": "company",
-          "destination": "conference_centre",
-          "origin_coordinates": [
-            399638,
-            5822604
-          ],
-          "destination_coordinates": [
-            383277,
-            5818517
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the previous experience of using public transport for the morning commute and the need to save time for the conference, the public transport option is the most efficient choice.",
-          "distance_km": 0.0,
-          "duration_min": 0.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.0,
-              "duration_min": 0.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "13:00",
-          "origin": "conference_centre",
-          "destination": "company",
-          "origin_coordinates": [
-            383277,
-            5818517
-          ],
-          "destination_coordinates": [
-            399638,
-            5822604
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given my previous experience with efficient public transport and the need to save time for the return trip, the public transport option remains the most suitable choice.",
-          "distance_km": 0.0,
-          "duration_min": 0.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.0,
-              "duration_min": 0.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "16:30",
-          "origin": "company",
-          "destination": "sports_centre",
-          "origin_coordinates": [
-            399638,
-            5822604
-          ],
-          "destination_coordinates": [
-            385915,
-            5816678
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the previous efficient use of public transport and the need to save time for the trip to the sports centre, the public transport option is the most suitable choice.",
-          "distance_km": 26.37,
-          "duration_min": 76.3,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 17.14,
-              "duration_min": 223.1
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 26.37,
-              "duration_min": 76.3
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "17:30",
-          "origin": "sports_centre",
-          "destination": "restaurant",
-          "origin_coordinates": [
-            385915,
-            5816678
-          ],
-          "destination_coordinates": [
-            385544,
-            5817027
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given my consistent use of public transport for efficient and sustainable commuting, and the fact that both options have the same distance and time, I will continue with public transport to maintain consistency with my daily routine.",
-          "distance_km": 0.72,
-          "duration_min": 9.5,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 0.72,
-              "duration_min": 9.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 0.72,
-              "duration_min": 9.5
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "19:00",
-          "origin": "restaurant",
-          "destination": "cinema",
-          "origin_coordinates": [
-            385544,
-            5817027
-          ],
-          "destination_coordinates": [
-            393639,
-            5823571
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the need to efficiently reach the cinema, the public transport option is more suitable despite the longer distance, aligning with my consistent use of public transport for commuting.",
-          "distance_km": 15.78,
-          "duration_min": 46.8,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 11.86,
-              "duration_min": 155.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 15.78,
-              "duration_min": 46.8
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "20:30",
-          "origin": "cinema",
-          "destination": "residential",
-          "origin_coordinates": [
-            393639,
-            5823571
-          ],
-          "destination_coordinates": [
-            399166,
-            5823812
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the need to efficiently return home after the cinema, the public transport option is more suitable despite the slightly longer distance, aligning with my consistent use of public transport for commuting and maintaining my commitment to sustainable mobility.",
-          "distance_km": 7.74,
-          "duration_min": 35.1,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 6.41,
-              "duration_min": 81.7
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 7.74,
-              "duration_min": 35.1
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        }
-      ]
-    },
-    "5177": {
-      "persona": "Markus, a 51‑year‑old male living in a spacious Berlin neighborhood, works full‑time as a senior project manager at a multinational tech company and commutes daily by S‑Bahn and a city bike, as his household—comprised of his spouse and two teenage children—owns no car and prefers sustainable mobility; the family lives in a renovated four‑person apartment, enjoys a high economic status with a net household income of €5,000‑€6,000 per month, holds a university degree, and, lacking a secondary residence, does not work from home, but values the active, bike‑friendly lifestyle that Berlin offers.",
-      "transport_attitudes": {},
-      "learned_beliefs": [
-        "Prefers public transport for commuting and leisure activities due to its alignment with a sustainable lifestyle.",
-        "Values efficient use of time during commutes, utilizing the travel time for other activities or rest.",
-        "Consistently chooses public transport for trips of similar distance and time, indicating a preference for this mode of transportation.",
-        "Enjoys the active, bike-friendly lifestyle that Berlin offers, which influences travel choices.",
-        "Considers the distance and time when making travel decisions, favoring public transport for longer distances."
-      ],
-      "procedural_rules": [
-        "If the distance is under 2km and the weather is good, walk.",
-        "If the distance is between 2km and 10km, use public transport.",
-        "If the distance is over 10km, use a combination of public transport and possibly a city bike for the last leg of the journey.",
-        "If the weather is poor and the distance is under 5km, take public transport.",
-        "If the destination is a sports centre and the time allows, use public transport.",
-        "If the destination is a cinema and the time allows, use public transport.",
-        "If the commute time is similar for both walking and public transport, use public transport for its sustainability and efficiency.",
-        "If a bike is available and the weather is good, cycle for shorter distances (under 5km)."
-      ],
-      "trips": [
-        {
-          "day": 0,
-          "time": "08:45",
-          "origin": "residential",
-          "destination": "company",
-          "origin_coordinates": [
-            384257,
-            5816879
-          ],
-          "destination_coordinates": [
-            384632,
-            5817087
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the distance and time are the same for both walking and taking public transport, and considering the daily commute, using public transport aligns better with a sustainable lifestyle and allows for more efficient use of time.",
-          "distance_km": 1.09,
-          "duration_min": 14.1,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 1.09,
-              "duration_min": 14.1
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 1.09,
-              "duration_min": 14.1
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "10:15",
-          "origin": "company",
-          "destination": "cafe",
-          "origin_coordinates": [
-            384632,
-            5817087
-          ],
-          "destination_coordinates": [
-            384744,
-            5817943
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the similar travel time and distance, using public transport aligns with my sustainable lifestyle and allows me to use the time for other activities or rest during the commute.",
-          "distance_km": 1.02,
-          "duration_min": 13.6,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 1.02,
-              "duration_min": 13.6
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 1.02,
-              "duration_min": 13.6
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "12:00",
-          "origin": "cafe",
-          "destination": "company",
-          "origin_coordinates": [
-            384744,
-            5817943
-          ],
-          "destination_coordinates": [
-            384632,
-            5817087
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given my sustainable lifestyle and the similar travel time for both modes, using public transport aligns better with my daily routine and allows me to use the commuting time for other activities.",
-          "distance_km": 1.02,
-          "duration_min": 13.6,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 1.02,
-              "duration_min": 13.6
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 1.02,
-              "duration_min": 13.6
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "17:00",
-          "origin": "company",
-          "destination": "sports_centre",
-          "origin_coordinates": [
-            384632,
-            5817087
-          ],
-          "destination_coordinates": [
-            386732,
-            5820032
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the similar travel time to previous trips and the alignment with my sustainable lifestyle, using public transport for the 17:00 company -> sports_centre trip is a suitable choice.",
-          "distance_km": 7.44,
-          "duration_min": 33.0,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 4.9,
-              "duration_min": 66.8
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 7.44,
-              "duration_min": 33.0
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "18:15",
-          "origin": "sports_centre",
-          "destination": "residential",
-          "origin_coordinates": [
-            386732,
-            5820032
-          ],
-          "destination_coordinates": [
-            384257,
-            5816879
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the longer distance and time for walking, using public transport aligns better with my sustainable lifestyle and efficient use of time, as it matches my previous choices for today's trips.",
-          "distance_km": 7.66,
-          "duration_min": 35.1,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 5.35,
-              "duration_min": 73.0
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 7.66,
-              "duration_min": 35.1
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "20:30",
-          "origin": "residential",
-          "destination": "cinema",
-          "origin_coordinates": [
-            384257,
-            5816879
-          ],
-          "destination_coordinates": [
-            386940,
-            5818632
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the previous choices of using public transport for similar trips today, and considering the distance and time, it aligns better with my sustainable lifestyle and efficient use of time.",
-          "distance_km": 6.47,
-          "duration_min": 32.2,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 3.85,
-              "duration_min": 53.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 6.47,
-              "duration_min": 32.2
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "22:00",
-          "origin": "cinema",
-          "destination": "residential",
-          "origin_coordinates": [
-            386940,
-            5818632
-          ],
-          "destination_coordinates": [
-            384257,
-            5816879
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the previous choices of using public transport for similar trips today, and considering the distance and time, it aligns better with my sustainable lifestyle and efficient use of time.",
-          "distance_km": 6.48,
-          "duration_min": 30.9,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 3.85,
-              "duration_min": 53.6
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 6.48,
-              "duration_min": 30.9
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        }
-      ]
-    },
-    "5178": {
-      "persona": "Lena, a 16‑year‑old girl from a well‑to‑do Berlin family, lives in a four‑person household with both parents and her younger brother. Her parents earn a combined net income of roughly €5,200 a month, placing the household in the high economic tier, and they have chosen not to own a car, instead relying on a shared family bicycle for local trips. Lena attends a public secondary school, where she is still completing her compulsory education and has not yet obtained any formal qualification. With no migration background, she speaks German as her native language and participates in school clubs such as the environmental group, often cycling to meet friends in the neighbourhood. Outside school, she enjoys hanging out at local cafés with her peers, and her family’s modest but comfortable lifestyle gives her access to cultural events and contemporary digital media.",
-      "transport_attitudes": {},
-      "learned_beliefs": [
-        "Prefers public transport for efficiency and time constraints",
-        "Values time management, especially for school-related activities",
-        "Chooses more environmentally friendly options, such as public transport over a car",
-        "Considers distance and time when choosing a mode of transport",
-        "Aims for a balanced and structured daily routine"
-      ],
-      "procedural_rules": [
-        "If distance is under 2km and weather is good, cycle",
-        "If distance is between 2km and 10km, use public transport",
-        "If distance is over 10km, use a combination of public transport and possibly a car-sharing service",
-        "If time constraints are tight and efficiency is key, prioritize public transport",
-        "If cultural events or activities are nearby, walk or cycle to reduce carbon footprint"
+        "If distance is under 2km, walk",
+        "If distance is between 2km and 5km, use public transport",
+        "If distance is over 5km, use public transport or consider carpooling if available",
+        "If weather is good and time permits, cycle for distances up to 5km",
+        "If destination is within walking distance and time allows, prioritize walking for environmental and health benefits",
+        "If public transport is already used for a longer trip in the same day, use it again for subsequent shorter trips to maintain efficiency"
       ],
       "trips": [
         {
           "day": 0,
           "time": "07:30",
-          "origin": "residential",
-          "destination": "school",
+          "origin": "apartments",
+          "destination": "supermarket",
           "origin_coordinates": [
-            399029,
-            5825463
+            388318,
+            5818757
           ],
           "destination_coordinates": [
-            395149,
-            5824810
+            388630,
+            5820565
           ],
           "chosen_mode": "public transport",
-          "reasoning": "The public transport option is slightly farther but significantly faster, which is more efficient given the time constraints of traveling to school.",
-          "distance_km": 6.02,
-          "duration_min": 27.2,
+          "reasoning": "The public transport option is slightly farther but faster, which is more efficient given the time of day and the need to start the day with a trip to the supermarket.",
+          "distance_km": 2.52,
+          "duration_min": 22.8,
           "available_options": [
             {
               "mode": "walk",
-              "distance_km": 5.06,
-              "duration_min": 65.6
+              "distance_km": 2.2,
+              "duration_min": 29.1
             },
             {
               "mode": "public transport",
-              "distance_km": 6.02,
-              "duration_min": 27.2
+              "distance_km": 2.52,
+              "duration_min": 22.8
             }
           ],
           "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
           },
           "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
           }
         },
         {
           "day": 0,
-          "time": "08:30",
-          "origin": "school",
+          "time": "09:00",
+          "origin": "supermarket",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388630,
+            5820565
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given that I already used public transport this morning and it is more efficient for the longer distance to the pharmacy, I will choose public transport again to save time.",
+          "distance_km": 8.93,
+          "duration_min": 50.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.45,
+              "duration_min": 98.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 50.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "11:00",
+          "origin": "pharmacy",
           "destination": "cafe",
           "origin_coordinates": [
-            395149,
-            5824810
+            385721,
+            5826115
           ],
           "destination_coordinates": [
-            392952,
-            5823269
+            386613,
+            5824264
           ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the time constraints and the slightly longer distance, public transport is more efficient and aligns with my earlier choice of using it for the morning commute.",
-          "distance_km": 3.52,
-          "duration_min": 21.3,
+          "reasoning": "Given that I have already used public transport twice today for more efficient longer-distance travel, I will continue with public transport to the cafe to maintain consistency and efficiency.",
+          "distance_km": 2.92,
+          "duration_min": 23.9,
           "available_options": [
             {
               "mode": "walk",
-              "distance_km": 2.99,
-              "duration_min": 39.1
+              "distance_km": 2.74,
+              "duration_min": 35.2
             },
             {
               "mode": "public transport",
-              "distance_km": 3.52,
-              "duration_min": 21.3
+              "distance_km": 2.92,
+              "duration_min": 23.9
             }
           ],
           "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
           },
           "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
-          }
-        },
-        {
-          "day": 0,
-          "time": "12:00",
-          "origin": "cafe",
-          "destination": "community_centre",
-          "origin_coordinates": [
-            392952,
-            5823269
-          ],
-          "destination_coordinates": [
-            388952,
-            5821083
-          ],
-          "chosen_mode": "public transport",
-          "reasoning": "Given the earlier efficiency of public transport and the distance, it is the most time-effective option for getting to the community centre.",
-          "distance_km": 6.84,
-          "duration_min": 36.2,
-          "available_options": [
-            {
-              "mode": "walk",
-              "distance_km": 5.37,
-              "duration_min": 71.5
-            },
-            {
-              "mode": "public transport",
-              "distance_km": 6.84,
-              "duration_min": 36.2
-            }
-          ],
-          "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
-          },
-          "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
           }
         },
         {
           "day": 0,
           "time": "13:00",
-          "origin": "community_centre",
+          "origin": "cafe",
+          "destination": "social_club",
+          "origin_coordinates": [
+            386613,
+            5824264
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have already used public transport for the longer trips today, and it is more efficient for the distance to the social club compared to walking.",
+          "distance_km": 8.87,
+          "duration_min": 46.3,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.64,
+              "duration_min": 100.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.87,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "14:30",
+          "origin": "social_club",
           "destination": "library",
           "origin_coordinates": [
-            388952,
-            5821083
+            392523,
+            5820915
           ],
           "destination_coordinates": [
             390859,
             5819896
           ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the efficiency of public transport in my earlier trips and the distance to the library, it remains the most time-effective option.",
-          "distance_km": 3.07,
-          "duration_min": 22.6,
+          "reasoning": "I have already used public transport for longer trips today, and it is more efficient for the distance to the library compared to walking.",
+          "distance_km": 2.24,
+          "duration_min": 16.6,
           "available_options": [
             {
               "mode": "walk",
-              "distance_km": 2.95,
-              "duration_min": 39.5
+              "distance_km": 2.24,
+              "duration_min": 28.8
             },
             {
               "mode": "public transport",
-              "distance_km": 3.07,
-              "duration_min": 22.6
+              "distance_km": 2.24,
+              "duration_min": 16.6
             }
           ],
           "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
           },
           "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:00",
+          "origin": "library",
+          "destination": "culture",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            388364,
+            5818668
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have already used public transport for longer trips today, which is more efficient for the distance to the culture destination compared to walking.",
+          "distance_km": 4.14,
+          "duration_min": 37.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.25,
+              "duration_min": 42.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.14,
+              "duration_min": 37.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "culture",
+          "destination": "apartments",
+          "origin_coordinates": [
+            388364,
+            5818668
+          ],
+          "destination_coordinates": [
+            388318,
+            5818757
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given that the distance and time are very similar for both modes, walking is a good choice as it aligns with Maria's preference for active transportation and the short distance makes it feasible without the need for public transport.",
+          "distance_km": 0.34,
+          "duration_min": 4.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "22436": {
+      "persona": "Anna is a 33‑year‑old woman living in a compact two‑person flat in Friedrichshain, where she shares the apartment with her partner, a fellow marketing specialist. Both hold university degrees and work full‑time in the tech and creative sectors, earning a combined net household income of roughly €5,200 per month, placing them in a high‑status, young household category. Without a migration background, Anna commutes by bike to her office in central Berlin and, when longer trips are required, she uses a city‑wide car‑sharing service rather than owning a car. She does not work from home and has no secondary residence, so her daily routine is tightly linked to Berlin’s public transport and cycling infrastructure, reflecting the city’s sustainability‑focused lifestyle.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Prefers walking for short distances to maintain an active lifestyle and align with Berlin's sustainability focus.",
+        "Chooses public transport for longer distances and when efficiency is needed for a busy work schedule.",
+        "Considers the time and distance when deciding between walking and public transport, prioritizing efficiency and sustainability.",
+        "Values the convenience and time savings of public transport, especially for multiple consecutive trips.",
+        "Maintains consistency in transport choices to reflect a cohesive and sustainable daily routine."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km, walk",
+        "If distance is between 2km and 5km, use public transport",
+        "If distance is over 5km, use public transport or car-sharing service",
+        "If weather is good and time allows, cycle for distances up to 5km",
+        "If multiple transport options are available, prioritize public transport for efficiency and sustainability",
+        "If returning home and distance is under 2km, walk"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:30",
+          "origin": "residential",
+          "destination": "cafe",
+          "origin_coordinates": [
+            386439,
+            5818890
+          ],
+          "destination_coordinates": [
+            386685,
+            5818712
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "The distance and time are very similar for both walking and public transport, so walking is a more direct and active choice, which aligns with Berlin's sustainability-focused lifestyle.",
+          "distance_km": 0.35,
+          "duration_min": 4.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.35,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.35,
+              "duration_min": 4.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "08:00",
+          "origin": "cafe",
+          "destination": "office",
+          "origin_coordinates": [
+            386685,
+            5818712
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time difference is minimal between walking and public transport, and considering the efficiency of public transport for this distance, it aligns better with a busy work schedule and Berlin's sustainability focus.",
+          "distance_km": 3.63,
+          "duration_min": 13.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.78,
+              "duration_min": 49.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.63,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "08:30",
+          "origin": "office",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            388028,
+            5821639
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the similar travel time for both modes, public transport aligns better with the efficiency needed for a busy work schedule and Berlin's sustainability focus, especially since I've already walked the shorter distance to the cafe.",
+          "distance_km": 0.55,
+          "duration_min": 7.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.55,
+              "duration_min": 7.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.55,
+              "duration_min": 7.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:30",
+          "origin": "coworking_space",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388028,
+            5821639
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency of public transport for longer distances and the need to maintain a busy work schedule, the public transport option is more suitable for the 10:30 trip to the restaurant.",
+          "distance_km": 4.38,
+          "duration_min": 23.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.12,
+              "duration_min": 43.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.38,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:30",
+          "origin": "restaurant",
+          "destination": "office",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and alignment with my busy work schedule, as well as Berlin's sustainability focus, public transport is the better choice for this trip.",
+          "distance_km": 4.11,
+          "duration_min": 19.8,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.14,
+              "duration_min": 41.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.11,
+              "duration_min": 19.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "13:30",
+          "origin": "office",
+          "destination": "parcel_locker",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            389141,
+            5814538
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency of public transport for longer distances and the need to maintain a busy work schedule, public transport is the better choice for this trip, aligning with my earlier decisions and Berlin's sustainability focus.",
+          "distance_km": 10.39,
+          "duration_min": 38.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 8.79,
+              "duration_min": 118.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 10.39,
+              "duration_min": 38.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:00",
+          "origin": "parcel_locker",
+          "destination": "cafe",
+          "origin_coordinates": [
+            389141,
+            5814538
+          ],
+          "destination_coordinates": [
+            386685,
+            5818712
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the previous efficient use of public transport and the longer walking distance, public transport is a more practical and time-effective choice for this trip.",
+          "distance_km": 7.19,
+          "duration_min": 31.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.73,
+              "duration_min": 77.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.19,
+              "duration_min": 31.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:30",
+          "origin": "cafe",
+          "destination": "office",
+          "origin_coordinates": [
+            386685,
+            5818712
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency needed for a busy work schedule and Berlin's sustainability focus, public transport aligns better with my previous choices and the shorter travel time compared to walking.",
+          "distance_km": 3.63,
+          "duration_min": 13.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.78,
+              "duration_min": 49.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.63,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "17:30",
+          "origin": "office",
+          "destination": "gym",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            388707,
+            5822456
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and time savings of public transport, especially for longer distances, it aligns well with my busy work schedule and Berlin's sustainability-focused lifestyle.",
+          "distance_km": 2.86,
+          "duration_min": 17.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.75,
+              "duration_min": 24.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.86,
+              "duration_min": 17.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "gym",
+          "destination": "library",
+          "origin_coordinates": [
+            388707,
+            5822456
+          ],
+          "destination_coordinates": [
+            388817,
+            5825238
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and time savings of public transport, especially for longer distances, it aligns well with my busy work schedule and Berlin's sustainability-focused lifestyle, making it the better choice for this trip as well.",
+          "distance_km": 5.79,
+          "duration_min": 27.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.6,
+              "duration_min": 47.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.79,
+              "duration_min": 27.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:00",
+          "origin": "library",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388817,
+            5825238
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and alignment with my busy work schedule, as well as Berlin's sustainability focus, public transport is the better choice for this trip, especially considering the distance and time constraints.",
+          "distance_km": 8.94,
+          "duration_min": 32.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.48,
+              "duration_min": 99.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.94,
+              "duration_min": 32.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:30",
+          "origin": "restaurant",
+          "destination": "concert_hall",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            386537,
+            5818957
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and alignment with my busy work schedule, as well as Berlin's sustainability focus, public transport is the better choice for this trip, especially considering the distance and time constraints, which are the same as previous public transport trips today.",
+          "distance_km": 0.84,
+          "duration_min": 10.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.84,
+              "duration_min": 10.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.84,
+              "duration_min": 10.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "20:30",
+          "origin": "concert_hall",
+          "destination": "residential",
+          "origin_coordinates": [
+            386537,
+            5818957
+          ],
+          "destination_coordinates": [
+            386439,
+            5818890
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given the short distance and duration of the trip, walking aligns well with the active and sustainable lifestyle choices made throughout the day.",
+          "distance_km": 0.15,
+          "duration_min": 2.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.15,
+              "duration_min": 2.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.15,
+              "duration_min": 2.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "5964": {
+      "persona": "Lena, a 37‑year‑old woman living in a modest three‑person household in Berlin's Kreuzberg district, works full‑time as a retail manager at a boutique shop near Alexanderplatz. She holds a Realschulabschluss and, without a migration background, grew up in the city before moving into her current rental apartment with her partner and their 7‑year‑old son. Their monthly net household income of €2,200 allows them to afford a single compact car, which Lena uses for occasional trips to the outskirts and family outings, while she and her partner rely mostly on bicycles and public transport for daily commutes and errands. Despite the limited income, the family maintains a middle‑class lifestyle, balancing work, school activities, and weekend bike rides along the Spree, and they occasionally work from home when her employer permits flexible arrangements.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Prefers walking for short distances to start the day and get exercise.",
+        "Values efficiency in travel time, especially for commuting and errands.",
+        "Relies on public transport for longer or more frequent trips to save time.",
+        "Balances travel time with daily responsibilities, such as work and school pickups.",
+        "Uses bicycles for daily commutes and errands when time and distance allow.",
+        "Considers the cost and practicality of car usage, opting for it only for occasional trips."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and time allows, walk",
+        "If bike is available and weather is good, cycle",
+        "If travel time to destination is under 30 minutes and public transport is available, use public transport",
+        "If destination is within walking distance but time is limited, use public transport",
+        "If destination is a supermarket or cinema and time is limited, use public transport",
+        "If destination is school and time is limited, use public transport"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "08:00",
+          "origin": "residential",
+          "destination": "retail",
+          "origin_coordinates": [
+            387191,
+            5811126
+          ],
+          "destination_coordinates": [
+            387334,
+            5811239
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Since both options are equally close in distance and time, walking is a good choice to start the day and get some exercise, which is beneficial for overall health.",
+          "distance_km": 0.19,
+          "duration_min": 2.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.19,
+              "duration_min": 2.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.19,
+              "duration_min": 2.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "11:00",
+          "origin": "retail",
+          "destination": "cafe",
+          "origin_coordinates": [
+            387334,
+            5811239
+          ],
+          "destination_coordinates": [
+            388750,
+            5813132
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "While walking is beneficial for health, the distance and time for the walk are significant, and public transport will save time, allowing for a more efficient trip to the cafe.",
+          "distance_km": 3.74,
+          "duration_min": 18.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.1,
+              "duration_min": 40.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.74,
+              "duration_min": 18.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:30",
+          "origin": "cafe",
+          "destination": "retail",
+          "origin_coordinates": [
+            388750,
+            5813132
+          ],
+          "destination_coordinates": [
+            387334,
+            5811239
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time already spent commuting and the need to be efficient with time, especially since the distance is slightly longer but the travel time is significantly shorter, public transport is the better choice.",
+          "distance_km": 3.73,
+          "duration_min": 18.3,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.1,
+              "duration_min": 40.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.73,
+              "duration_min": 18.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:00",
+          "origin": "retail",
+          "destination": "school",
+          "origin_coordinates": [
+            387334,
+            5811239
+          ],
+          "destination_coordinates": [
+            388785,
+            5813245
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time already spent on public transport today and the need to be efficient with time, especially for a trip to the school, public transport is the better choice.",
+          "distance_km": 3.84,
+          "duration_min": 19.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.2,
+              "duration_min": 41.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.84,
+              "duration_min": 19.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:30",
+          "origin": "school",
+          "destination": "residential",
+          "origin_coordinates": [
+            388785,
+            5813245
+          ],
+          "destination_coordinates": [
+            387191,
+            5811126
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time of day and the need to balance work and family responsibilities efficiently, the shorter travel time of public transport is more suitable for this trip back home after school pickup.",
+          "distance_km": 3.86,
+          "duration_min": 19.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.3,
+              "duration_min": 43.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.86,
+              "duration_min": 19.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "17:30",
+          "origin": "residential",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            387191,
+            5811126
+          ],
+          "destination_coordinates": [
+            390254,
+            5814320
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time already spent on public transport today and the need to be efficient with travel time, especially for a longer trip to the supermarket, public transport is the better choice.",
+          "distance_km": 6.92,
+          "duration_min": 21.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.28,
+              "duration_min": 69.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 6.92,
+              "duration_min": 21.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:30",
+          "origin": "supermarket",
+          "destination": "cinema",
+          "origin_coordinates": [
+            390254,
+            5814320
+          ],
+          "destination_coordinates": [
+            390773,
+            5816169
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time already spent on public transport today and the need to be efficient with travel time, especially for a longer trip to the cinema, public transport is the better choice.",
+          "distance_km": 2.56,
+          "duration_min": 13.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.21,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.56,
+              "duration_min": 13.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
           }
         },
         {
@@ -1370,36 +1120,2340 @@
           "origin": "cinema",
           "destination": "residential",
           "origin_coordinates": [
-            393639,
-            5823571
+            390773,
+            5816169
           ],
           "destination_coordinates": [
-            399029,
-            5825463
+            387191,
+            5811126
           ],
           "chosen_mode": "public transport",
-          "reasoning": "Given the efficiency and time constraints of my earlier trips using public transport, it is the most practical choice for the shorter distance back home after my day of activities.",
-          "distance_km": 7.31,
-          "duration_min": 34.9,
+          "reasoning": "Given the time already spent on public transport today and the relatively short distance to the residential area from the cinema, using public transport is more efficient and aligns with the pattern of balancing travel time with daily responsibilities.",
+          "distance_km": 7.86,
+          "duration_min": 30.1,
           "available_options": [
             {
               "mode": "walk",
-              "distance_km": 6.99,
-              "duration_min": 88.7
+              "distance_km": 7.4,
+              "duration_min": 97.4
             },
             {
               "mode": "public transport",
-              "distance_km": 7.31,
-              "duration_min": 34.9
+              "distance_km": 7.86,
+              "duration_min": 30.1
             }
           ],
           "vehicle_locations_before": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
           },
           "vehicle_locations_after": {
-            "car": "home",
-            "bicycle": "home"
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "19240": {
+      "persona": "Mark, a 35‑year‑old man living in a spacious Berlin apartment with his partner and their five‑year‑old daughter, holds a university degree in business administration and works part‑time as a project manager for a tech start‑up, putting in 30 hours a week while also taking on freelance consulting work. The household enjoys a high economic standing, with a net monthly income of around €4,500, which allows them to afford a single compact car for family trips and a bicycle that Mark uses for weekend rides and occasional commuting to nearby co‑working spaces. Their lifestyle balances professional flexibility with family time, reflected in the family‑type household and their mixed mobility setup of both car and bike.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Prefers public transport for time-sensitive and longer distance trips due to its efficiency and reliability.",
+        "Values punctuality and schedules, especially for work-related and family commitments.",
+        "Considers the distance and time of day when choosing between public transport and alternative modes of transportation.",
+        "Chooses public transport over personal vehicles for most daily trips to minimize the need for personal car usage."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and weather is good, cycle",
+        "If time sensitivity is high and public transport is faster, use public transport",
+        "If distance is between 2km and 10km and weather is poor, use public transport",
+        "If walking is the only option and distance is under 5km, walk",
+        "If bike is available and weather is good, cycle for shorter distances",
+        "If time is flexible and walking is an option, walk for shorter distances"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:00",
+          "origin": "residential",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            384559,
+            5818561
+          ],
+          "destination_coordinates": [
+            388028,
+            5821639
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "The public transport option is slightly farther but significantly faster, which is more efficient given the time of day and the need to start the workday on time.",
+          "distance_km": 6.25,
+          "duration_min": 39.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.55,
+              "duration_min": 76.3
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 6.25,
+              "duration_min": 39.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:30",
+          "origin": "coworking_space",
+          "destination": "cafe",
+          "origin_coordinates": [
+            388028,
+            5821639
+          ],
+          "destination_coordinates": [
+            384129,
+            5819001
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the earlier experience of the public transport being faster and more efficient for starting the workday on time, the same logic applies for the trip to the cafe.",
+          "distance_km": 7.05,
+          "duration_min": 32.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.61,
+              "duration_min": 74.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.05,
+              "duration_min": 32.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:00",
+          "origin": "cafe",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            384129,
+            5819001
+          ],
+          "destination_coordinates": [
+            388028,
+            5821639
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the previous experiences of public transport being faster and more efficient, especially for time-sensitive trips, the public transport option is the better choice for the 12:00 trip from the cafe to the coworking space.",
+          "distance_km": 6.98,
+          "duration_min": 48.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.61,
+              "duration_min": 74.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 6.98,
+              "duration_min": 48.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "13:00",
+          "origin": "coworking_space",
+          "destination": "childcare",
+          "origin_coordinates": [
+            388028,
+            5821639
+          ],
+          "destination_coordinates": [
+            384716,
+            5818060
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the previous experiences of public transport being faster and more efficient, especially for time-sensitive trips, the public transport option is the better choice for the 13:00 trip from the coworking space to childcare.",
+          "distance_km": 6.94,
+          "duration_min": 39.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.87,
+              "duration_min": 80.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 6.94,
+              "duration_min": 39.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:00",
+          "origin": "childcare",
+          "destination": "sports_hall",
+          "origin_coordinates": [
+            384716,
+            5818060
+          ],
+          "destination_coordinates": [
+            377266,
+            5821567
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and time sensitivity of previous public transport trips, and the distance of the walk, public transport is the better choice for this trip to the sports hall.",
+          "distance_km": 13.18,
+          "duration_min": 54.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 9.56,
+              "duration_min": 127.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 13.18,
+              "duration_min": 54.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:00",
+          "origin": "sports_hall",
+          "destination": "residential",
+          "origin_coordinates": [
+            377266,
+            5821567
+          ],
+          "destination_coordinates": [
+            384559,
+            5818561
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the previous experiences with public transport being faster and more efficient, especially for time-sensitive trips, the public transport option is the better choice for the 16:00 trip from the sports hall to residential.",
+          "distance_km": 9.95,
+          "duration_min": 54.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 9.16,
+              "duration_min": 120.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 9.95,
+              "duration_min": 54.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:00",
+          "origin": "residential",
+          "destination": "workshop",
+          "origin_coordinates": [
+            384559,
+            5818561
+          ],
+          "destination_coordinates": [
+            399888,
+            5812806
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency of public transport for time-sensitive trips and the longer distance of the trip to the workshop, public transport is the most suitable option.",
+          "distance_km": 22.83,
+          "duration_min": 63.9,
+          "available_options": [
+            {
+              "mode": "public transport",
+              "distance_km": 22.83,
+              "duration_min": 63.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "20:30",
+          "origin": "workshop",
+          "destination": "residential",
+          "origin_coordinates": [
+            399888,
+            5812806
+          ],
+          "destination_coordinates": [
+            384559,
+            5818561
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the efficiency and reliability of public transport for today's trips, especially for the longer distance and later evening commute, it is the most suitable option.",
+          "distance_km": 23.06,
+          "duration_min": 80.0,
+          "available_options": [
+            {
+              "mode": "public transport",
+              "distance_km": 23.06,
+              "duration_min": 80.0
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "23703": {
+      "persona": "Anna, 35, lives in a spacious three‑bedroom apartment in Friedrichshain‑Kreuzberg with her partner and their three children aged 2, 7 and 10. Although she holds a master’s degree in communications and previously worked in a media agency, she chose to become a full‑time mother, managing the household and supporting the kids' school and extracurricular activities. The family enjoys a comfortable net household income of €6,500 per month, which allows them to own two cars—a compact electric vehicle for daily commuting and a larger diesel SUV for weekend trips—as well as several city bikes that each child uses to get to school and sports clubs. With a high economic status, they often dine out in Kreuzberg’s cafés, and Anna coordinates a communal car‑sharing subscription for neighbours. Their mobility mix reflects Berlin’s push for sustainable transport, but the availability of multiple cars still gives them flexibility for family outings to the countryside.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Preference for sustainable transport methods, such as walking, to reduce carbon footprint.",
+        "Commitment to environmental responsibility and supporting eco-friendly choices.",
+        "Value of flexibility in transportation, allowing for the use of multiple cars for specific needs.",
+        "Comfortable with the use of electric and diesel vehicles for longer or more practical trips.",
+        "Engagement in community activities and support for shared resources, such as car-sharing subscriptions."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km, walk",
+        "If bike is available and weather is good, cycle",
+        "If distance is between 2km and 10km, use public transport or car-sharing",
+        "If distance is over 10km, use car for practicality and comfort",
+        "If environmental conditions permit, prioritize electric vehicles for longer trips",
+        "If multiple people are traveling, consider carpooling or using the communal car-sharing subscription"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "09:00",
+          "origin": "residential",
+          "destination": "laundry",
+          "origin_coordinates": [
+            395260,
+            5821129
+          ],
+          "destination_coordinates": [
+            392629,
+            5819713
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "The walk is a shorter distance and more environmentally friendly option, which is suitable given the distance and the fact that it's just for laundry.",
+          "distance_km": 3.7,
+          "duration_min": 48.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.7,
+              "duration_min": 48.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 9.4,
+              "duration_min": 27.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:00",
+          "origin": "laundry",
+          "destination": "charity",
+          "origin_coordinates": [
+            392629,
+            5819713
+          ],
+          "destination_coordinates": [
+            395180,
+            5821438
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "The walk is a shorter distance and aligns with the environmentally friendly choices made earlier today, while also being a suitable option given the current state of having just done laundry.",
+          "distance_km": 4.07,
+          "duration_min": 53.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 4.07,
+              "duration_min": 53.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 9.74,
+              "duration_min": 30.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "13:30",
+          "origin": "residential",
+          "destination": "school",
+          "origin_coordinates": [
+            395260,
+            5821129
+          ],
+          "destination_coordinates": [
+            391302,
+            5819265
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given the shorter distance and the environmentally friendly choices made earlier today, walking is a suitable and sustainable option for the trip to school.",
+          "distance_km": 5.06,
+          "duration_min": 68.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.06,
+              "duration_min": 68.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 9.86,
+              "duration_min": 30.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:00",
+          "origin": "school",
+          "destination": "community_centre",
+          "origin_coordinates": [
+            391302,
+            5819265
+          ],
+          "destination_coordinates": [
+            388952,
+            5821083
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given the shorter distance and the family's commitment to sustainable transport, walking is a suitable and environmentally friendly option for the trip to the community centre.",
+          "distance_km": 3.85,
+          "duration_min": 50.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.85,
+              "duration_min": 50.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.96,
+              "duration_min": 28.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:00",
+          "origin": "cafe",
+          "destination": "library",
+          "origin_coordinates": [
+            391501,
+            5819471
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given the short distance and the family's commitment to sustainable transport, walking is a suitable and environmentally friendly option for the trip to the library, aligning with their earlier choices today.",
+          "distance_km": 0.93,
+          "duration_min": 12.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.93,
+              "duration_min": 12.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.93,
+              "duration_min": 12.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "20:00",
+          "origin": "library",
+          "destination": "residential",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            395260,
+            5821129
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given the family's commitment to sustainable transport and the relatively short distance, walking is a suitable and environmentally friendly option for the return trip from the library.",
+          "distance_km": 5.29,
+          "duration_min": 68.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.29,
+              "duration_min": 68.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.54,
+              "duration_min": 33.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "22778": {
+      "persona": "Anna is a 56‑year‑old woman living in a compact two‑person household in Berlin, sharing the flat with her long‑term partner. She works full‑time in a administrative role at a midsize tech company in the city centre, earning a net household income of roughly €3,200 per month, which places her family in the middle‑income bracket. Without a car, Anna relies on Berlin’s extensive public transport network and her preferred city bike for the short commute to the office, enjoying the flexibility of cycling through the neighbourhood’s green corridors. Her modest but comfortable lifestyle includes occasional cultural outings, a regular grocery shop at the nearby Bio‑markt, and a focus on maintaining a healthy work‑life balance, typical of many mid‑aged, urban, middle‑class Berliners.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Anna prefers using public transport for her daily commutes and errands due to its efficiency and alignment with her commuting habits.",
+        "Anna values a healthy work-life balance and likely uses public transport to maintain this balance by avoiding the stress and time constraints of driving.",
+        "Anna enjoys the flexibility of cycling for short distances, but for longer or more frequent trips, she relies on public transport.",
+        "Anna is environmentally conscious and likely supports the use of public transport to reduce her carbon footprint.",
+        "Anna has a consistent routine and prefers a predictable and reliable mode of transportation, which public transport provides."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and time walking is comparable to public transport, walk.",
+        "If weather is good and bike is available, cycle instead of using public transport.",
+        "If public transport is delayed or unavailable, consider walking or cycling as alternatives.",
+        "If destination is within walking distance and time allows, walk to maintain physical activity.",
+        "If public transport is the most efficient option and aligns with preferred commuting method, use public transport."
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:30",
+          "origin": "residential",
+          "destination": "company",
+          "origin_coordinates": [
+            391649,
+            5818730
+          ],
+          "destination_coordinates": [
+            391516,
+            5818723
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Both walking and taking public transport are equally close in distance and time, but public transport is more efficient for starting the day and aligns with Anna's preference for using the city's extensive public transport network.",
+          "distance_km": 0.15,
+          "duration_min": 1.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.15,
+              "duration_min": 1.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.15,
+              "duration_min": 1.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "08:30",
+          "origin": "company",
+          "destination": "cafe",
+          "origin_coordinates": [
+            391516,
+            5818723
+          ],
+          "destination_coordinates": [
+            391501,
+            5819471
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given that public transport is more efficient and aligns with Anna's preferred commuting method, it makes sense to continue using it for her trip to the cafe.",
+          "distance_km": 0.91,
+          "duration_min": 12.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.91,
+              "duration_min": 12.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.91,
+              "duration_min": 12.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:30",
+          "origin": "cafe",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            391501,
+            5819471
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given Anna's preference for using public transport and the efficiency of her previous trip, continuing with public transport for the 10:30 trip to the restaurant is the most consistent and convenient choice.",
+          "distance_km": 6.69,
+          "duration_min": 33.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.08,
+              "duration_min": 67.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 6.69,
+              "duration_min": 33.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:30",
+          "origin": "restaurant",
+          "destination": "company",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            391516,
+            5818723
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given Anna's consistent use of public transport for her trips today and her preference for efficient commuting, the public transport option is the most suitable choice for her 12:30 trip from the restaurant to the company.",
+          "distance_km": 7.83,
+          "duration_min": 35.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.33,
+              "duration_min": 69.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.83,
+              "duration_min": 35.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "17:30",
+          "origin": "company",
+          "destination": "residential",
+          "origin_coordinates": [
+            391516,
+            5818723
+          ],
+          "destination_coordinates": [
+            391649,
+            5818730
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given Anna's consistent use of public transport for her trips today and her preference for efficient commuting, the public transport option remains the most suitable choice for her 17:30 trip from the company to the residential area.",
+          "distance_km": 0.15,
+          "duration_min": 1.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.15,
+              "duration_min": 1.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.15,
+              "duration_min": 1.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "residential",
+          "destination": "library",
+          "origin_coordinates": [
+            391649,
+            5818730
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given Anna's consistent use of public transport throughout the day and her preference for efficient commuting, the public transport option remains the most suitable choice for her 18:00 trip to the library.",
+          "distance_km": 1.63,
+          "duration_min": 21.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.63,
+              "duration_min": 21.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 1.63,
+              "duration_min": 21.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:00",
+          "origin": "library",
+          "destination": "cinema",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            390773,
+            5816169
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given Anna's consistent use of public transport throughout the day and the relatively short distance, public transport remains the most efficient and time-saving option for her 19:00 trip from the library to the cinema.",
+          "distance_km": 4.44,
+          "duration_min": 20.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 4.24,
+              "duration_min": 57.3
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.44,
+              "duration_min": 20.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "20:30",
+          "origin": "cinema",
+          "destination": "residential",
+          "origin_coordinates": [
+            390773,
+            5816169
+          ],
+          "destination_coordinates": [
+            391649,
+            5818730
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given Anna's consistent use of public transport throughout the day and her preference for efficient commuting, the public transport option remains the most suitable choice for her 20:30 trip from the cinema to the residential area.",
+          "distance_km": 4.13,
+          "duration_min": 24.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.12,
+              "duration_min": 41.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.13,
+              "duration_min": 24.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "16736": {
+      "persona": "Anna, a 40‑year‑old woman living in a modest two‑person household in the Friedrichshain‑Kreuzberg district, works full‑time as a project manager for a mid‑size tech firm in the city centre. She earns a net household income of about €2,500 per month, placing her family in the medium‑income bracket. With a migration background, she grew up bilingual and completed a university degree in business administration; her partner also works part‑time, and together they own one small car that they use for occasional weekend trips outside Berlin, while most weekdays they combine public transport with a city‑approved e‑bike for the last mile to the office. Although the survey did not capture her home‑office frequency, Anna usually works on site, but she occasionally telecommutes a few days a month, allowing her to balance professional responsibilities with a socially active lifestyle in a culturally diverse neighbourhood.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Prefers public transport for efficiency and convenience",
+        "Consistent use of the same mode of transport for multiple consecutive trips",
+        "Balances professional and social activities with practical travel choices",
+        "Aims for a balance between walking and using public transport to avoid fatigue",
+        "Values time efficiency, especially for longer trips"
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and weather is good, cycle",
+        "If distance is under 2km, walk",
+        "If distance is between 2km and 5km, use public transport",
+        "If distance is over 5km, use public transport or carpool",
+        "If destination is within walking distance but public transport is available, use public transport for efficiency",
+        "If destination is within biking distance but public transport is available, use public transport for consistency",
+        "If destination is within biking distance and weather is good, cycle for exercise and environmental benefits",
+        "If destination is within walking distance and weather is good, walk for exercise and environmental benefits"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "08:00",
+          "origin": "residential",
+          "destination": "company",
+          "origin_coordinates": [
+            388100,
+            5817770
+          ],
+          "destination_coordinates": [
+            388230,
+            5818383
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the similar travel distance and time for both walking and public transport, and considering the need to combine with the e-bike for the last mile to the office, public transport is a more practical choice to start the day.",
+          "distance_km": 0.81,
+          "duration_min": 11.8,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.81,
+              "duration_min": 11.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.81,
+              "duration_min": 11.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "09:00",
+          "origin": "company",
+          "destination": "cafe",
+          "origin_coordinates": [
+            388230,
+            5818383
+          ],
+          "destination_coordinates": [
+            388114,
+            5817772
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given that I've already used public transport for the initial trip and it's equally convenient for this shorter leg of the journey, I'll continue with public transport to maintain consistency and efficiency.",
+          "distance_km": 0.79,
+          "duration_min": 11.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.79,
+              "duration_min": 11.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.79,
+              "duration_min": 11.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:00",
+          "origin": "cafe",
+          "destination": "company",
+          "origin_coordinates": [
+            388114,
+            5817772
+          ],
+          "destination_coordinates": [
+            388230,
+            5818383
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have already used public transport for the initial trips today, and it is equally convenient for this shorter leg of the journey, maintaining consistency and efficiency.",
+          "distance_km": 0.79,
+          "duration_min": 11.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.79,
+              "duration_min": 11.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.79,
+              "duration_min": 11.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "13:00",
+          "origin": "company",
+          "destination": "library",
+          "origin_coordinates": [
+            388230,
+            5818383
+          ],
+          "destination_coordinates": [
+            389412,
+            5818695
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have been using public transport for the initial trips today, and it is equally convenient for this shorter leg of the journey, maintaining consistency and efficiency.",
+          "distance_km": 1.62,
+          "duration_min": 9.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.44,
+              "duration_min": 19.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 1.62,
+              "duration_min": 9.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:30",
+          "origin": "library",
+          "destination": "company",
+          "origin_coordinates": [
+            389412,
+            5818695
+          ],
+          "destination_coordinates": [
+            388230,
+            5818383
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have been maintaining consistency with public transport for my trips today, and it is equally convenient for this shorter leg of the journey, which helps in maintaining efficiency and avoiding fatigue from walking.",
+          "distance_km": 1.8,
+          "duration_min": 15.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.44,
+              "duration_min": 19.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 1.8,
+              "duration_min": 15.0
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:00",
+          "origin": "company",
+          "destination": "sports_hall",
+          "origin_coordinates": [
+            388230,
+            5818383
+          ],
+          "destination_coordinates": [
+            388368,
+            5818218
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have been maintaining consistency with public transport for my trips today, and it is equally convenient for this shorter leg of the journey, which helps in maintaining efficiency and avoiding fatigue from walking.",
+          "distance_km": 0.5,
+          "duration_min": 6.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.5,
+              "duration_min": 6.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.5,
+              "duration_min": 6.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "17:30",
+          "origin": "sports_hall",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388368,
+            5818218
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have been using public transport for all my trips today, and it is equally convenient for this shorter leg of the journey, maintaining consistency and efficiency.",
+          "distance_km": 3.18,
+          "duration_min": 24.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.17,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.18,
+              "duration_min": 24.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:00",
+          "origin": "restaurant",
+          "destination": "music_venue",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            390773,
+            5816169
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have been using public transport for all my trips today, which maintains consistency and efficiency, and the distance to the music venue is within a reasonable walking distance, but public transport will likely be faster and more convenient.",
+          "distance_km": 9.58,
+          "duration_min": 37.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.98,
+              "duration_min": 78.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 9.58,
+              "duration_min": 37.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "20:30",
+          "origin": "music_venue",
+          "destination": "residential",
+          "origin_coordinates": [
+            390773,
+            5816169
+          ],
+          "destination_coordinates": [
+            388100,
+            5817770
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "I have been using public transport for most of my trips today, and it has been efficient and convenient. Switching to walking for such a long distance would be impractical given the time and effort involved.",
+          "distance_km": 5.19,
+          "duration_min": 27.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.89,
+              "duration_min": 51.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.19,
+              "duration_min": 27.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "14202": {
+      "persona": "Maria, a 51‑year‑old woman living alone in a modest Mietwohnung in the Lichtenberg district of Berlin, works full‑time as a laboratory technician in a public health institute. She completed a Realschulabschluss and earns a net household income between €900 and €1 500 a month, placing her in the low economic bracket. Despite the limited budget she owns a small compact car which she uses for her daily commute to the institute about 30 km away, while she prefers cycling for grocery trips and short errands in the neighbourhood. For occasional longer trips she relies on a car‑sharing membership, balancing mobility needs with cost constraints. Without a migration background, she speaks native German, participates in a local senior club, and actively monitors public transport offers to supplement her travel options.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "I prioritize efficiency and punctuality over the shortest travel distance, especially during morning commutes and for longer trips.",
+        "I prefer public transport for most of my daily trips due to its speed and cost-effectiveness, even if it means traveling a slightly longer distance.",
+        "I use my car for longer distances or when public transport is not available, such as for my daily commute to the research institute.",
+        "I rely on car-sharing services for occasional longer trips to balance mobility needs with cost constraints.",
+        "I have a consistent pattern of using public transport for my evening activities, ensuring I can return home in a timely manner without overexerting myself."
+      ],
+      "procedural_rules": [
+        "If distance is under 2 km and weather is good, cycle.",
+        "If distance is between 2 km and 10 km and time constraints are not strict, walk or cycle.",
+        "If distance is over 10 km and time constraints are strict, use public transport.",
+        "If distance is over 10 km and time constraints are not strict, consider car-sharing or a compact car for efficiency.",
+        "If the destination is within walking distance and the weather is poor, use public transport.",
+        "If the destination is within car-sharing distance and time constraints are not strict, use car-sharing."
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:30",
+          "origin": "apartments",
+          "destination": "research_institute",
+          "origin_coordinates": [
+            392468,
+            5820948
+          ],
+          "destination_coordinates": [
+            391110,
+            5819318
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "The public transport option is slightly farther but significantly faster, which is more efficient given the time constraints of a morning commute.",
+          "distance_km": 3.83,
+          "duration_min": 18.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.57,
+              "duration_min": 33.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.83,
+              "duration_min": 18.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:00",
+          "origin": "research_institute",
+          "destination": "cafe",
+          "origin_coordinates": [
+            391110,
+            5819318
+          ],
+          "destination_coordinates": [
+            392219,
+            5821436
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints of a morning commute and the fact that the public transport option is slightly farther but significantly faster, it aligns well with my need to be efficient and on time for work.",
+          "distance_km": 4.17,
+          "duration_min": 17.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.87,
+              "duration_min": 37.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.17,
+              "duration_min": 17.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:30",
+          "origin": "cafe",
+          "destination": "research_institute",
+          "origin_coordinates": [
+            392219,
+            5821436
+          ],
+          "destination_coordinates": [
+            391110,
+            5819318
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints and the fact that the public transport option is slightly farther but significantly faster, it aligns well with my need to be efficient and on time for work, as observed in my earlier trips today.",
+          "distance_km": 4.15,
+          "duration_min": 17.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.88,
+              "duration_min": 37.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.15,
+              "duration_min": 17.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:00",
+          "origin": "research_institute",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            391110,
+            5819318
+          ],
+          "destination_coordinates": [
+            394911,
+            5816726
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it aligns well with my need to be efficient and on time for any potential evening commitments or activities.",
+          "distance_km": 5.68,
+          "duration_min": 32.3,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.04,
+              "duration_min": 66.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.68,
+              "duration_min": 32.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:30",
+          "origin": "supermarket",
+          "destination": "apartments",
+          "origin_coordinates": [
+            394911,
+            5816726
+          ],
+          "destination_coordinates": [
+            392468,
+            5820948
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints and the fact that the public transport option is slightly farther but significantly faster, it aligns well with my need to be efficient and on time for my evening activities, as observed in my earlier trips today.",
+          "distance_km": 7.95,
+          "duration_min": 34.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 6.02,
+              "duration_min": 78.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.95,
+              "duration_min": 34.0
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:30",
+          "origin": "apartments",
+          "destination": "social_club",
+          "origin_coordinates": [
+            392468,
+            5820948
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the similar travel time for both modes, I will choose public transport as it aligns with my pattern of using it for efficiency and punctuality, especially for longer trips like this one to the social club.",
+          "distance_km": 0.2,
+          "duration_min": 2.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.2,
+              "duration_min": 2.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.2,
+              "duration_min": 2.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:30",
+          "origin": "social_club",
+          "destination": "bank",
+          "origin_coordinates": [
+            392523,
+            5820915
+          ],
+          "destination_coordinates": [
+            392359,
+            5819075
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it aligns well with my need to be efficient and on time for any potential evening commitments or activities, similar to my earlier trips today.",
+          "distance_km": 2.93,
+          "duration_min": 17.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.38,
+              "duration_min": 31.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.93,
+              "duration_min": 17.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "21:00",
+          "origin": "bank",
+          "destination": "library",
+          "origin_coordinates": [
+            392359,
+            5819075
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints and the fact that the public transport option is slightly farther but significantly faster, it aligns well with my need to be efficient and on time for my evening activities, as observed in my earlier trips today.",
+          "distance_km": 2.22,
+          "duration_min": 19.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.02,
+              "duration_min": 27.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.22,
+              "duration_min": 19.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "21:30",
+          "origin": "library",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the time constraints and the fact that the public transport option is significantly faster, it aligns well with my need to be efficient and on time for any potential evening commitments or activities, as observed in my earlier trips today.",
+          "distance_km": 9.4,
+          "duration_min": 35.8,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 8.83,
+              "duration_min": 116.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 9.4,
+              "duration_min": 35.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "22:15",
+          "origin": "pharmacy",
+          "destination": "apartments",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            392468,
+            5820948
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the late hour and the distance, public transport is more efficient and aligns with my pattern of using it for longer trips, ensuring I can return home in a timely manner without overexerting myself.",
+          "distance_km": 14.12,
+          "duration_min": 47.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 9.44,
+              "duration_min": 125.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 14.12,
+              "duration_min": 47.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "19293": {
+      "persona": "Thomas is a 61‑year‑old man living in a quiet, leafy neighbourhood of Berlin’s Charlottenburg district with his adult daughter, who recently moved back after completing her master’s degree. He holds a university degree in engineering and works part‑time as a freelance consultant on renewable‑energy projects, which he classifies as \"other activity\" rather than full‑time employment. Their two‑person household earns a net income of roughly €3,200 per month, placing them in a high economic bracket for the city. They own one compact city car, which Thomas uses for occasional client meetings outside Berlin, and both he and his daughter regularly ride bicycles for daily errands, grocery shopping, and leisure rides along the Tiergarten. Although Thomas no longer commutes daily, he enjoys the flexibility of occasional remote work from his home office, and he appreciates the blend of urban mobility options and the cultural vibrancy of Berlin that his generation has witnessed over the decades.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Thomas and his daughter prefer public transport for longer trips to maintain consistency in their travel patterns.",
+        "They value the flexibility of occasional remote work and use public transport to balance their work and personal life.",
+        "They prioritize environmental sustainability and use bicycles for daily errands and leisure activities.",
+        "Public transport is seen as a practical and efficient choice for trips involving longer distances or when the coworking space is not bicycle-friendly.",
+        "Walking is preferred for short distances, especially for leisure activities like going to the cinema and returning home."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and weather is good, cycle",
+        "If distance is between 2km and 10km, use public transport",
+        "If destination is a coworking space, use public transport",
+        "If destination is a research institute, use public transport",
+        "If destination is a library, use public transport",
+        "If destination is a cinema and the trip is short, walk"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "12:00",
+          "origin": "residential",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            398618,
+            5811782
+          ],
+          "destination_coordinates": [
+            391194,
+            5819379
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "The distance is quite long for walking, and while the bicycle is available, the trip involves going to a coworking space, which is likely not bicycle-friendly, making public transport a practical choice.",
+          "distance_km": 15.04,
+          "duration_min": 57.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 11.42,
+              "duration_min": 148.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 15.04,
+              "duration_min": 57.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "13:30",
+          "origin": "coworking_space",
+          "destination": "research_institute",
+          "origin_coordinates": [
+            391194,
+            5819379
+          ],
+          "destination_coordinates": [
+            391110,
+            5819318
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the short distance and similar travel time, public transport is a practical choice as it aligns with the pattern of using it for longer trips today, ensuring consistency in travel mode selection.",
+          "distance_km": 0.12,
+          "duration_min": 1.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.12,
+              "duration_min": 1.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.12,
+              "duration_min": 1.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:30",
+          "origin": "research_institute",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            391110,
+            5819318
+          ],
+          "destination_coordinates": [
+            391194,
+            5819379
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the consistency in using public transport for today's trips and the short distance, public transport remains a practical and efficient choice.",
+          "distance_km": 0.12,
+          "duration_min": 1.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.12,
+              "duration_min": 1.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.12,
+              "duration_min": 1.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:30",
+          "origin": "coworking_space",
+          "destination": "residential",
+          "origin_coordinates": [
+            391194,
+            5819379
+          ],
+          "destination_coordinates": [
+            398618,
+            5811782
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the consistency in using public transport for today's trips and the long walking distance, public transport remains the practical and efficient choice.",
+          "distance_km": 12.77,
+          "duration_min": 55.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 11.42,
+              "duration_min": 148.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 12.77,
+              "duration_min": 55.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "residential",
+          "destination": "library",
+          "origin_coordinates": [
+            398618,
+            5811782
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the long distance and the pattern of using public transport for today's trips, public transport is the most practical and efficient choice for the 18:00 trip to the library.",
+          "distance_km": 14.29,
+          "duration_min": 52.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 12.18,
+              "duration_min": 158.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 14.29,
+              "duration_min": 52.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "19:30",
+          "origin": "library",
+          "destination": "cinema",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            398550,
+            5811745
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the shorter travel time and distance of the public transport option, which aligns with the pattern of using public transport for today's trips, it is the most practical and efficient choice for the 19:30 trip to the cinema.",
+          "distance_km": 12.77,
+          "duration_min": 54.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 12.21,
+              "duration_min": 158.5
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 12.77,
+              "duration_min": 54.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "21:00",
+          "origin": "cinema",
+          "destination": "residential",
+          "origin_coordinates": [
+            398550,
+            5811745
+          ],
+          "destination_coordinates": [
+            398618,
+            5811782
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given the short distance and duration of the trip, walking is a feasible and active option that aligns with the family's preference for cycling for daily errands and leisure.",
+          "distance_km": 0.26,
+          "duration_min": 3.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.26,
+              "duration_min": 3.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.26,
+              "duration_min": 3.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        }
+      ]
+    },
+    "8592": {
+      "persona": "Maria, a 67‑year‑old German woman living alone in a modest apartment in the Charlottenburg district of Berlin, spends her days enjoying a relaxed retired life supported by a modest pension that places her household net income between €1,500 and €2,000 per month. She completed only a Volksschule education (up to 8th grade) and never pursued higher schooling, which influences her practical, down‑to‑earth outlook. Without a car, Maria relies on her sturdy city bike—her primary mobility tool—to run errands, visit the weekly market, and meet friends at the local community centre, where she occasionally volunteers to teach basic computer skills to fellow seniors. As a non‑commuter and non‑employee, she does not work from home, and her household is classified as a middle‑income senior single‑person home, reflecting both her financial stability and the modest lifestyle typical of many older Berlin residents.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Prefers public transport for efficiency and time management, especially for longer distances and when punctuality is important.",
+        "Relies on a city bike for shorter distances and more flexible, time-efficient trips within the neighborhood.",
+        "Considers the cost and practicality of public transport, given the modest household income.",
+        "Values time efficiency over directness, often choosing routes that are slightly longer but faster via public transport.",
+        "Uses public transport for most of the day's activities, indicating a preference for its reliability and coverage.",
+        "Adapts mobility choices based on the specific needs of each trip, balancing time, distance, and personal comfort."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km and time allows, walk",
+        "If bike is available and weather is good, cycle",
+        "If distance is over 2km and time is critical, use public transport",
+        "If destination is within walking distance but public transport is available, use public transport for efficiency",
+        "If destination is a regular place (e.g., community centre, library) and public transport is reliable, use public transport",
+        "If destination is a one-off or irregular place and public transport is not available, use a taxi or ride-sharing service if cost is not a major concern"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:00",
+          "origin": "residential",
+          "destination": "community_centre",
+          "origin_coordinates": [
+            393604,
+            5821839
+          ],
+          "destination_coordinates": [
+            388952,
+            5821083
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "The public transport option is slightly farther but significantly faster, which is more efficient given the time of day and the need to arrive at the community centre on time for volunteering.",
+          "distance_km": 6.54,
+          "duration_min": 34.8,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.63,
+              "duration_min": 74.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 6.54,
+              "duration_min": 34.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "08:30",
+          "origin": "community_centre",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388952,
+            5821083
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the distance and time difference, public transport is more efficient and aligns with my earlier choice of using it for the trip to the community centre.",
+          "distance_km": 8.93,
+          "duration_min": 42.8,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 6.98,
+              "duration_min": 91.3
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 42.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "10:30",
+          "origin": "pharmacy",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            384918,
+            5826812
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the earlier efficiency of public transport for longer distances and the current shorter distance, it remains the most time-effective option, especially considering the distance and time constraints.",
+          "distance_km": 2.07,
+          "duration_min": 12.5,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.43,
+              "duration_min": 18.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.07,
+              "duration_min": 12.5
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "11:30",
+          "origin": "supermarket",
+          "destination": "cafe",
+          "origin_coordinates": [
+            384918,
+            5826812
+          ],
+          "destination_coordinates": [
+            392835,
+            5822570
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the shorter distance and time constraints, public transport is more efficient and aligns with my earlier choices for today's trips.",
+          "distance_km": 13.23,
+          "duration_min": 52.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 10.45,
+              "duration_min": 136.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 13.23,
+              "duration_min": 52.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "12:30",
+          "origin": "cafe",
+          "destination": "library",
+          "origin_coordinates": [
+            392835,
+            5822570
+          ],
+          "destination_coordinates": [
+            389412,
+            5818695
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the shorter distance and time constraints, public transport is more efficient and aligns with my earlier choices for today's trips.",
+          "distance_km": 7.73,
+          "duration_min": 38.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 6.24,
+              "duration_min": 81.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.73,
+              "duration_min": 38.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "14:00",
+          "origin": "library",
+          "destination": "beauty",
+          "origin_coordinates": [
+            389412,
+            5818695
+          ],
+          "destination_coordinates": [
+            380292,
+            5827318
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the longer distance and time constraints, public transport is more efficient and aligns with my earlier choices of using it for today's trips.",
+          "distance_km": 23.94,
+          "duration_min": 70.3,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 17.09,
+              "duration_min": 224.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 23.94,
+              "duration_min": 70.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "15:30",
+          "origin": "beauty",
+          "destination": "residential",
+          "origin_coordinates": [
+            380292,
+            5827318
+          ],
+          "destination_coordinates": [
+            393604,
+            5821839
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the longer distance and time constraints, public transport is more efficient and aligns with my earlier choices for today's trips.",
+          "distance_km": 21.4,
+          "duration_min": 65.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 17.89,
+              "duration_min": 233.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 21.4,
+              "duration_min": 65.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "16:30",
+          "origin": "residential",
+          "destination": "physician",
+          "origin_coordinates": [
+            393604,
+            5821839
+          ],
+          "destination_coordinates": [
+            383622,
+            5815325
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the shorter distance and time constraints of my previous trips using public transport, it remains the most efficient and practical choice for my trip to the physician.",
+          "distance_km": 21.11,
+          "duration_min": 54.8,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 13.4,
+              "duration_min": 177.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 21.11,
+              "duration_min": 54.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          }
+        },
+        {
+          "day": 0,
+          "time": "18:30",
+          "origin": "physician",
+          "destination": "residential",
+          "origin_coordinates": [
+            383622,
+            5815325
+          ],
+          "destination_coordinates": [
+            393604,
+            5821839
+          ],
+          "chosen_mode": "public transport",
+          "reasoning": "Given the shorter distance and time constraints of my previous trips using public transport, it remains the most efficient and practical choice for my trip back home after visiting the physician.",
+          "distance_km": 17.73,
+          "duration_min": 53.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 13.4,
+              "duration_min": 177.8
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 17.73,
+              "duration_min": 53.4
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartment",
+            "bicycle": "apartment"
+          },
+          "vehicle_locations_after": {
+            "car": "apartment",
+            "bicycle": "apartment"
           }
         }
       ]

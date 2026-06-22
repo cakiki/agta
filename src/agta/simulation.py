@@ -15,7 +15,7 @@ class MobilityModel(mesa.Model):
         
 
         for agent_id, data in agents_data.items():
-            MobilityAgent(
+            agent = MobilityAgent(
                 model=self,
                 agent_id=agent_id,
                 persona=data["persona"],
@@ -24,6 +24,12 @@ class MobilityModel(mesa.Model):
                 attitudes=data.get("attitudes"),
                 llm_model=llm_model,
             )
+            home_type = data.get("home_type", "home")
+            agent.memory.working.home_type = home_type
+            agent.memory.working.car_location = home_type
+            agent.memory.working.bicycle_location = home_type
+            agent.memory.working.current_location = home_type
+            
         self.datacollector = mesa.DataCollector(
         model_reporters={
             "day": lambda m: m.current_day,

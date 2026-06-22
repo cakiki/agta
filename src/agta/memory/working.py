@@ -4,15 +4,16 @@ from agta.models import TripContext, TripDecision, TripRecord
 
 @dataclass
 class WorkingMemory:
+    home_type: str = "home"
     car_location: str = "home"
     bicycle_location: str = "home"
     current_location: str = "home"
-    trips_today: list[TripRecord] = field(default_factory=list)
+    trips_today: list = field(default_factory=list)
 
     def reset_day(self):
-        self.car_location = "home"
-        self.bicycle_location = "home"
-        self.current_location = "home"
+        self.car_location = self.home_type
+        self.bicycle_location = self.home_type
+        self.current_location = self.home_type
         self.trips_today = []
 
     def available_modes(self, trip: TripContext) -> list[str]:
