@@ -18,6 +18,7 @@ Available options:
   {%- if option.cost_eur is not none %}, {{ option.cost_eur }}EUR{% endif %}
   {%- if option.transfers is not none %}, {{ option.transfers }} transfers{% endif %}
 {% endfor %}
+Note: The fastest option is {{ fastest_mode }} at {{ fastest_duration }}min.
 {% if weather %}
 Weather: {{ weather }}
 {% endif %}

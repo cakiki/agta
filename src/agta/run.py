@@ -3,6 +3,7 @@ logging.getLogger("mesa_llm.module_llm").setLevel(logging.ERROR)
 logging.getLogger("searcharray").setLevel(logging.ERROR)
 logging.getLogger("searcharray.indexing").setLevel(logging.ERROR)
 logging.getLogger("searcharray.indexing").handlers = []
+logging.getLogger("searcharray.indexing").propagate = False
 
 import yaml
 import sys
