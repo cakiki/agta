@@ -135,6 +135,12 @@ class MobilityAgent(LLMAgent):
             mode = fallback.mode
             reasoning = "fallback: LLM unavailable"
 
+        valid_modes = [o.mode for o in available]
+        if mode not in valid_modes:
+            fallback = min(available, key=lambda o: o.duration_min)
+            reasoning = f"Fallback: LLM chose '{mode}' (unavailable). Using {fallback.mode}. Original: {reasoning}"
+            mode = fallback.mode
+
         vehicle_state_before = {
             "car": self.memory.working.car_location,
             "bicycle": self.memory.working.bicycle_location,
