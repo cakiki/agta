@@ -11,8 +11,6 @@ class WorkingMemory:
     trips_today: list = field(default_factory=list)
 
     def reset_day(self):
-        self.car_location = self.home_type
-        self.bicycle_location = self.home_type
         self.current_location = self.home_type
         self.trips_today = []
 

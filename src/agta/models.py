@@ -49,3 +49,4 @@ class TripRecord:
     vehicle_state_before: dict
     vehicle_state_after: dict
     available_options: list[dict] | None = None
+    episodic_retrievals: list[str] | None = None

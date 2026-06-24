@@ -133,7 +133,7 @@ class MobilityAgent(LLMAgent):
         )
 
         self.memory.working.update_after_trip(decision, trip)
-
+        episodic_context = self.memory.get_episodic_context(filtered_trip.to_activity)
         chosen_option = next((o for o in available if o.mode == decision.mode), available[0])
         record = TripRecord(
             day=day,
@@ -152,6 +152,7 @@ class MobilityAgent(LLMAgent):
                 "bicycle": self.memory.working.bicycle_location,
             },
             available_options=[{"mode": o.mode, "distance_km": o.distance_km, "duration_min": o.duration_min} for o in available],
+            episodic_retrievals=episodic_context.split("\n") if episodic_context else [],
         )
         self.memory.working.trips_today.append(record)
         self.memory.episodic.add(record)

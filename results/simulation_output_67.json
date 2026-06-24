@@ -1,0 +1,1073 @@
+{
+  "metadata": {
+    "timestamp": "2026-06-24T12:39:10.147900",
+    "num_agents": 1,
+    "num_days": 3,
+    "config": {
+      "data": {
+        "path": "data/agents_4a_route_options.json",
+        "limit": 1,
+        "seed": 42
+      },
+      "simulation": {
+        "llm_model": "huggingface/Qwen/Qwen2.5-7B-Instruct",
+        "num_days": 3,
+        "verbose": false,
+        "belief_consolidation_threshold": 10
+      },
+      "retrieval": {
+        "dense_weight": 0.4,
+        "sparse_weight": 0.3,
+        "recency_weight": 0.3,
+        "embedding_model": "all-MiniLM-L6-v2"
+      },
+      "output": {
+        "path": "results/simulation_output_67.json"
+      }
+    }
+  },
+  "agents": {
+    "33402": {
+      "persona": "Maria is a 71‑year‑old woman living alone in a compact, wheelchair‑accessible apartment in Friedrichshain, Berlin. She retired last year after a long career as a municipal administrative clerk and now receives a modest pension that, together with a small supplemental income, places her household net monthly earnings between €1,500 and €2,000. Maria holds a Mittlere Reife (Realschulabschluss) and enjoys a comfortable, middle‑class lifestyle, allocating most of her budget to health care, groceries, and occasional cultural outings such as museum tickets or theatre performances. She does not own a car, preferring to cycle on Berlin’s extensive bike lanes to the nearby Stadtpark or to visit the weekly market, and she relies on public transport for longer trips. Her social circle consists of a few neighbors and a senior‑citizen club where she participates in weekly knitting circles and language exchange evenings.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Maria prefers cycling as her primary mode of transportation due to its alignment with her exercise routine and comfort level, valuing the independence and convenience of using public bike lanes for her daily activities.",
+        "Maria prioritizes short to medium-distance trips for her daily errands and social activities, using cycling for most of her trips, especially for distances between 2km and 5km, as it provides a good balance of time and exercise.",
+        "Maria enjoys the social aspect of her cycling trips, participating in weekly activities such as the senior-citizen club and knitting circles, and values her independence and mobility, relying on her own means of transport rather than public transport for her daily activities.",
+        "Maria enjoys cycling on Berlin's extensive bike lanes, particularly for longer distances, indicating a preference for cycling over other modes of transport for her mobility needs."
+      ],
+      "procedural_rules": [
+        "If distance is under 2km, walk",
+        "If distance is between 2km and 5km and weather is good, cycle",
+        "If distance is over 5km or weather is poor, use public transport",
+        "If destination is within walking distance and time allows, walk",
+        "If destination is a social club or cultural event and weather permits, cycle",
+        "If destination is a pharmacy or library and weather permits, cycle",
+        "If destination is a supermarket and weather permits, cycle",
+        "If destination is a social club or library, cycle regardless of distance if weather is good",
+        "If destination is a cultural event and distance is under 5km, cycle if weather is good",
+        "If destination is home and distance is very short, walk",
+        "If distance is under 2km and weather is good, walk",
+        "If no bike is available, use public transport"
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:30",
+          "origin": "apartments",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            388318,
+            5818757
+          ],
+          "destination_coordinates": [
+            388630,
+            5820565
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.",
+          "distance_km": 2.21,
+          "duration_min": 11.4,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 3.86,
+              "duration_min": 6.0
+            },
+            {
+              "mode": "walk",
+              "distance_km": 2.2,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.21,
+              "duration_min": 11.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.52,
+              "duration_min": 22.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "episodic_retrievals": []
+        },
+        {
+          "day": 0,
+          "time": "09:00",
+          "origin": "supermarket",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388630,
+            5820565
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the pharmacy.",
+          "distance_km": 7.63,
+          "duration_min": 37.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.45,
+              "duration_min": 98.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.63,
+              "duration_min": 37.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 50.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)"
+          ]
+        },
+        {
+          "day": 0,
+          "time": "11:00",
+          "origin": "pharmacy",
+          "destination": "cafe",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            386613,
+            5824264
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.",
+          "distance_km": 2.85,
+          "duration_min": 16.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.74,
+              "duration_min": 35.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.85,
+              "duration_min": 16.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.92,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the pharmacy.)"
+          ]
+        },
+        {
+          "day": 0,
+          "time": "13:00",
+          "origin": "cafe",
+          "destination": "social_club",
+          "origin_coordinates": [
+            386613,
+            5824264
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.",
+          "distance_km": 8.27,
+          "duration_min": 37.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.64,
+              "duration_min": 100.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.27,
+              "duration_min": 37.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.87,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the pharmacy.)"
+          ]
+        },
+        {
+          "day": 0,
+          "time": "14:30",
+          "origin": "social_club",
+          "destination": "library",
+          "origin_coordinates": [
+            392523,
+            5820915
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the library.",
+          "distance_km": 2.55,
+          "duration_min": 12.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.24,
+              "duration_min": 28.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.55,
+              "duration_min": 12.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.24,
+              "duration_min": 16.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)"
+          ]
+        },
+        {
+          "day": 0,
+          "time": "16:00",
+          "origin": "library",
+          "destination": "culture",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            388364,
+            5818668
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to cultural outings.",
+          "distance_km": 3.67,
+          "duration_min": 20.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.25,
+              "duration_min": 42.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.67,
+              "duration_min": 20.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.14,
+              "duration_min": 37.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the library.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)"
+          ]
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "culture",
+          "destination": "apartments",
+          "origin_coordinates": [
+            388364,
+            5818668
+          ],
+          "destination_coordinates": [
+            388318,
+            5818757
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Biking is a good balance of time and exercise, aligning with Maria's preferences, and it has been the most consistent mode of transportation for her today.",
+          "distance_km": 0.41,
+          "duration_min": 4.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.41,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)",
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the library.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "07:30",
+          "origin": "apartments",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            388318,
+            5818757
+          ],
+          "destination_coordinates": [
+            388630,
+            5820565
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good given the pattern of previous cycling trips, making cycling a good balance of time and exercise as per Maria's preferences.",
+          "distance_km": 2.21,
+          "duration_min": 11.4,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 3.86,
+              "duration_min": 6.0
+            },
+            {
+              "mode": "walk",
+              "distance_km": 2.2,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.21,
+              "duration_min": 11.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.52,
+              "duration_min": 22.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the pharmacy.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "09:00",
+          "origin": "supermarket",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388630,
+            5820565
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.",
+          "distance_km": 7.63,
+          "duration_min": 37.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.45,
+              "duration_min": 98.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.63,
+              "duration_min": 37.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 50.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the pharmacy.)",
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good given the pattern of previous cycling trips, making cycling a good balance of time and exercise as per Maria's preferences.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "11:00",
+          "origin": "pharmacy",
+          "destination": "cafe",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            386613,
+            5824264
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.",
+          "distance_km": 2.85,
+          "duration_min": 16.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.74,
+              "duration_min": 35.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.85,
+              "duration_min": 16.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.92,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)",
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good given the pattern of previous cycling trips, making cycling a good balance of time and exercise as per Maria's preferences.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "13:00",
+          "origin": "cafe",
+          "destination": "social_club",
+          "origin_coordinates": [
+            386613,
+            5824264
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the social club.",
+          "distance_km": 8.27,
+          "duration_min": 37.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.64,
+              "duration_min": 100.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.27,
+              "duration_min": 37.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.87,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 14:30: social_club -> library: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the library.)",
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.)",
+            "  Day 1, 11:00: pharmacy -> cafe: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "14:30",
+          "origin": "social_club",
+          "destination": "library",
+          "origin_coordinates": [
+            392523,
+            5820915
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the library.",
+          "distance_km": 2.55,
+          "duration_min": 12.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.24,
+              "duration_min": 28.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.55,
+              "duration_min": 12.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.24,
+              "duration_min": 16.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 16:00: library -> culture: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to cultural outings.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the library.)",
+            "  Day 1, 13:00: cafe -> social_club: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the social club.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "16:00",
+          "origin": "library",
+          "destination": "culture",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            388364,
+            5818668
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Maria has been cycling for most of her trips today, and the distance to the culture destination is slightly over 2km but under 5km, with presumably good weather, making cycling a good balance of time and exercise as per her preferences.",
+          "distance_km": 3.67,
+          "duration_min": 20.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.25,
+              "duration_min": 42.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.67,
+              "duration_min": 20.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.14,
+              "duration_min": 37.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 16:00: library -> culture: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to cultural outings.)",
+            "  Day 0, 18:00: culture -> apartments: bicycle (Biking is a good balance of time and exercise, aligning with Maria's preferences, and it has been the most consistent mode of transportation for her today.)",
+            "  Day 1, 13:00: cafe -> social_club: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the social club.)"
+          ]
+        },
+        {
+          "day": 1,
+          "time": "18:00",
+          "origin": "culture",
+          "destination": "apartments",
+          "origin_coordinates": [
+            388364,
+            5818668
+          ],
+          "destination_coordinates": [
+            388318,
+            5818757
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given that Maria has been cycling for most of her trips today and the distance to her apartment is very short, walking would be a good way to end her day and align with her pattern of using cycling for slightly longer trips.",
+          "distance_km": 0.34,
+          "duration_min": 4.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.41,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good given the pattern of previous cycling trips, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.)",
+            "  Day 0, 18:00: culture -> apartments: bicycle (Biking is a good balance of time and exercise, aligning with Maria's preferences, and it has been the most consistent mode of transportation for her today.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "07:30",
+          "origin": "apartments",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            388318,
+            5818757
+          ],
+          "destination_coordinates": [
+            388630,
+            5820565
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.",
+          "distance_km": 2.21,
+          "duration_min": 11.4,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 3.86,
+              "duration_min": 6.0
+            },
+            {
+              "mode": "walk",
+              "distance_km": 2.2,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.21,
+              "duration_min": 11.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.52,
+              "duration_min": 22.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 09:00: supermarket -> pharmacy: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good given the pattern of previous cycling trips, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the pharmacy.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "09:00",
+          "origin": "supermarket",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388630,
+            5820565
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, and it aligns with her regular cycling habits for short to medium distances.",
+          "distance_km": 7.63,
+          "duration_min": 37.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.45,
+              "duration_min": 98.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.63,
+              "duration_min": 37.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 50.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 11:00: pharmacy -> cafe: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 1, 09:00: supermarket -> pharmacy: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the cafe.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "11:00",
+          "origin": "pharmacy",
+          "destination": "cafe",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            386613,
+            5824264
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a shorter trip to the cafe.",
+          "distance_km": 2.85,
+          "duration_min": 16.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.74,
+              "duration_min": 35.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.85,
+              "duration_min": 16.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.92,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 13:00: cafe -> social_club: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the social club.)",
+            "  Day 1, 11:00: pharmacy -> cafe: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the social club.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "13:00",
+          "origin": "cafe",
+          "destination": "social_club",
+          "origin_coordinates": [
+            386613,
+            5824264
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "The distance is slightly over 5km, but the weather is presumably good, and the trip aligns with Maria's preference for cycling on Berlin's bike lanes for longer distances as well.",
+          "distance_km": 8.27,
+          "duration_min": 37.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.64,
+              "duration_min": 100.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.27,
+              "duration_min": 37.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.87,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 14:30: social_club -> library: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the library.)",
+            "  Day 1, 13:00: cafe -> social_club: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the social club.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to the library.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "14:30",
+          "origin": "social_club",
+          "destination": "library",
+          "origin_coordinates": [
+            392523,
+            5820915
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Maria has been cycling for most of her trips today, and the distance to the library is slightly over 2km but under 5km, with presumably good weather, making cycling a good balance of time and exercise as per her preferences.",
+          "distance_km": 2.55,
+          "duration_min": 12.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.24,
+              "duration_min": 28.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.55,
+              "duration_min": 12.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.24,
+              "duration_min": 16.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 16:00: library -> culture: bicycle (Maria has been cycling for most of her trips today, and the distance to the culture destination is slightly over 2km but under 5km, with presumably good weather, making cycling a good balance of time and exercise as per her preferences.)",
+            "  Day 1, 14:30: social_club -> library: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences, even for a longer trip to the library.)",
+            "  Day 0, 16:00: library -> culture: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to cultural outings.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "16:00",
+          "origin": "library",
+          "destination": "culture",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            388364,
+            5818668
+          ],
+          "chosen_mode": "bicycle",
+          "reasoning": "Maria has been cycling for most of her trips today, and the distance to the culture destination is slightly over 2km but under 5km, with presumably good weather, making cycling a good balance of time and exercise as per her preferences.",
+          "distance_km": 3.67,
+          "duration_min": 20.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.25,
+              "duration_min": 42.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.67,
+              "duration_min": 20.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.14,
+              "duration_min": 37.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 18:00: culture -> apartments: walk (Given that Maria has been cycling for most of her trips today and the distance to her apartment is very short, walking would be a good way to end her day and align with her pattern of using cycling for slightly longer trips.)",
+            "  Day 1, 16:00: library -> culture: bicycle (Maria has been cycling for most of her trips today, and the distance to the culture destination is slightly over 2km but under 5km, with presumably good weather, making cycling a good balance of time and exercise as per her preferences.)",
+            "  Day 0, 16:00: library -> culture: bicycle (Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, even for a slightly longer trip to cultural outings.)"
+          ]
+        },
+        {
+          "day": 2,
+          "time": "18:00",
+          "origin": "culture",
+          "destination": "apartments",
+          "origin_coordinates": [
+            388364,
+            5818668
+          ],
+          "destination_coordinates": [
+            388318,
+            5818757
+          ],
+          "chosen_mode": "walk",
+          "reasoning": "Given Maria's pattern of using cycling for slightly longer trips and walking for short distances, and considering the very short distance and time to end her day, walking is the most appropriate choice to align with her preferences and daily routine.",
+          "distance_km": 0.34,
+          "duration_min": 4.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.41,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 2, 07:30: apartments -> supermarket: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good, making cycling a good balance of time and exercise as per Maria's preferences.)",
+            "  Day 1, 18:00: culture -> apartments: walk (Given that Maria has been cycling for most of her trips today and the distance to her apartment is very short, walking would be a good way to end her day and align with her pattern of using cycling for slightly longer trips.)",
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (The distance is slightly over 2km but under 5km, and the weather is presumably good given the pattern of previous cycling trips, making cycling a good balance of time and exercise as per Maria's preferences.)"
+          ]
+        }
+      ]
+    }
+  }
+}
