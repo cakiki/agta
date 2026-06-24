@@ -2,6 +2,7 @@ import logging
 logging.getLogger("mesa_llm.module_llm").setLevel(logging.ERROR)
 logging.getLogger("searcharray").setLevel(logging.ERROR)
 logging.getLogger("searcharray.indexing").setLevel(logging.ERROR)
+logging.getLogger("searcharray.indexing").handlers = []
 
 import yaml
 import sys

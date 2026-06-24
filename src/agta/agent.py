@@ -81,7 +81,9 @@ class MobilityAgent(LLMAgent):
         response = self.llm.generate(prompt)
         text = response.choices[0].message.content
         parsed = extract_json_from(text)
-        self.memory.semantic.beliefs = parsed.get("beliefs", self.memory.semantic.beliefs)
+        new_beliefs = parsed.get("beliefs", [])
+        if new_beliefs:
+            self.memory.semantic.beliefs = new_beliefs
 
     @try_llm_call
     def evaluate_day(self, day):
@@ -127,7 +129,7 @@ class MobilityAgent(LLMAgent):
             response = self.llm.generate(prompt)
             text = response.choices[0].message.content
             parsed = extract_json_from(text)
-            mode = parsed["mode"]
+            mode = parsed["mode"].lower().strip()
             reasoning = parsed["reasoning"]
         except Exception as e:
             logging.warning(f"LLM call failed for agent {self.agent_id}: {e}. Using fallback.")
