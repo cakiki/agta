@@ -42,6 +42,7 @@ for agent_id, agent in agents.items():
         "total_min": round(total_dur, 1),
         "beliefs": len(agent.get("learned_beliefs", [])),
         "rules": len(agent.get("procedural_rules", [])),
+        "evaluations": len(agent.get("evaluations", [])),
         "fallbacks": fallback_count,
     })
     for t in trips:
@@ -123,13 +124,20 @@ elif view == "Agent Detail":
 
     col1, col2 = st.columns(2)
     with col1:
-        with st.expander(f"Beliefs ({len(agent.get('learned_beliefs', []))})"):
+        with st.expander(f"Beliefs — semantic memory ({len(agent.get('learned_beliefs', []))})"):
             for b in agent.get("learned_beliefs", []):
                 st.write(f"- {b}")
     with col2:
-        with st.expander(f"Rules ({len(agent.get('procedural_rules', []))})"):
+        with st.expander(f"Rules — procedural memory ({len(agent.get('procedural_rules', []))})"):
             for r in agent.get("procedural_rules", []):
                 st.write(f"- {r}")
+
+    evaluations = agent.get("evaluations", [])
+    if evaluations:
+        with st.expander(f"Self-evaluations — CoALA ({len(evaluations)})"):
+            for e in evaluations:
+                icon = "✅" if e.get("good_choice") else "⚠️"
+                st.write(f"{icon} **{e.get('trip', '?')}**: {e.get('reason', '')}")
 
     st.subheader("Mode Breakdown")
     agent_trips = trips_df[trips_df["agent_id"] == agent_id]
@@ -144,13 +152,13 @@ elif view == "Agent Detail":
             st.write(f"**Reasoning:** {trip['reasoning']}")
             st.write(f"**Distance:** {trip['distance_km']}km | **Duration:** {trip['duration_min']}min")
             st.write(f"**Picked fastest:** {trip['picked_fastest']} | **Picked shortest:** {trip['picked_shortest']}")
-            st.write(f"**Vehicles before:** car={trip['car_before']}, bicycle={trip['bicycle_before']}")
+            st.write(f"**Vehicles before — working memory:** car={trip['car_before']}, bicycle={trip['bicycle_before']}")
             st.write("**Available options:**")
             for opt in trip["available_options"]:
                 marker = "→ " if opt["mode"] == trip["mode"] else "  "
                 st.write(f"{marker}{opt['mode']}: {opt['distance_km']}km, {opt['duration_min']}min")
             if trip["episodic_retrievals"]:
-                st.write("**Episodic retrievals:**")
+                st.write("**Episodic retrievals — episodic memory:**")
                 for r in trip["episodic_retrievals"]:
                     if r.strip():
                         st.write(f"  - {r.strip()}")

@@ -1,0 +1,12 @@
+You are:
+{{ persona }}
+
+Review today's trips and evaluate each decision honestly:
+{% for trip in trips %}
+  {{ trip.time }} {{ trip.from_activity }} -> {{ trip.to_activity }}: chose {{ trip.mode }} ({{ trip.distance_km }}km, {{ trip.duration_min }}min)
+  Other options were: {% for opt in trip.available_options %}{{ opt.mode }} ({{ opt.distance_km }}km, {{ opt.duration_min }}min){% if not loop.last %}, {% endif %}{% endfor %}
+{% endfor %}
+
+For each trip, consider: was this the best choice given the distance, time, and alternatives? Would a different mode have been more appropriate? Be critical and honest.
+
+Return JSON: {"evaluations": [{"trip": "HH:MM origin -> destination", "good_choice": true/false, "reason": "..."}]}

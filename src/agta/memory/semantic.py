@@ -20,12 +20,10 @@ class SemanticMemory:
         if sims.max() < threshold:
             self.beliefs.append(belief)
 
-    def to_prompt_string(self) -> str:
+    def to_prompt_string(self, max_beliefs=5):
         lines = []
-        if self.attitudes:
-            for key, value in self.attitudes.items():
-                lines.append(f"  {key}: {value}")
-        if self.beliefs:
-            for belief in self.beliefs:
-                lines.append(f"  {belief}")
+        for key, value in self.attitudes.items():
+            lines.append(f"  {key}: {value}")
+        for belief in self.beliefs[-max_beliefs:]:
+            lines.append(f"  {belief}")
         return "\n".join(lines)

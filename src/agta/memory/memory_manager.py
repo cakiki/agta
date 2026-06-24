@@ -28,7 +28,11 @@ class MemoryManager(Memory):
             lines.append("Today's trips:")
             for t in self.working.trips_today:
                 lines.append(f"  {t.time} {t.from_activity} -> {t.to_activity}: {t.mode}")
-        semantic_str = self.semantic.to_prompt_string()
+        if self.working.bicycle_location != self.working.current_location:
+            lines.append(f"Note: Your bicycle is at {self.working.bicycle_location}, not with you.")
+        if self.working.car_location != self.working.current_location:
+            lines.append(f"Note: Your car is at {self.working.car_location}, not with you.")
+        semantic_str = self.semantic.to_prompt_string(max_beliefs=5)
         if semantic_str:
             lines.append("Your transport attitudes and beliefs:")
             lines.append(semantic_str)

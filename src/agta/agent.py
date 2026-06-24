@@ -31,6 +31,7 @@ class MobilityAgent(LLMAgent):
         self.schedule = schedule
         self.attitudes = attitudes
         self.memory = MemoryManager(agent=self)
+        self.all_evaluations = []
 
     def reset_day(self):
         self.memory.working.reset_day()
@@ -40,15 +41,17 @@ class MobilityAgent(LLMAgent):
             self.decide_trip(trip, day=day)
 
     def end_of_day(self, day):
+        self.evaluate_day(day=day)
         self.reflect(day=day)
         self.reflect_procedural(day=day)
         if len(self.memory.semantic.beliefs) >= self.model.belief_consolidation_threshold:
-            self.consolidate_beliefs()       
+            self.consolidate_beliefs()  
 
     @try_llm_call
     def reflect(self, day: int):
         from agta.prompt.reflection import build_reflection_prompt
-        prompt = build_reflection_prompt(self.persona, self.memory, day)
+        evaluations = getattr(self, '_day_evaluations', [])
+        prompt = build_reflection_prompt(self.persona, self.memory, day, evaluations=evaluations)
         if not prompt:
             return
         response = self.llm.generate(prompt)
@@ -79,6 +82,18 @@ class MobilityAgent(LLMAgent):
         text = response.choices[0].message.content
         parsed = extract_json_from(text)
         self.memory.semantic.beliefs = parsed.get("beliefs", self.memory.semantic.beliefs)
+
+    @try_llm_call
+    def evaluate_day(self, day):
+        from agta.prompt.reflection import build_evaluation_prompt
+        prompt = build_evaluation_prompt(self.persona, self.memory, day)
+        if not prompt:
+            return
+        response = self.llm.generate(prompt)
+        text = response.choices[0].message.content
+        parsed = extract_json_from(text)
+        self._day_evaluations = parsed.get("evaluations", [])
+        self.all_evaluations.extend(self._day_evaluations)
 
     def decide_trip(self, trip: TripContext, day: int = 0) -> TripDecision:
         available = [o for o in trip.route_options if o.mode in self.memory.working.available_modes(trip)]

@@ -5,6 +5,13 @@ Today's trips:
 {% for t in trips %}
   {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.reasoning }})
 {% endfor %}
+{% if evaluations %}
 
-Based on today's travel, what general beliefs or preferences about your transport habits can you extract?
+Your self-evaluation of today's trips:
+{% for e in evaluations %}
+  {{ e.trip }}: {{ "good choice" if e.good_choice else "could improve" }} - {{ e.reason }}
+{% endfor %}
+{% endif %}
+
+Based on today's travel and your self-evaluation, what general beliefs or preferences about your transport habits can you extract? Include beliefs about modes you could have used but didn't.
 Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}
