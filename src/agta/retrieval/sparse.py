@@ -1,6 +1,9 @@
+import logging
+
 import numpy as np
 import pandas as pd
 from searcharray import SearchArray
+logging.getLogger("searcharray.indexing").setLevel(logging.ERROR)
 from agta.models import TripRecord
 
 
