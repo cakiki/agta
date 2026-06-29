@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-06-29T16:48:29.389003",
+    "timestamp": "2026-06-29T18:12:05.114274",
     "num_agents": 2,
     "num_days": 1,
     "config": {
@@ -22,7 +22,7 @@
         "embedding_model": "all-MiniLM-L6-v2"
       },
       "output": {
-        "path": "results/simulation_output_68.json"
+        "path": null
       }
     }
   },
@@ -33,7 +33,7 @@
       "learned_beliefs": [
         "I prefer cycling for short to medium distances as it aligns with my exercise routine and time management preferences.",
         "I find cycling to be a comfortable and enjoyable mode of transportation, especially for familiar routes within my neighborhood.",
-        "I tend to overestimate the distance and time required for cycling, leading to unnecessary trips that could be more efficiently managed by walking.",
+        "I tend to overestimate the distance and time required for cycling, leading to unnecessary trips that could be better managed by walking.",
         "I value the independence and convenience of cycling, but I should consider walking for shorter distances to save time and energy.",
         "I have a preference for using public transport for longer trips, but I should evaluate whether cycling is a viable option for these distances as well."
       ],
@@ -99,7 +99,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Biking is a good balance of time and exercise, suitable for a short trip to the supermarket, and aligns with Maria's preference for cycling on Berlin's bike lanes.",
           "distance_km": 2.21,
           "duration_min": 11.4,
@@ -150,7 +150,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Biking is a good balance of time and exercise, and it aligns with Maria's preference for cycling on Berlin's bike lanes, making it a suitable and enjoyable option for the trip to the pharmacy.",
           "distance_km": 7.63,
           "duration_min": 37.7,
@@ -198,7 +198,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Biking is a familiar and enjoyable mode of transportation for Maria, aligning with her preferences and providing a good balance of time and exercise, as seen in her earlier trips today.",
           "distance_km": 2.85,
           "duration_min": 16.0,
@@ -247,7 +247,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Biking is a familiar and enjoyable mode of transportation for Maria, aligning with her preferences and providing a good balance of time and exercise, as seen in her earlier trips today.",
           "distance_km": 8.27,
           "duration_min": 37.2,
@@ -297,7 +297,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Biking is a familiar and enjoyable mode of transportation for Maria, aligning with her preferences and providing a good balance of time and exercise, as seen in her earlier trips today.",
           "distance_km": 2.55,
           "duration_min": 12.4,
@@ -347,7 +347,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Biking is a familiar and enjoyable mode of transportation for Maria, and it aligns with her preferences for a good balance of time and exercise, as seen in her earlier trips today.",
           "distance_km": 3.67,
           "duration_min": 20.1,
@@ -397,7 +397,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Maria has been consistently using her bicycle for her trips today, and it aligns with her preference for cycling on Berlin's bike lanes, making it a familiar and enjoyable mode of transportation for her.",
           "distance_km": 0.41,
           "duration_min": 4.7,
@@ -438,21 +438,22 @@
       "persona": "Anna is a 33‑year‑old woman living in a compact two‑person flat in Friedrichshain, where she shares the apartment with her partner, a fellow marketing specialist. Both hold university degrees and work full‑time in the tech and creative sectors, earning a combined net household income of roughly €5,200 per month, placing them in a high‑status, young household category. Without a migration background, Anna commutes by bike to her office in central Berlin and, when longer trips are required, she uses a city‑wide car‑sharing service rather than owning a car. She does not work from home and has no secondary residence, so her daily routine is tightly linked to Berlin’s public transport and cycling infrastructure, reflecting the city’s sustainability‑focused lifestyle.",
       "transport_attitudes": {},
       "learned_beliefs": [
-        "I prioritize sustainable transportation methods, such as cycling, over other modes of transport like cars or public transport, especially for short to moderate distances.",
-        "I consider the time saved by using a bicycle to be significant, particularly for moderate distances, and it aligns with my commitment to a sustainable lifestyle.",
-        "I prefer to use a bicycle for trips that are less than 5 kilometers, as it offers a good balance of speed and sustainability.",
-        "I use a bicycle for trips that are more than 5 kilometers when the time saved is substantial, as it is the most efficient mode of transport.",
-        "I do not consider using a car for any of my trips, as it does not align with my sustainable lifestyle and the distances are manageable by bicycle.",
-        "I use public transport only when the distance is too long for a bicycle or when the time saved by using a bicycle is minimal.",
-        "I prefer to use a bicycle for trips that involve multiple stops, as it allows for a more direct and efficient route compared to public transport."
+        "I strongly prefer using a bicycle for short to moderate distances due to its sustainability and practicality.",
+        "I consider public transport a viable alternative for longer distances, especially when the time saved is significant.",
+        "I value the efficiency and speed of a bicycle for daily commuting and errands, even if it means a longer travel time for some trips.",
+        "I believe that a bicycle aligns with my sustainable lifestyle and personal values, even if it may not always be the fastest option.",
+        "I am willing to use a bicycle for multiple consecutive trips in a day, as long as the distances are manageable.",
+        "I am less likely to use a car-sharing service for short trips, preferring the bicycle for its environmental benefits and practicality.",
+        "I might have considered public transport for longer trips, such as from the parcel locker to the cafe and from the library to the restaurant, as it could have been faster and more comfortable."
       ],
       "procedural_rules": [
         "If distance is under 2km and weather is good, cycle",
         "If distance is under 2km and weather is bad, use car-sharing service",
         "If distance is between 2km and 5km, cycle",
         "If distance is over 5km and time allows, use public transport",
-        "If carrying a parcel, use bicycle for distances under 3km, otherwise use car-sharing service",
-        "If attending a gym or library, use bicycle for distances under 3km, otherwise use public transport"
+        "If carrying a heavy load, use car-sharing service",
+        "If attending a gym or library, cycle",
+        "If attending a concert or event, cycle if possible, otherwise use public transport"
       ],
       "evaluations": [
         {
@@ -482,13 +483,13 @@
         },
         {
           "trip": "13:30 office -> parcel_locker",
-          "good_choice": true,
-          "reason": "The distance is long, and the time saved by using a bicycle is significant compared to walking or public transport. A bicycle is the most efficient choice."
+          "good_choice": false,
+          "reason": "The distance is long, and the time taken by bicycle is quite high. Public transport might have been a better option, as it would have been faster and more comfortable."
         },
         {
           "trip": "15:00 parcel_locker -> cafe",
-          "good_choice": true,
-          "reason": "The distance is moderate, and the time saved by using a bicycle is significant compared to walking or public transport. A bicycle is the most efficient choice."
+          "good_choice": false,
+          "reason": "The distance is long, and the time taken by bicycle is quite high. Public transport might have been a better option, as it would have been faster and more comfortable."
         },
         {
           "trip": "16:30 cafe -> office",
@@ -507,8 +508,8 @@
         },
         {
           "trip": "19:00 library -> restaurant",
-          "good_choice": true,
-          "reason": "The distance is long, and the time saved by using a bicycle is significant compared to walking or public transport. A bicycle is the most efficient choice."
+          "good_choice": false,
+          "reason": "The distance is long, and the time taken by bicycle is quite high. Public transport might have been a better option, as it would have been faster and more comfortable."
         },
         {
           "trip": "19:30 restaurant -> concert_hall",
@@ -537,7 +538,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "The bicycle is slightly faster than the car and aligns with Anna's sustainable lifestyle while being a practical distance for cycling.",
           "distance_km": 0.38,
           "duration_min": 3.7,
@@ -588,7 +589,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "The bicycle aligns with Anna's sustainable lifestyle and is slightly faster than walking, making it the most practical choice for this distance.",
           "distance_km": 3.99,
           "duration_min": 20.4,
@@ -636,7 +637,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and Anna's sustainable lifestyle, the bicycle is the most practical and aligns with her previous choices, offering a slightly faster and more environmentally friendly option.",
           "distance_km": 0.7,
           "duration_min": 5.6,
@@ -685,7 +686,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and Anna's sustainable lifestyle, the bicycle is the most practical and aligns with her previous choices, offering a slightly faster and more environmentally friendly option.",
           "distance_km": 3.24,
           "duration_min": 18.4,
@@ -735,7 +736,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": true,
+          "picked_shortest": true,
           "reasoning": "Given the short distance and Anna's sustainable lifestyle, the bicycle is the most practical and aligns with her previous choices, offering a slightly faster and more environmentally friendly option.",
           "distance_km": 3.13,
           "duration_min": 16.9,
@@ -785,7 +786,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and my sustainable lifestyle, the bicycle is the most practical and aligns with my previous choices, offering a slightly faster and more environmentally friendly option compared to public transport.",
           "distance_km": 10.1,
           "duration_min": 45.7,
@@ -835,7 +836,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the previous successful use of the bicycle for similar distances and considering the short time until the next trip, the bicycle offers a good balance of speed and sustainability.",
           "distance_km": 7.73,
           "duration_min": 36.7,
@@ -885,7 +886,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and my sustainable lifestyle, the bicycle is the most practical and aligns with my previous choices, offering a slightly faster and more environmentally friendly option compared to walking or public transport.",
           "distance_km": 3.99,
           "duration_min": 20.4,
@@ -935,7 +936,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and my sustainable lifestyle, the bicycle is the most practical and aligns with my previous choices, offering a slightly faster and more environmentally friendly option.",
           "distance_km": 2.16,
           "duration_min": 11.1,
@@ -985,7 +986,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and my commitment to a sustainable lifestyle, the bicycle offers the fastest and most efficient mode of transportation while aligning with my previous choices.",
           "distance_km": 4.26,
           "duration_min": 22.1,
@@ -1035,8 +1036,8 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": false,
-          "picked_shorest": false,
-          "reasoning": "Given the previous successful use of bicycles for similar distances and considering the short time until the next trip, the bicycle provides a good balance of speed and practicality without needing to rush.",
+          "picked_shortest": false,
+          "reasoning": "Given the previous successful use of bicycles for similar distances and considering the short time until the next trip, the bicycle provides a good balance of speed and sustainability, especially since the public transport option has a similar travel time but might involve waiting and transfers.",
           "distance_km": 8.03,
           "duration_min": 39.9,
           "available_options": [
@@ -1085,8 +1086,8 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
-          "reasoning": "Given the short distance and Anna's commitment to a sustainable lifestyle, the bicycle is the fastest and most practical option, aligning with her previous choices and current state.",
+          "picked_shortest": false,
+          "reasoning": "Given the short distance and my commitment to a sustainable lifestyle, the bicycle is the fastest and most efficient mode of transportation, aligning with my previous choices and today's trips.",
           "distance_km": 0.84,
           "duration_min": 4.4,
           "available_options": [
@@ -1115,7 +1116,7 @@
             "bicycle": "concert_hall"
           },
           "episodic_retrievals": [
-            "  Day 0, 19:00: library -> restaurant: bicycle (Given the previous successful use of bicycles for similar distances and considering the short time until the next trip, the bicycle provides a good balance of speed and practicality without needing to rush.)",
+            "  Day 0, 19:00: library -> restaurant: bicycle (Given the previous successful use of bicycles for similar distances and considering the short time until the next trip, the bicycle provides a good balance of speed and sustainability, especially since the public transport option has a similar travel time but might involve waiting and transfers.)",
             "  Day 0, 18:00: gym -> library: bicycle (Given the short distance and my commitment to a sustainable lifestyle, the bicycle offers the fastest and most efficient mode of transportation while aligning with my previous choices.)",
             "  Day 0, 12:30: restaurant -> office: bicycle (Given the short distance and Anna's sustainable lifestyle, the bicycle is the most practical and aligns with her previous choices, offering a slightly faster and more environmentally friendly option.)"
           ]
@@ -1135,7 +1136,7 @@
           ],
           "chosen_mode": "bicycle",
           "picked_fastest": true,
-          "picked_shorest": false,
+          "picked_shortest": false,
           "reasoning": "Given the short distance and my sustainable lifestyle, the bicycle is the most practical and aligns with my previous choices, offering a slightly faster and more environmentally friendly option.",
           "distance_km": 0.17,
           "duration_min": 1.9,

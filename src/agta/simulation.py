@@ -12,6 +12,9 @@ class MobilityModel(mesa.Model):
         self.num_days = num_days
         self.routes_data = routes_data
         self.results = []
+        self.llm_model = ""
+        self.prompt_log_path = ""
+        self.output_path = ""
         
 
         for agent_id, data in agents_data.items():

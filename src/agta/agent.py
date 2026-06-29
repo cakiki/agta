@@ -1,3 +1,5 @@
+import datetime
+
 from agta.util import extract_json_from
 from mesa_llm.llm_agent import LLMAgent
 from agta.models import TripContext, TripDecision, TripRecord, RouteOption
@@ -6,6 +8,8 @@ from agta.prompt.mode_choice import build_trip_prompt
 from mesa_llm.reasoning.reasoning import Reasoning as BaseReasoning, Plan
 import logging
 from functools import wraps
+import json
+import time
 
 from litellm.exceptions import APIError, BadRequestError, APIConnectionError
 
@@ -33,6 +37,24 @@ class MobilityAgent(LLMAgent):
         self.memory = MemoryManager(agent=self)
         self.all_evaluations = []
 
+
+    def log_prompt(self, prompt_type, prompt, response_text, raw_response=None, day=None, trip_index=None, latency_ms=None):
+        entry = {
+            "timestamp": datetime.datetime.now().isoformat(),
+            "agent_id": self.agent_id,
+            "day": day,
+            "trip_index": trip_index,
+            "prompt_type": prompt_type,
+            "model": self.model.llm_model,
+            "prompt": prompt,
+            "response": response_text,
+            "input_tokens": getattr(raw_response.usage, "prompt_tokens", None) if raw_response else None,
+            "output_tokens": getattr(raw_response.usage, "completion_tokens", None) if raw_response else None,
+            "latency_ms": latency_ms,
+        }
+        with open(self.model.prompt_log_path, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+
     def reset_day(self):
         self.memory.working.reset_day()
 
@@ -54,8 +76,11 @@ class MobilityAgent(LLMAgent):
         prompt = build_reflection_prompt(self.persona, self.memory, day, evaluations=evaluations)
         if not prompt:
             return
+        start = time.time()
         response = self.llm.generate(prompt)
+        latency_ms = round((time.time() - start) * 1000)
         text = response.choices[0].message.content
+        self.log_prompt("reflection", prompt, text, raw_response=response, day=day, latency_ms=latency_ms)
         parsed = extract_json_from(text)
         for belief in parsed.get("beliefs", []):
             self.memory.semantic.add_belief(belief)
@@ -66,8 +91,11 @@ class MobilityAgent(LLMAgent):
         prompt = build_procedural_reflection_prompt(self.persona, self.memory, day)
         if not prompt:
             return
+        start = time.time()
         response = self.llm.generate(prompt)
+        latency_ms = round((time.time() - start) * 1000)
         text = response.choices[0].message.content
+        self.log_prompt("procedural_reflection", prompt, text, raw_response=response, day=day, latency_ms=latency_ms)
         parsed = extract_json_from(text)
         for rule in parsed.get("rules", []):
             self.memory.procedural.add_rule(rule)
@@ -78,8 +106,11 @@ class MobilityAgent(LLMAgent):
             return
         from agta.prompt.reflection import build_consolidation_prompt
         prompt = build_consolidation_prompt(self.memory.semantic.beliefs)
+        start = time.time()
         response = self.llm.generate(prompt)
+        latency_ms = round((time.time() - start) * 1000)
         text = response.choices[0].message.content
+        self.log_prompt("consolidation", prompt, text, raw_response=response, latency_ms=latency_ms)
         parsed = extract_json_from(text)
         new_beliefs = parsed.get("beliefs", [])
         if new_beliefs:
@@ -91,8 +122,11 @@ class MobilityAgent(LLMAgent):
         prompt = build_evaluation_prompt(self.persona, self.memory, day)
         if not prompt:
             return
+        start = time.time()
         response = self.llm.generate(prompt)
+        latency_ms = round((time.time() - start) * 1000)
         text = response.choices[0].message.content
+        self.log_prompt("evaluation", prompt, text, raw_response=response, day=day, latency_ms=latency_ms)
         parsed = extract_json_from(text)
         self._day_evaluations = parsed.get("evaluations", [])
         self.all_evaluations.extend(self._day_evaluations)
@@ -102,6 +136,7 @@ class MobilityAgent(LLMAgent):
         if not available:
             available = [RouteOption(mode="walk", distance_km=0.0, duration_min=0.0)]
         fastest = min(available, key=lambda o: o.duration_min)
+        shortest = min(available, key=lambda o: o.distance_km)
         filtered_trip = TripContext(
             route_id=trip.route_id,
             from_activity=trip.from_activity,
@@ -126,11 +161,14 @@ class MobilityAgent(LLMAgent):
             print("=== END ===")
     
         try:
+            start = time.time()
             response = self.llm.generate(prompt)
+            latency_ms = round((time.time() - start) * 1000)
             text = response.choices[0].message.content
             parsed = extract_json_from(text)
             mode = parsed["mode"].lower().strip()
             reasoning = parsed["reasoning"]
+            self.log_prompt("mode_choice", prompt, text, raw_response=response, day=day, trip_index=len(self.memory.working.trips_today), latency_ms=latency_ms)
         except Exception as e:
             logging.warning(f"LLM call failed for agent {self.agent_id}: {e}. Using fallback.")
             fallback = min(available, key=lambda o: o.duration_min)
@@ -177,6 +215,7 @@ class MobilityAgent(LLMAgent):
             available_options=[{"mode": o.mode, "distance_km": o.distance_km, "duration_min": o.duration_min} for o in available],
             episodic_retrievals=episodic_context.split("\n") if episodic_context else [],
             picked_fastest=mode == fastest.mode,
+            picked_shortest=mode == shortest.mode,
         )
         self.memory.working.trips_today.append(record)
         self.memory.episodic.add(record)

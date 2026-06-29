@@ -59,8 +59,8 @@ for agent_id, agent in agents.items():
             "distance_km": t.get("distance_km", 0),
             "duration_min": t.get("duration_min", 0),
             "options_count": len(t.get("available_options", [])),
-            "picked_fastest": t.get("chosen_mode") == fastest["mode"] if fastest else None,
-            "picked_shortest": t.get("chosen_mode") == shortest["mode"] if shortest else None,
+            "picked_fastest": t.get("picked_fastest", False),
+            "picked_shortest": t.get("picked_shortest", False),
             "is_fallback": "fallback" in t.get("reasoning", "").lower(),
             "car_before": t.get("vehicle_locations_before", {}).get("car", ""),
             "bicycle_before": t.get("vehicle_locations_before", {}).get("bicycle", ""),
@@ -83,7 +83,11 @@ if view == "Overview":
     col2.metric("Days", meta.get("num_days", "?"))
     col3.metric("Total Trips", len(trips_df))
     col4.metric("Fallbacks", trips_df["is_fallback"].sum())
-
+    pct_fastest = trips_df["picked_fastest"].mean() * 100
+    pct_shortest = trips_df["picked_shortest"].mean() * 100
+    col5, col6 = st.columns(2)
+    col5.metric("Picked Fastest", f"{pct_fastest:.0f}%")
+    col6.metric("Picked Shortest", f"{pct_shortest:.0f}%")
     st.subheader("Config")
     st.json(config)
 
@@ -179,7 +183,7 @@ elif view == "Trip Detail":
 
     st.write(f"{len(filtered)} trips")
     st.dataframe(
-        filtered[["agent_id", "day", "time", "origin", "destination", "mode", "distance_km", "duration_min", "picked_fastest", "is_fallback", "reasoning"]],
+        filtered[["agent_id", "day", "time", "origin", "destination", "mode", "distance_km", "duration_min", "picked_fastest", "picked_shortest", "is_fallback", "reasoning"]],
         use_container_width=True,
         hide_index=True,
     )

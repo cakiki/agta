@@ -16,4 +16,4 @@ retrieval:
   embedding_model: all-MiniLM-L6-v2
 
 output:
-  path: results/simulation_output_68.json
+  path: null

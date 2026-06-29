@@ -30,6 +30,7 @@ def save_results(model, config=None, path="results/simulation_output.json"):
                     "destination_coordinates": r.to_location,
                     "chosen_mode": r.mode,
                     "picked_fastest": r.picked_fastest,
+                    "picked_shortest": r.picked_shortest,
                     "reasoning": r.reasoning,
                     "distance_km": r.distance_km,
                     "duration_min": r.duration_min,

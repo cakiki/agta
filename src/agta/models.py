@@ -51,3 +51,4 @@ class TripRecord:
     available_options: list[dict] | None = None
     episodic_retrievals: list[str] | None = None
     picked_fastest: bool = False
+    picked_shortest: bool = False
