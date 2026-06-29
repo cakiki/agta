@@ -14,15 +14,32 @@ def to_latlon(coords):
     return lat, lon
 
 uploaded = st.sidebar.file_uploader("Load simulation JSON", type="json")
+llm_log_file = st.sidebar.file_uploader("Load LLM log (optional)", type="jsonl")
 if not uploaded:
     st.title("AGTA Inspector")
-    st.info("Upload a simulation output JSON to begin.")
+    st.info("Upload a simulation output JSON to begin. Optionally upload llm_log.jsonl for prompt/response inspection.")
     st.stop()
 
 data = json.load(uploaded)
 meta = data.get("metadata", {})
 config = meta.get("config", {})
 agents = data.get("agents", {})
+
+# Parse LLM log if provided
+llm_entries = []
+llm_by_trip = {}
+llm_by_agent_type = {}
+if llm_log_file:
+    for line in llm_log_file:
+        entry = json.loads(line)
+        llm_entries.append(entry)
+        key = (str(entry.get("agent_id")), entry.get("day"), entry.get("trip_index"))
+        if entry.get("prompt_type") == "mode_choice":
+            llm_by_trip[key] = entry
+        agent_type_key = (str(entry.get("agent_id")), entry.get("day"), entry.get("prompt_type"))
+        llm_by_agent_type.setdefault(agent_type_key, []).append(entry)
+
+llm_df = pd.DataFrame(llm_entries) if llm_entries else None
 
 # Build dataframes
 agent_rows = []
@@ -45,12 +62,11 @@ for agent_id, agent in agents.items():
         "evaluations": len(agent.get("evaluations", [])),
         "fallbacks": fallback_count,
     })
-    for t in trips:
-        fastest = min(t.get("available_options", []), key=lambda o: o["duration_min"], default=None)
-        shortest = min(t.get("available_options", []), key=lambda o: o["distance_km"], default=None)
+    for i, t in enumerate(trips):
         trip_rows.append({
             "agent_id": agent_id,
             "day": t.get("day", 0),
+            "trip_index": i,
             "time": t.get("time", ""),
             "origin": t.get("origin", ""),
             "destination": t.get("destination", ""),
@@ -88,6 +104,27 @@ if view == "Overview":
     col5, col6 = st.columns(2)
     col5.metric("Picked Fastest", f"{pct_fastest:.0f}%")
     col6.metric("Picked Shortest", f"{pct_shortest:.0f}%")
+
+    if llm_df is not None and len(llm_df) > 0:
+        st.subheader("LLM Stats")
+        col7, col8, col9, col10 = st.columns(4)
+        col7.metric("LLM Calls", len(llm_df))
+        total_input = llm_df["input_tokens"].sum()
+        total_output = llm_df["output_tokens"].sum()
+        col8.metric("Input Tokens", f"{int(total_input):,}")
+        col9.metric("Output Tokens", f"{int(total_output):,}")
+        avg_latency = llm_df["latency_ms"].mean()
+        col10.metric("Avg Latency", f"{avg_latency:.0f}ms")
+
+        st.write("**By prompt type:**")
+        type_stats = llm_df.groupby("prompt_type").agg(
+            calls=("prompt_type", "count"),
+            avg_latency_ms=("latency_ms", "mean"),
+            total_input_tokens=("input_tokens", "sum"),
+            total_output_tokens=("output_tokens", "sum"),
+        ).round(0).astype({"total_input_tokens": int, "total_output_tokens": int})
+        st.dataframe(type_stats, use_container_width=True)
+
     st.subheader("Config")
     st.json(config)
 
@@ -166,6 +203,14 @@ elif view == "Agent Detail":
                 for r in trip["episodic_retrievals"]:
                     if r.strip():
                         st.write(f"  - {r.strip()}")
+            llm_entry = llm_by_trip.get((agent_id, trip["day"], trip["trip_index"]))
+            if llm_entry:
+                st.divider()
+                st.write(f"**LLM call** — {llm_entry.get('latency_ms')}ms | {llm_entry.get('input_tokens')} in / {llm_entry.get('output_tokens')} out")
+                with st.expander("Prompt"):
+                    st.code(llm_entry.get("prompt", ""), language=None)
+                with st.expander("Raw response"):
+                    st.code(llm_entry.get("response", ""), language=None)
 
 # ── Trip Detail ──
 elif view == "Trip Detail":
