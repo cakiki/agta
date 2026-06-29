@@ -5,7 +5,7 @@ data:
 
 simulation:
   llm_model: huggingface/Qwen/Qwen2.5-7B-Instruct
-  num_days: 1
+  num_days: 3
   verbose: false
   belief_consolidation_threshold: 10
 

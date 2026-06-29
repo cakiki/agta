@@ -6,6 +6,7 @@ _reflection = Template((Path(__file__).parent / "templates" / "reflection.jinja"
 _procedural = Template((Path(__file__).parent / "templates" / "procedural_reflection.jinja").read_text())
 _consolidation = Template((Path(__file__).parent / "templates" / "consolidation.jinja").read_text())
 _evaluation = Template((Path(__file__).parent / "templates" / "evaluation.jinja").read_text())
+_rules_consolidation = Template((Path(__file__).parent / "templates" / "rules_consolidation.jinja").read_text())
 
 def build_reflection_prompt(persona: str, memory: MemoryManager, day: int, evaluations: list = None) -> str:
     trips = memory.episodic.retrieve_by_day(day)
@@ -27,3 +28,6 @@ def build_evaluation_prompt(persona: str, memory: MemoryManager, day: int) -> st
     if not trips:
         return ""
     return _evaluation.render(persona=persona, trips=trips)
+
+def build_rules_consolidation_prompt(rules: list[str]) -> str:
+    return _rules_consolidation.render(rules=rules)

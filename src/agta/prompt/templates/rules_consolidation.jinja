@@ -1,0 +1,7 @@
+Here are transport decision rules for a person:
+{% for r in rules %}
+  - {{ r }}
+{% endfor %}
+
+Merge duplicates, resolve contradictions, and remove redundancies. If two rules cover the same condition (e.g. "under 2km") but recommend different modes, keep only the more specific or more recent one. Return a clean, non-contradictory set.
+Return JSON: {"rules": ["rule 1", "rule 2", ...]}

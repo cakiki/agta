@@ -67,7 +67,9 @@ class MobilityAgent(LLMAgent):
         self.reflect(day=day)
         self.reflect_procedural(day=day)
         if len(self.memory.semantic.beliefs) >= self.model.belief_consolidation_threshold:
-            self.consolidate_beliefs()  
+            self.consolidate_beliefs()
+        if len(self.memory.procedural.rules) >= self.model.belief_consolidation_threshold:
+            self.consolidate_rules()    
 
     @try_llm_call
     def reflect(self, day: int):
@@ -116,6 +118,22 @@ class MobilityAgent(LLMAgent):
         if new_beliefs:
             self.memory.semantic.beliefs = new_beliefs
 
+    @try_llm_call
+    def consolidate_rules(self):
+        if len(self.memory.procedural.rules) < 5:
+            return
+        from agta.prompt.reflection import build_rules_consolidation_prompt
+        prompt = build_rules_consolidation_prompt(self.memory.procedural.rules)
+        start = time.time()
+        response = self.llm.generate(prompt)
+        latency_ms = round((time.time() - start) * 1000)
+        text = response.choices[0].message.content
+        self.log_prompt("rules_consolidation", prompt, text, raw_response=response, latency_ms=latency_ms)
+        parsed = extract_json_from(text)
+        new_rules = parsed.get("rules", [])
+        if new_rules:
+            self.memory.procedural.rules = new_rules    
+    
     @try_llm_call
     def evaluate_day(self, day):
         from agta.prompt.reflection import build_evaluation_prompt
