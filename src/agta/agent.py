@@ -101,7 +101,7 @@ class MobilityAgent(LLMAgent):
         available = [o for o in trip.route_options if o.mode in self.memory.working.available_modes(trip)]
         if not available:
             available = [RouteOption(mode="walk", distance_km=0.0, duration_min=0.0)]
-
+        fastest = min(available, key=lambda o: o.duration_min)
         filtered_trip = TripContext(
             route_id=trip.route_id,
             from_activity=trip.from_activity,
@@ -176,6 +176,7 @@ class MobilityAgent(LLMAgent):
             },
             available_options=[{"mode": o.mode, "distance_km": o.distance_km, "duration_min": o.duration_min} for o in available],
             episodic_retrievals=episodic_context.split("\n") if episodic_context else [],
+            picked_fastest=mode == fastest.mode,
         )
         self.memory.working.trips_today.append(record)
         self.memory.episodic.add(record)

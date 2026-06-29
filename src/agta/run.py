@@ -4,6 +4,7 @@ logging.getLogger("searcharray").setLevel(logging.ERROR)
 logging.getLogger("searcharray.indexing").setLevel(logging.ERROR)
 logging.getLogger("searcharray.indexing").handlers = []
 logging.getLogger("searcharray.indexing").propagate = False
+logging.getLogger("searcharray").disabled = True
 
 import yaml
 import sys
