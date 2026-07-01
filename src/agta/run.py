@@ -47,9 +47,9 @@ def run(config: dict, output_dir: str):
     start_day = 0
     resumed_day = load_checkpoint(model, output_dir)
     if resumed_day is not None:
-            start_day = resumed_day
-            model.current_day = start_day
-            print(f"Resumed from checkpoint (day {resumed_day}). Starting at day {start_day}.")
+        start_day = resumed_day
+        model.current_day = start_day
+        print(f"Resumed from checkpoint (day {resumed_day}). Starting at day {start_day}.")
 
     for day in tqdm(range(start_day, model.num_days), desc="Days"):
         model.step()
