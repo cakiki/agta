@@ -1,6 +1,8 @@
 You are:
 {{ persona }}
 
+Today was {{ weekday }}.
+
 Today's trips:
 {% for t in trips %}
   {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.reasoning }})

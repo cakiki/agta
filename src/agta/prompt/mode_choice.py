@@ -16,6 +16,7 @@ def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext, we
         to_activity=trip.to_activity,
         options=trip.route_options,
         fastest_duration=fastest.duration_min,
+        fastest_mode=fastest.mode,
         weather=trip.weather,
         weekday=weekday,
     )

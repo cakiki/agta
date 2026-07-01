@@ -8,11 +8,14 @@ _consolidation = Template((Path(__file__).parent / "templates" / "consolidation.
 _evaluation = Template((Path(__file__).parent / "templates" / "evaluation.jinja").read_text())
 _rules_consolidation = Template((Path(__file__).parent / "templates" / "rules_consolidation.jinja").read_text())
 
-def build_reflection_prompt(persona: str, memory: MemoryManager, day: int, evaluations: list = None) -> str:
+WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+def build_reflection_prompt(persona: str, memory: MemoryManager, day: int, evaluations: list | None = None) -> str:
     trips = memory.episodic.retrieve_by_day(day)
     if not trips:
         return ""
-    return _reflection.render(persona=persona, trips=trips, evaluations=evaluations or [])
+    weekdays = WEEKDAYS
+    return _reflection.render(persona=persona, trips=trips, evaluations=evaluations or [], weekday=weekdays[day % 7])
 
 def build_procedural_reflection_prompt(persona: str, memory: MemoryManager, day: int) -> str:
     trips = memory.episodic.retrieve_by_day(day)
@@ -27,7 +30,8 @@ def build_evaluation_prompt(persona: str, memory: MemoryManager, day: int) -> st
     trips = memory.episodic.retrieve_by_day(day)
     if not trips:
         return ""
-    return _evaluation.render(persona=persona, trips=trips)
+    weekdays = WEEKDAYS
+    return _evaluation.render(persona=persona, trips=trips, weekday=weekdays[day % 7])
 
 def build_rules_consolidation_prompt(rules: list[str]) -> str:
     return _rules_consolidation.render(rules=rules)
