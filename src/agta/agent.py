@@ -237,6 +237,7 @@ class MobilityAgent(LLMAgent):
             episodic_retrievals=episodic_context.split("\n") if episodic_context else [],
             picked_fastest=mode == fastest.mode,
             picked_shortest=mode == shortest.mode,
+            weather=trip.weather,
         )
         self.memory.working.trips_today.append(record)
         self.memory.episodic.add(record)

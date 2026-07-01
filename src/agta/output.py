@@ -38,6 +38,7 @@ def save_results(model, config=None, path="results/simulation_output.json"):
                     "vehicle_locations_before": r.vehicle_state_before,
                     "vehicle_locations_after": r.vehicle_state_after,
                     "episodic_retrievals": r.episodic_retrievals or [],
+                    "weather": r.weather,
                 }
                 for r in agent.memory.episodic.records
             ],

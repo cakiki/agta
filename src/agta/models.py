@@ -52,3 +52,4 @@ class TripRecord:
     episodic_retrievals: list[str] | None = None
     picked_fastest: bool = False
     picked_shortest: bool = False
+    weather: str | None = None
