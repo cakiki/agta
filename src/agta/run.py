@@ -35,6 +35,7 @@ def run(config: dict, output_dir: str):
         agents_data, routes_data,
         config["simulation"]["llm_model"],
         config["simulation"]["num_days"],
+        config=config,
         verbose=config["simulation"].get("verbose", False),
         belief_consolidation_threshold=config["simulation"].get("belief_consolidation_threshold", 10),
         retrieval_config=config.get("retrieval", {}),

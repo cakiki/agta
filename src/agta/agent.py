@@ -61,6 +61,7 @@ class MobilityAgent(LLMAgent):
 
     def process_day_trips(self, day, routes_data):
         for trip in routes_data[self.agent_id]:
+            trip.weather = self.model.current_weather
             self.decide_trip(trip, day=day)
 
     def end_of_day(self, day):

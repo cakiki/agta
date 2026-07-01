@@ -1,9 +1,10 @@
 import mesa
 from agta.agent import MobilityAgent
+from agta.environment.weather import resolve_weather
 
 
 class MobilityModel(mesa.Model):
-    def __init__(self, agents_data, routes_data, llm_model, num_days=1, **kwargs):
+    def __init__(self, agents_data, routes_data, llm_model, num_days=1, config=None, **kwargs):
         self.verbose = kwargs.pop("verbose", False)
         self.belief_consolidation_threshold = kwargs.pop("belief_consolidation_threshold", 10)
         self.retrieval_config = kwargs.pop("retrieval_config", {})
@@ -15,6 +16,7 @@ class MobilityModel(mesa.Model):
         self.llm_model = ""
         self.prompt_log_path = ""
         self.output_path = ""
+        self.config = config or {}
         
 
         for agent_id, data in agents_data.items():
@@ -64,6 +66,7 @@ class MobilityModel(mesa.Model):
         return round(count / total * 100, 1)
     
     def step(self):
+        self.current_weather = resolve_weather(self.config, self.current_day, self.num_days)
         self.agents.do("reset_day")
         self.agents.do("process_day_trips", day=self.current_day, routes_data=self.routes_data)
         if self.verbose:
