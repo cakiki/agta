@@ -1,3 +1,4 @@
+import calendar
 import datetime
 
 from agta.util import extract_json_from
@@ -166,8 +167,7 @@ class MobilityAgent(LLMAgent):
             route_options=available,
             weather=trip.weather,
         )
-        weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        weekday = weekdays[day % 7]
+        weekday = calendar.day_name[day % 7]
         prompt = build_trip_prompt(
             persona=self.persona,
             memory=self.memory,
