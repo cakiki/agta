@@ -5,7 +5,7 @@ from agta.memory.memory_manager import MemoryManager
 
 _template = Template((Path(__file__).parent / "templates" / "mode_choice.jinja").read_text())
 
-def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext) -> str:
+def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext, weekday: str = "Monday") -> str:
     fastest = min(trip.route_options, key=lambda o: o.duration_min)
     return _template.render(
         persona=persona,
@@ -17,4 +17,5 @@ def build_trip_prompt(persona: str, memory: MemoryManager, trip: TripContext) ->
         options=trip.route_options,
         fastest_duration=fastest.duration_min,
         weather=trip.weather,
+        weekday=weekday,
     )

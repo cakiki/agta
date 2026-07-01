@@ -166,11 +166,13 @@ class MobilityAgent(LLMAgent):
             route_options=available,
             weather=trip.weather,
         )
-
+        weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        weekday = weekdays[day % 7]
         prompt = build_trip_prompt(
             persona=self.persona,
             memory=self.memory,
             trip=filtered_trip,
+            weekday=weekday
         )
 
         if self.model.verbose:
