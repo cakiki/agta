@@ -5,7 +5,7 @@ data:
 
 simulation:
   llm_model: huggingface/Qwen/Qwen2.5-7B-Instruct
-  num_days: 6
+  num_days: 3
   verbose: false
   belief_consolidation_threshold: 10
   weather:
@@ -20,4 +20,4 @@ retrieval:
   embedding_model: all-MiniLM-L6-v2
 
 output:
-  dir: results/weather_test
+  dir: null

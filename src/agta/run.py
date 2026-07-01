@@ -83,6 +83,7 @@ def save_checkpoint(model, output_dir: str):
                 "episodic_retrievals": r.episodic_retrievals,
                 "picked_fastest": r.picked_fastest,
                 "picked_shortest": r.picked_shortest,
+                "weather": r.weather,
             })
         checkpoint["agents"][agent.agent_id] = {
             "beliefs": agent.memory.semantic.beliefs,
@@ -125,6 +126,7 @@ def load_checkpoint(model, output_dir: str) -> int | None:
                 episodic_retrievals=r["episodic_retrievals"],
                 picked_fastest=r.get("picked_fastest", False),
                 picked_shortest=r.get("picked_shortest", False),
+                weather=r.get("weather"),
             )
             agent.memory.episodic.add(record)
     return checkpoint["current_day"]
