@@ -1,3 +1,4 @@
+import calendar
 import streamlit as st
 import json
 import pandas as pd
@@ -63,9 +64,11 @@ for agent_id, agent in agents.items():
         "fallbacks": fallback_count,
     })
     for i, t in enumerate(trips):
+        day = t.get("day", 0)
         trip_rows.append({
             "agent_id": agent_id,
-            "day": t.get("day", 0),
+            "day": day,
+            "weekday": calendar.day_name[day % 7],
             "trip_index": i,
             "time": t.get("time", ""),
             "origin": t.get("origin", ""),
@@ -74,6 +77,7 @@ for agent_id, agent in agents.items():
             "reasoning": t.get("reasoning", ""),
             "distance_km": t.get("distance_km", 0),
             "duration_min": t.get("duration_min", 0),
+            "weather": t.get("weather", ""),
             "options_count": len(t.get("available_options", [])),
             "picked_fastest": t.get("picked_fastest", False),
             "picked_shortest": t.get("picked_shortest", False),
@@ -124,6 +128,25 @@ if view == "Overview":
             total_output_tokens=("output_tokens", "sum"),
         ).round(0).astype({"total_input_tokens": int, "total_output_tokens": int})
         st.dataframe(type_stats, use_container_width=True)
+
+    st.subheader("Per-Day Breakdown")
+    day_group = trips_df.groupby("day")
+    day_rows = []
+    for day, group in day_group:
+        weekday = calendar.day_name[day % 7]
+        weather = group["weather"].iloc[0] if group["weather"].iloc[0] else "—"
+        mode_counts = group["mode"].value_counts(normalize=True).mul(100).round(1)
+        day_rows.append({
+            "Day": day,
+            "Weekday": weekday,
+            "Weather": weather,
+            "Trips": len(group),
+            "Walk %": mode_counts.get("walk", 0),
+            "Bicycle %": mode_counts.get("bicycle", 0),
+            "Car %": mode_counts.get("car", 0),
+            "PT %": mode_counts.get("public transport", 0),
+        })
+    st.dataframe(pd.DataFrame(day_rows), use_container_width=True, hide_index=True)
 
     st.subheader("Config")
     st.json(config)
@@ -189,10 +212,13 @@ elif view == "Agent Detail":
     for _, trip in agent_trips.iterrows():
         fastest_label = " ⚡" if trip["picked_fastest"] else ""
         fallback_label = " ⚠️ FALLBACK" if trip["is_fallback"] else ""
-        with st.expander(f"Day {trip['day']} {trip['time']} | {trip['origin']} → {trip['destination']} | {trip['mode']}{fastest_label}{fallback_label}"):
+        weather_label = f" | {trip['weather']}" if trip["weather"] else ""
+        with st.expander(f"{trip['weekday']} (Day {trip['day']}) {trip['time']} | {trip['origin']} → {trip['destination']} | {trip['mode']}{fastest_label}{fallback_label}{weather_label}"):
             st.write(f"**Reasoning:** {trip['reasoning']}")
             st.write(f"**Distance:** {trip['distance_km']}km | **Duration:** {trip['duration_min']}min")
             st.write(f"**Picked fastest:** {trip['picked_fastest']} | **Picked shortest:** {trip['picked_shortest']}")
+            if trip["weather"]:
+                st.write(f"**Weather:** {trip['weather']}")
             st.write(f"**Vehicles before — working memory:** car={trip['car_before']}, bicycle={trip['bicycle_before']}")
             st.write("**Available options:**")
             for opt in trip["available_options"]:
@@ -228,7 +254,7 @@ elif view == "Trip Detail":
 
     st.write(f"{len(filtered)} trips")
     st.dataframe(
-        filtered[["agent_id", "day", "time", "origin", "destination", "mode", "distance_km", "duration_min", "picked_fastest", "picked_shortest", "is_fallback", "reasoning"]],
+        filtered[["agent_id", "day", "weekday", "weather", "time", "origin", "destination", "mode", "distance_km", "duration_min", "picked_fastest", "picked_shortest", "is_fallback", "reasoning"]],
         use_container_width=True,
         hide_index=True,
     )
