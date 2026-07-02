@@ -19,7 +19,7 @@ def try_llm_call(func):
     def wrapper(self, *args, **kwargs):
         try:
             return func(self, *args, **kwargs)
-        except (APIError, BadRequestError, APIConnectionError) as e:
+        except (APIError, BadRequestError, APIConnectionError, json.JSONDecodeError) as e:
             logging.warning(f"{func.__name__} failed for agent {self.agent_id}: {e}. Skipping.")
     return wrapper
 
