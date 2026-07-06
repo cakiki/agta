@@ -1,11 +1,12 @@
 You are:
 {{ persona }}
 
+Today was {{ weekday }}.
+
 Today's trips:
 {% for t in trips %}
-  {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.reasoning }})
+  {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.distance_km }}km, {{ t.duration_min }}min{% if t.weather %}, weather: {{ t.weather }}{% endif %})
 {% endfor %}
 
-Based on today's travel patterns, what if-then decision rules should guide your future transport choices?
-Examples: 'If distance is under 2km, walk', 'If bike is available and weather is good, cycle'
+Extract 2-3 concrete if-then decision rules. Each rule must specify a distance range OR weather condition and exactly one transport mode. No subjective language (no "enjoyment", "preference", "lifestyle"). No overlapping distance ranges.
 Return JSON: {"rules": ["rule 1", "rule 2", ...]}

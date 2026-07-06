@@ -3,5 +3,5 @@ Here are transport decision rules for a person:
   - {{ r }}
 {% endfor %}
 
-Merge duplicates, resolve contradictions, and remove redundancies. If two rules cover the same condition (e.g. "under 2km") but recommend different modes, keep only the more specific or more recent one. Return a clean, non-contradictory set.
+Compress these into 5-8 rules. For each distance range, keep only ONE preferred mode. Remove vague or subjective rules. Remove rules that repeat the same condition with minor wording differences.
 Return JSON: {"rules": ["rule 1", "rule 2", ...]}

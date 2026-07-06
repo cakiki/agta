@@ -1,11 +1,11 @@
 data:
   path: data/agents_4a_route_options.json
-  limit: 6
+  limit: 2
   seed: 42
 
 simulation:
   llm_model: huggingface/Qwen/Qwen2.5-7B-Instruct
-  num_days: 5
+  num_days: 2
   verbose: false
   belief_consolidation_threshold: 10
   weather:
@@ -20,4 +20,4 @@ retrieval:
   embedding_model: all-MiniLM-L6-v2
 
 output:
-  dir: results/demo
+  dir: null

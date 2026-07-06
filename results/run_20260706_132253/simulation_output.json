@@ -1,0 +1,2327 @@
+{
+  "metadata": {
+    "timestamp": "2026-07-06T13:24:55.463085",
+    "num_agents": 2,
+    "num_days": 2,
+    "config": {
+      "data": {
+        "path": "data/agents_4a_route_options.json",
+        "limit": 2,
+        "seed": 42
+      },
+      "simulation": {
+        "llm_model": "huggingface/Qwen/Qwen2.5-7B-Instruct",
+        "num_days": 2,
+        "verbose": false,
+        "belief_consolidation_threshold": 10,
+        "weather": {
+          "source": "random",
+          "values": [
+            "sunny",
+            "light rain",
+            "sunny"
+          ],
+          "seed": 42
+        }
+      },
+      "retrieval": {
+        "dense_weight": 0.4,
+        "sparse_weight": 0.3,
+        "recency_weight": 0.3,
+        "embedding_model": "all-MiniLM-L6-v2"
+      },
+      "output": {
+        "dir": null
+      }
+    }
+  },
+  "agents": {
+    "33402": {
+      "persona": "Maria is a 71‑year‑old woman living alone in a compact, wheelchair‑accessible apartment in Friedrichshain, Berlin. She retired last year after a long career as a municipal administrative clerk and now receives a modest pension that, together with a small supplemental income, places her household net monthly earnings between €1,500 and €2,000. Maria holds a Mittlere Reife (Realschulabschluss) and enjoys a comfortable, middle‑class lifestyle, allocating most of her budget to health care, groceries, and occasional cultural outings such as museum tickets or theatre performances. She does not own a car, preferring to cycle on Berlin’s extensive bike lanes to the nearby Stadtpark or to visit the weekly market, and she relies on public transport for longer trips. Her social circle consists of a few neighbors and a senior‑citizen club where she participates in weekly knitting circles and language exchange evenings.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "Cycling is a comfortable and healthy mode of transportation for short to medium distances, especially in overcast weather conditions.",
+        "Public transport is less direct and time-consuming for the distances and locations I typically visit.",
+        "I prefer cycling over walking for all my trips due to the convenience and health benefits, even for short distances.",
+        "Driving is not necessary for my daily activities as the distances and locations are well-suited for cycling.",
+        "I prefer cycling for short to medium distances as it aligns with my health benefits and active lifestyle, even in sunny weather conditions.",
+        "Cycling is a more efficient mode of transportation than walking for distances greater than 500 meters, especially when considering the time saved.",
+        "I avoid using public transport for short trips as it is less direct and often less convenient than cycling, even when the weather is favorable."
+      ],
+      "procedural_rules": [
+        "if the distance is between 0.41km and 2.85km, then use bicycle",
+        "if the weather condition is overcast, then use bicycle",
+        "if the weather is sunny and the temperature is 22°C, then use bicycle"
+      ],
+      "evaluations": [
+        {
+          "trip": "07:30 apartments -> supermarket",
+          "good_choice": true,
+          "reason": "The distance and time are reasonable for a bicycle, and the weather conditions are suitable. This mode of transportation is efficient and aligns with Maria's preference for cycling."
+        },
+        {
+          "trip": "09:00 supermarket -> pharmacy",
+          "good_choice": true,
+          "reason": "The distance and time are suitable for a bicycle, and the weather is favorable. Walking would be too time-consuming, and public transport would be less direct."
+        },
+        {
+          "trip": "11:00 pharmacy -> cafe",
+          "good_choice": true,
+          "reason": "The distance and time are appropriate for a bicycle, and the weather is good. This mode of transportation is efficient and aligns with Maria's preference for cycling."
+        },
+        {
+          "trip": "13:00 cafe -> social_club",
+          "good_choice": true,
+          "reason": "The distance and time are suitable for a bicycle, and the weather is favorable. Walking would be too time-consuming, and public transport would be less direct."
+        },
+        {
+          "trip": "14:30 social_club -> library",
+          "good_choice": true,
+          "reason": "The distance and time are appropriate for a bicycle, and the weather is good. This mode of transportation is efficient and aligns with Maria's preference for cycling."
+        },
+        {
+          "trip": "16:00 library -> culture",
+          "good_choice": true,
+          "reason": "The distance and time are suitable for a bicycle, and the weather is favorable. Walking would be too time-consuming, and public transport would be less direct."
+        },
+        {
+          "trip": "18:00 culture -> apartments",
+          "good_choice": true,
+          "reason": "The short distance and time are appropriate for a bicycle, and the weather is good. This mode of transportation is efficient and aligns with Maria's preference for cycling."
+        },
+        {
+          "trip": "07:30 apartments -> supermarket",
+          "good_choice": true,
+          "reason": "Given the short distance and sunny weather, cycling is a good choice. It is faster than walking and more convenient than public transport for this short trip."
+        },
+        {
+          "trip": "09:00 supermarket -> pharmacy",
+          "good_choice": true,
+          "reason": "The distance is still manageable by bicycle, and the weather is favorable. Walking would be too time-consuming, and public transport would be less direct."
+        },
+        {
+          "trip": "11:00 pharmacy -> cafe",
+          "good_choice": true,
+          "reason": "The distance is suitable for cycling, and the weather is pleasant. Walking would be too long, and public transport would be less efficient."
+        },
+        {
+          "trip": "13:00 cafe -> social_club",
+          "good_choice": true,
+          "reason": "The distance is within cycling range, and the weather is good. Walking would be too time-consuming, and public transport would be less direct."
+        },
+        {
+          "trip": "14:30 social_club -> library",
+          "good_choice": true,
+          "reason": "The distance is suitable for cycling, and the weather is favorable. Walking would be too long, and public transport would be less efficient."
+        },
+        {
+          "trip": "16:00 library -> culture",
+          "good_choice": true,
+          "reason": "The distance is manageable by bicycle, and the weather is good. Walking would be too long, and public transport would be less direct."
+        },
+        {
+          "trip": "18:00 culture -> apartments",
+          "good_choice": true,
+          "reason": "The short distance is suitable for cycling, and the weather is pleasant. Walking would be too short to make a difference, and public transport would be less efficient."
+        }
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:30",
+          "origin": "apartments",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            388318,
+            5818757
+          ],
+          "destination_coordinates": [
+            388630,
+            5820565
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.",
+          "distance_km": 2.21,
+          "duration_min": 11.4,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 3.86,
+              "duration_min": 6.0
+            },
+            {
+              "mode": "walk",
+              "distance_km": 2.2,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.21,
+              "duration_min": 11.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.52,
+              "duration_min": 22.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "episodic_retrievals": [],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "09:00",
+          "origin": "supermarket",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388630,
+            5820565
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the pharmacy.",
+          "distance_km": 7.63,
+          "duration_min": 37.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.45,
+              "duration_min": 98.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.63,
+              "duration_min": 37.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 50.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "11:00",
+          "origin": "pharmacy",
+          "destination": "cafe",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            386613,
+            5824264
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.",
+          "distance_km": 2.85,
+          "duration_min": 16.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.74,
+              "duration_min": 35.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.85,
+              "duration_min": 16.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.92,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the pharmacy.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "13:00",
+          "origin": "cafe",
+          "destination": "social_club",
+          "origin_coordinates": [
+            386613,
+            5824264
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the social club, especially since it is the fastest mode of transport.",
+          "distance_km": 8.27,
+          "duration_min": 37.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.64,
+              "duration_min": 100.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.27,
+              "duration_min": 37.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.87,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the pharmacy.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "14:30",
+          "origin": "social_club",
+          "destination": "library",
+          "origin_coordinates": [
+            392523,
+            5820915
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the short distance, overcast weather, and Maria's preference for active transportation, cycling remains a comfortable and healthy option, aligning with her past choices and current state.",
+          "distance_km": 2.55,
+          "duration_min": 12.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.24,
+              "duration_min": 28.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.55,
+              "duration_min": 12.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.24,
+              "duration_min": 16.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the social club, especially since it is the fastest mode of transport.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "16:00",
+          "origin": "library",
+          "destination": "culture",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            388364,
+            5818668
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cultural destination.",
+          "distance_km": 3.67,
+          "duration_min": 20.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.25,
+              "duration_min": 42.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.67,
+              "duration_min": 20.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.14,
+              "duration_min": 37.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the social club, especially since it is the fastest mode of transport.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Given the short distance, overcast weather, and Maria's preference for active transportation, cycling remains a comfortable and healthy option, aligning with her past choices and current state.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "culture",
+          "destination": "apartments",
+          "origin_coordinates": [
+            388364,
+            5818668
+          ],
+          "destination_coordinates": [
+            388318,
+            5818757
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Maria has been consistently choosing to cycle for her trips today due to the short distances and overcast weather, which she finds comfortable and healthy, and cycling aligns with her preferences and past choices.",
+          "distance_km": 0.41,
+          "duration_min": 4.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.41,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)",
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the social club, especially since it is the fastest mode of transport.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Given the short distance, overcast weather, and Maria's preference for active transportation, cycling remains a comfortable and healthy option, aligning with her past choices and current state.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 1,
+          "time": "07:30",
+          "origin": "apartments",
+          "destination": "supermarket",
+          "origin_coordinates": [
+            388318,
+            5818757
+          ],
+          "destination_coordinates": [
+            388630,
+            5820565
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance to the supermarket is short, and cycling aligns with Maria's preference for active transportation and health benefits, even in sunny weather conditions.",
+          "distance_km": 2.21,
+          "duration_min": 11.4,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 3.86,
+              "duration_min": 6.0
+            },
+            {
+              "mode": "walk",
+              "distance_km": 2.2,
+              "duration_min": 29.1
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.21,
+              "duration_min": 11.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.52,
+              "duration_min": 22.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the pharmacy.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "09:00",
+          "origin": "supermarket",
+          "destination": "pharmacy",
+          "origin_coordinates": [
+            388630,
+            5820565
+          ],
+          "destination_coordinates": [
+            385721,
+            5826115
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance to the pharmacy is relatively short, and cycling aligns with Maria's preference for active transportation and health benefits, even in sunny weather conditions.",
+          "distance_km": 7.63,
+          "duration_min": 37.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.45,
+              "duration_min": 98.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.63,
+              "duration_min": 37.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.93,
+              "duration_min": 50.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "supermarket"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.)",
+            "  Day 0, 09:00: supermarket -> pharmacy: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the pharmacy.)",
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (Although the weather is sunny, the distance to the supermarket is short, and cycling aligns with Maria's preference for active transportation and health benefits, even in sunny weather conditions.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "11:00",
+          "origin": "pharmacy",
+          "destination": "cafe",
+          "origin_coordinates": [
+            385721,
+            5826115
+          ],
+          "destination_coordinates": [
+            386613,
+            5824264
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.",
+          "distance_km": 2.85,
+          "duration_min": 16.0,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.74,
+              "duration_min": 35.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.85,
+              "duration_min": 16.0
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.92,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "pharmacy"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the social club, especially since it is the fastest mode of transport.)",
+            "  Day 0, 11:00: pharmacy -> cafe: bicycle (Given the short distance and overcast weather, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cafe.)",
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (Although the weather is sunny, the distance to the supermarket is short, and cycling aligns with Maria's preference for active transportation and health benefits, even in sunny weather conditions.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "13:00",
+          "origin": "cafe",
+          "destination": "social_club",
+          "origin_coordinates": [
+            386613,
+            5824264
+          ],
+          "destination_coordinates": [
+            392523,
+            5820915
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.",
+          "distance_km": 8.27,
+          "duration_min": 37.2,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.64,
+              "duration_min": 100.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.27,
+              "duration_min": 37.2
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.87,
+              "duration_min": 46.3
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 14:30: social_club -> library: bicycle (Given the short distance, overcast weather, and Maria's preference for active transportation, cycling remains a comfortable and healthy option, aligning with her past choices and current state.)",
+            "  Day 0, 13:00: cafe -> social_club: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the social club, especially since it is the fastest mode of transport.)",
+            "  Day 1, 11:00: pharmacy -> cafe: bicycle (Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "14:30",
+          "origin": "social_club",
+          "destination": "library",
+          "origin_coordinates": [
+            392523,
+            5820915
+          ],
+          "destination_coordinates": [
+            390859,
+            5819896
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.",
+          "distance_km": 2.55,
+          "duration_min": 12.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 2.24,
+              "duration_min": 28.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.55,
+              "duration_min": 12.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.24,
+              "duration_min": 16.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "social_club"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 16:00: library -> culture: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cultural destination.)",
+            "  Day 0, 14:30: social_club -> library: bicycle (Given the short distance, overcast weather, and Maria's preference for active transportation, cycling remains a comfortable and healthy option, aligning with her past choices and current state.)",
+            "  Day 1, 13:00: cafe -> social_club: bicycle (Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "16:00",
+          "origin": "library",
+          "destination": "culture",
+          "origin_coordinates": [
+            390859,
+            5819896
+          ],
+          "destination_coordinates": [
+            388364,
+            5818668
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.",
+          "distance_km": 3.67,
+          "duration_min": 20.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.25,
+              "duration_min": 42.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.67,
+              "duration_min": 20.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.14,
+              "duration_min": 37.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 16:00: library -> culture: bicycle (Given the overcast weather and temperature, cycling remains a comfortable and healthy option, aligning with Maria's preferences and the distance to the cultural destination.)",
+            "  Day 0, 18:00: culture -> apartments: bicycle (Maria has been consistently choosing to cycle for her trips today due to the short distances and overcast weather, which she finds comfortable and healthy, and cycling aligns with her preferences and past choices.)",
+            "  Day 1, 13:00: cafe -> social_club: bicycle (Although the weather is sunny, the distance is within Maria's preferred range for cycling, and it aligns with her health benefits and preference for active transportation, even though walking is also a viable option.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "18:00",
+          "origin": "culture",
+          "destination": "apartments",
+          "origin_coordinates": [
+            388364,
+            5818668
+          ],
+          "destination_coordinates": [
+            388318,
+            5818757
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Although the weather is sunny, the distance is short and aligns with Maria's preference for active transportation and health benefits, even in sunny weather conditions, and cycling has been her choice for other short trips today.",
+          "distance_km": 0.41,
+          "duration_min": 4.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.41,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.34,
+              "duration_min": 4.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "apartments",
+            "bicycle": "culture"
+          },
+          "vehicle_locations_after": {
+            "car": "apartments",
+            "bicycle": "apartments"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 07:30: apartments -> supermarket: bicycle (Although the weather is sunny, the distance to the supermarket is short, and cycling aligns with Maria's preference for active transportation and health benefits, even in sunny weather conditions.)",
+            "  Day 0, 07:30: apartments -> supermarket: bicycle (Given the overcast weather and temperature, cycling is a comfortable and healthy option that aligns with Maria's preference for active transportation and the short distance to the supermarket.)",
+            "  Day 0, 18:00: culture -> apartments: bicycle (Maria has been consistently choosing to cycle for her trips today due to the short distances and overcast weather, which she finds comfortable and healthy, and cycling aligns with her preferences and past choices.)"
+          ],
+          "weather": "sunny, 22°C"
+        }
+      ]
+    },
+    "22436": {
+      "persona": "Anna is a 33‑year‑old woman living in a compact two‑person flat in Friedrichshain, where she shares the apartment with her partner, a fellow marketing specialist. Both hold university degrees and work full‑time in the tech and creative sectors, earning a combined net household income of roughly €5,200 per month, placing them in a high‑status, young household category. Without a migration background, Anna commutes by bike to her office in central Berlin and, when longer trips are required, she uses a city‑wide car‑sharing service rather than owning a car. She does not work from home and has no secondary residence, so her daily routine is tightly linked to Berlin’s public transport and cycling infrastructure, reflecting the city’s sustainability‑focused lifestyle.",
+      "transport_attitudes": {},
+      "learned_beliefs": [
+        "I believe that cycling is the most sustainable and efficient mode of transport for short to moderate distances in Berlin's weather conditions.",
+        "I believe that using a city-wide car-sharing service is a practical alternative when longer distances are required, but it is not necessary for my daily routine.",
+        "I believe that maintaining a consistent mode of transport, such as cycling, helps in reducing my carbon footprint and aligns with my sustainable lifestyle beliefs.",
+        "I believe that walking is a viable alternative for very short distances, but it is not as efficient or environmentally friendly as cycling for the distances I typically travel.",
+        "I believe that cycling is the most sustainable and efficient mode of transport for distances up to 10km when the weather is good."
+      ],
+      "procedural_rules": [
+        "if the distance is less than or equal to 1km then use bicycle",
+        "if the weather condition is overcast and temperature is 10°C then use bicycle"
+      ],
+      "evaluations": [
+        {
+          "trip": "07:30 residential -> cafe",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is suitable for cycling. Biking is the fastest and most efficient option."
+        },
+        {
+          "trip": "08:00 cafe -> office",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "08:30 office -> coworking_space",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is suitable for cycling. Biking is the fastest and most efficient option."
+        },
+        {
+          "trip": "10:30 coworking_space -> restaurant",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "12:30 restaurant -> office",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "13:30 office -> parcel_locker",
+          "good_choice": true,
+          "reason": "The distance is long, and the weather is suitable for cycling. Biking is the fastest and most efficient option, even though it takes a significant amount of time."
+        },
+        {
+          "trip": "15:00 parcel_locker -> cafe",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "16:30 cafe -> office",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "17:30 office -> gym",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is suitable for cycling. Biking is the fastest and most efficient option."
+        },
+        {
+          "trip": "18:00 gym -> library",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "19:00 library -> restaurant",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is suitable for cycling. Biking is faster than walking or public transport and more environmentally friendly."
+        },
+        {
+          "trip": "19:30 restaurant -> concert_hall",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is suitable for cycling. Biking is the fastest and most efficient option."
+        },
+        {
+          "trip": "20:30 concert_hall -> residential",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is suitable for cycling. Biking is the fastest and most efficient option."
+        },
+        {
+          "trip": "07:30 residential -> cafe",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "08:00 cafe -> office",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is favorable, making cycling the best choice for speed and sustainability."
+        },
+        {
+          "trip": "08:30 office -> coworking_space",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "10:30 coworking_space -> restaurant",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is favorable, making cycling the best choice for speed and sustainability."
+        },
+        {
+          "trip": "12:30 restaurant -> office",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "13:30 office -> parcel_locker",
+          "good_choice": true,
+          "reason": "The distance is longer, but the weather is good, making cycling the best choice for speed and sustainability."
+        },
+        {
+          "trip": "15:00 parcel_locker -> cafe",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is favorable, making cycling the best choice for speed and sustainability."
+        },
+        {
+          "trip": "16:30 cafe -> office",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "17:30 office -> gym",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "18:00 gym -> library",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is favorable, making cycling the best choice for speed and sustainability."
+        },
+        {
+          "trip": "19:00 library -> restaurant",
+          "good_choice": true,
+          "reason": "The distance is moderate, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "19:30 restaurant -> concert_hall",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is good, making cycling the most efficient and sustainable option."
+        },
+        {
+          "trip": "20:30 concert_hall -> residential",
+          "good_choice": true,
+          "reason": "The distance is short, and the weather is good, making cycling the most efficient and sustainable option."
+        }
+      ],
+      "trips": [
+        {
+          "day": 0,
+          "time": "07:30",
+          "origin": "residential",
+          "destination": "cafe",
+          "origin_coordinates": [
+            386439,
+            5818890
+          ],
+          "destination_coordinates": [
+            386685,
+            5818712
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.",
+          "distance_km": 0.38,
+          "duration_min": 3.7,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 0.38,
+              "duration_min": 0.9
+            },
+            {
+              "mode": "walk",
+              "distance_km": 0.35,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.38,
+              "duration_min": 3.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.35,
+              "duration_min": 4.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "residential"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "08:00",
+          "origin": "cafe",
+          "destination": "office",
+          "origin_coordinates": [
+            386685,
+            5818712
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.",
+          "distance_km": 3.99,
+          "duration_min": 20.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.78,
+              "duration_min": 49.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.99,
+              "duration_min": 20.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.63,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "08:30",
+          "origin": "office",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            388028,
+            5821639
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.",
+          "distance_km": 0.7,
+          "duration_min": 5.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.55,
+              "duration_min": 7.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.7,
+              "duration_min": 5.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.55,
+              "duration_min": 7.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "coworking_space"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "10:30",
+          "origin": "coworking_space",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388028,
+            5821639
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle and the overcast, mild weather, cycling remains the most consistent and comfortable mode of transport for the short distance to the restaurant.",
+          "distance_km": 3.24,
+          "duration_min": 18.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.12,
+              "duration_min": 43.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.24,
+              "duration_min": 18.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.38,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "coworking_space"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)",
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "12:30",
+          "origin": "restaurant",
+          "destination": "office",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": true,
+          "reasoning": "Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.",
+          "distance_km": 3.13,
+          "duration_min": 16.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.14,
+              "duration_min": 41.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.13,
+              "duration_min": 16.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.11,
+              "duration_min": 19.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)",
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 10:30: coworking_space -> restaurant: bicycle (Given Anna's sustainable lifestyle and the overcast, mild weather, cycling remains the most consistent and comfortable mode of transport for the short distance to the restaurant.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "13:30",
+          "origin": "office",
+          "destination": "parcel_locker",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            389141,
+            5814538
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle and the short distance to the parcel locker, cycling remains the most consistent and efficient choice, aligning with her habits and the current weather conditions.",
+          "distance_km": 10.1,
+          "duration_min": 45.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 8.79,
+              "duration_min": 118.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 10.1,
+              "duration_min": 45.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 10.39,
+              "duration_min": 38.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "parcel_locker"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 10:30: coworking_space -> restaurant: bicycle (Given Anna's sustainable lifestyle and the overcast, mild weather, cycling remains the most consistent and comfortable mode of transport for the short distance to the restaurant.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "15:00",
+          "origin": "parcel_locker",
+          "destination": "cafe",
+          "origin_coordinates": [
+            389141,
+            5814538
+          ],
+          "destination_coordinates": [
+            386685,
+            5818712
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle and the fact that she has been cycling for all her trips today, continuing with the bicycle for the short distance to the cafe maintains consistency and aligns with her habits.",
+          "distance_km": 7.73,
+          "duration_min": 36.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.73,
+              "duration_min": 77.9
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.73,
+              "duration_min": 36.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.19,
+              "duration_min": 31.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "parcel_locker"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "16:30",
+          "origin": "cafe",
+          "destination": "office",
+          "origin_coordinates": [
+            386685,
+            5818712
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.",
+          "distance_km": 3.99,
+          "duration_min": 20.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.78,
+              "duration_min": 49.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.99,
+              "duration_min": 20.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.63,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)",
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "17:30",
+          "origin": "office",
+          "destination": "gym",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            388707,
+            5822456
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.",
+          "distance_km": 2.16,
+          "duration_min": 11.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.75,
+              "duration_min": 24.4
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.16,
+              "duration_min": 11.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.86,
+              "duration_min": 17.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "gym"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 16:30: cafe -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "18:00",
+          "origin": "gym",
+          "destination": "library",
+          "origin_coordinates": [
+            388707,
+            5822456
+          ],
+          "destination_coordinates": [
+            388817,
+            5825238
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.",
+          "distance_km": 4.26,
+          "duration_min": 22.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.6,
+              "duration_min": 47.5
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 4.26,
+              "duration_min": 22.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.79,
+              "duration_min": 27.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "gym"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 15:00: parcel_locker -> cafe: bicycle (Given Anna's sustainable lifestyle and the fact that she has been cycling for all her trips today, continuing with the bicycle for the short distance to the cafe maintains consistency and aligns with her habits.)",
+            "  Day 0, 17:30: office -> gym: bicycle (Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.)",
+            "  Day 0, 16:30: cafe -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "19:00",
+          "origin": "library",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388817,
+            5825238
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle and the short distance to the restaurant, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.",
+          "distance_km": 8.03,
+          "duration_min": 39.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.48,
+              "duration_min": 99.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.03,
+              "duration_min": 39.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.94,
+              "duration_min": 32.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 10:30: coworking_space -> restaurant: bicycle (Given Anna's sustainable lifestyle and the overcast, mild weather, cycling remains the most consistent and comfortable mode of transport for the short distance to the restaurant.)",
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "19:30",
+          "origin": "restaurant",
+          "destination": "concert_hall",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            386537,
+            5818957
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the short distance, overcast weather, and Anna's consistent cycling habits, the bicycle is the most efficient and sustainable choice for her daily routine.",
+          "distance_km": 0.84,
+          "duration_min": 4.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.84,
+              "duration_min": 10.9
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.84,
+              "duration_min": 4.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.84,
+              "duration_min": 10.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "concert_hall"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 19:00: library -> restaurant: bicycle (Given Anna's sustainable lifestyle and the short distance to the restaurant, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 18:00: gym -> library: bicycle (Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 0,
+          "time": "20:30",
+          "origin": "concert_hall",
+          "destination": "residential",
+          "origin_coordinates": [
+            386537,
+            5818957
+          ],
+          "destination_coordinates": [
+            386439,
+            5818890
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.",
+          "distance_km": 0.17,
+          "duration_min": 1.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.15,
+              "duration_min": 2.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.17,
+              "duration_min": 1.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.15,
+              "duration_min": 2.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "concert_hall"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "residential"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 16:30: cafe -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "overcast, 10°C"
+        },
+        {
+          "day": 1,
+          "time": "07:30",
+          "origin": "residential",
+          "destination": "cafe",
+          "origin_coordinates": [
+            386439,
+            5818890
+          ],
+          "destination_coordinates": [
+            386685,
+            5818712
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and higher temperature, cycling remains the most sustainable and efficient choice for the short distance, aligning with Anna's consistent mode of transport and her sustainable lifestyle beliefs.",
+          "distance_km": 0.38,
+          "duration_min": 3.7,
+          "available_options": [
+            {
+              "mode": "car",
+              "distance_km": 0.38,
+              "duration_min": 0.9
+            },
+            {
+              "mode": "walk",
+              "distance_km": 0.35,
+              "duration_min": 4.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.38,
+              "duration_min": 3.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.35,
+              "duration_min": 4.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "residential"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 16:30: cafe -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "08:00",
+          "origin": "cafe",
+          "destination": "office",
+          "origin_coordinates": [
+            386685,
+            5818712
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.",
+          "distance_km": 3.99,
+          "duration_min": 20.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.78,
+              "duration_min": 49.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.99,
+              "duration_min": 20.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.63,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)",
+            "  Day 0, 08:00: cafe -> office: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so cycling the short distance to the office is a fitting choice for maintaining consistency with her habits and the weather conditions.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "08:30",
+          "origin": "office",
+          "destination": "coworking_space",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            388028,
+            5821639
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature, cycling remains the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.",
+          "distance_km": 0.7,
+          "duration_min": 5.6,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.55,
+              "duration_min": 7.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.7,
+              "duration_min": 5.6
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.55,
+              "duration_min": 7.2
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "coworking_space"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)",
+            "  Day 0, 10:30: coworking_space -> restaurant: bicycle (Given Anna's sustainable lifestyle and the overcast, mild weather, cycling remains the most consistent and comfortable mode of transport for the short distance to the restaurant.)",
+            "  Day 1, 08:00: cafe -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "10:30",
+          "origin": "coworking_space",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388028,
+            5821639
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature above 10°C, and considering the short to moderate distance, cycling remains the most sustainable and efficient mode of transport for this trip.",
+          "distance_km": 3.24,
+          "duration_min": 18.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.12,
+              "duration_min": 43.0
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.24,
+              "duration_min": 18.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.38,
+              "duration_min": 23.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "coworking_space"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 19:30: restaurant -> concert_hall: bicycle (Given the short distance, overcast weather, and Anna's consistent cycling habits, the bicycle is the most efficient and sustainable choice for her daily routine.)",
+            "  Day 0, 12:30: restaurant -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 19:00: library -> restaurant: bicycle (Given Anna's sustainable lifestyle and the short distance to the restaurant, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "12:30",
+          "origin": "restaurant",
+          "destination": "office",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": true,
+          "reasoning": "Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs, and it is also the fastest option.",
+          "distance_km": 3.13,
+          "duration_min": 16.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.14,
+              "duration_min": 41.8
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.13,
+              "duration_min": 16.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 4.11,
+              "duration_min": 19.8
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 08:30: office -> coworking_space: bicycle (Given the sunny weather and temperature, cycling remains the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)",
+            "  Day 1, 08:00: cafe -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)",
+            "  Day 0, 08:30: office -> coworking_space: bicycle (Anna has already cycled today and enjoys a sustainable lifestyle, so continuing to cycle the short distance to the coworking space is consistent with her habits and the current weather conditions.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "13:30",
+          "origin": "office",
+          "destination": "parcel_locker",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            389141,
+            5814538
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature above 10°C, and considering the short to moderate distance, cycling remains the most sustainable and efficient mode of transport for this trip, aligning with my habits and beliefs.",
+          "distance_km": 10.1,
+          "duration_min": 45.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 8.79,
+              "duration_min": 118.6
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 10.1,
+              "duration_min": 45.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 10.39,
+              "duration_min": 38.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "parcel_locker"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 15:00: parcel_locker -> cafe: bicycle (Given Anna's sustainable lifestyle and the fact that she has been cycling for all her trips today, continuing with the bicycle for the short distance to the cafe maintains consistency and aligns with her habits.)",
+            "  Day 0, 13:30: office -> parcel_locker: bicycle (Given Anna's sustainable lifestyle and the short distance to the parcel locker, cycling remains the most consistent and efficient choice, aligning with her habits and the current weather conditions.)",
+            "  Day 1, 10:30: coworking_space -> restaurant: bicycle (Given the sunny weather and temperature above 10°C, and considering the short to moderate distance, cycling remains the most sustainable and efficient mode of transport for this trip.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "15:00",
+          "origin": "parcel_locker",
+          "destination": "cafe",
+          "origin_coordinates": [
+            389141,
+            5814538
+          ],
+          "destination_coordinates": [
+            386685,
+            5818712
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.",
+          "distance_km": 7.73,
+          "duration_min": 36.7,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 5.73,
+              "duration_min": 77.9
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 7.73,
+              "duration_min": 36.7
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 7.19,
+              "duration_min": 31.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "parcel_locker"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 08:00: cafe -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)",
+            "  Day 1, 07:30: residential -> cafe: bicycle (Given the sunny weather and higher temperature, cycling remains the most sustainable and efficient choice for the short distance, aligning with Anna's consistent mode of transport and her sustainable lifestyle beliefs.)",
+            "  Day 0, 16:30: cafe -> office: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "16:30",
+          "origin": "cafe",
+          "destination": "office",
+          "origin_coordinates": [
+            386685,
+            5818712
+          ],
+          "destination_coordinates": [
+            387607,
+            5821782
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs, and it is also the fastest option among the cycling and walking alternatives.",
+          "distance_km": 3.99,
+          "duration_min": 20.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.78,
+              "duration_min": 49.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 3.99,
+              "duration_min": 20.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 3.63,
+              "duration_min": 13.6
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "cafe"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 08:30: office -> coworking_space: bicycle (Given the sunny weather and temperature, cycling remains the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)",
+            "  Day 1, 08:00: cafe -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)",
+            "  Day 1, 12:30: restaurant -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs, and it is also the fastest option.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "17:30",
+          "origin": "office",
+          "destination": "gym",
+          "origin_coordinates": [
+            387607,
+            5821782
+          ],
+          "destination_coordinates": [
+            388707,
+            5822456
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature, cycling remains the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs, and it is also the fastest option.",
+          "distance_km": 2.16,
+          "duration_min": 11.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 1.75,
+              "duration_min": 24.4
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 2.16,
+              "duration_min": 11.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 2.86,
+              "duration_min": 17.1
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "office"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "gym"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 18:00: gym -> library: bicycle (Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.)",
+            "  Day 0, 17:30: office -> gym: bicycle (Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.)",
+            "  Day 1, 12:30: restaurant -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs, and it is also the fastest option.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "18:00",
+          "origin": "gym",
+          "destination": "library",
+          "origin_coordinates": [
+            388707,
+            5822456
+          ],
+          "destination_coordinates": [
+            388817,
+            5825238
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.",
+          "distance_km": 4.26,
+          "duration_min": 22.1,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 3.6,
+              "duration_min": 47.5
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 4.26,
+              "duration_min": 22.1
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 5.79,
+              "duration_min": 27.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "gym"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "library"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 19:00: library -> restaurant: bicycle (Given Anna's sustainable lifestyle and the short distance to the restaurant, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 18:00: gym -> library: bicycle (Given Anna's sustainable lifestyle, the short distance, and the overcast weather, cycling remains the most consistent and efficient choice, aligning with her previous trips and current state.)",
+            "  Day 1, 15:00: parcel_locker -> cafe: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "19:00",
+          "origin": "library",
+          "destination": "restaurant",
+          "origin_coordinates": [
+            388817,
+            5825238
+          ],
+          "destination_coordinates": [
+            387078,
+            5819208
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": false,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature above 10°C, and considering the moderate distance, cycling remains the most sustainable and efficient mode of transport for this trip, aligning with my consistent cycling habit and sustainable lifestyle beliefs.",
+          "distance_km": 8.03,
+          "duration_min": 39.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 7.48,
+              "duration_min": 99.2
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 8.03,
+              "duration_min": 39.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 8.94,
+              "duration_min": 32.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "library"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 12:30: restaurant -> office: bicycle (Given the sunny weather and temperature, cycling is the most sustainable and efficient mode of transport for this moderate distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs, and it is also the fastest option.)",
+            "  Day 1, 10:30: coworking_space -> restaurant: bicycle (Given the sunny weather and temperature above 10°C, and considering the short to moderate distance, cycling remains the most sustainable and efficient mode of transport for this trip.)",
+            "  Day 0, 19:30: restaurant -> concert_hall: bicycle (Given the short distance, overcast weather, and Anna's consistent cycling habits, the bicycle is the most efficient and sustainable choice for her daily routine.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "19:30",
+          "origin": "restaurant",
+          "destination": "concert_hall",
+          "origin_coordinates": [
+            387078,
+            5819208
+          ],
+          "destination_coordinates": [
+            386537,
+            5818957
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and temperature above 10°C, the bicycle is the most sustainable and efficient mode of transport for this short distance, aligning with my consistent cycling habit and sustainable lifestyle beliefs.",
+          "distance_km": 0.84,
+          "duration_min": 4.4,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.84,
+              "duration_min": 10.9
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.84,
+              "duration_min": 4.4
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.84,
+              "duration_min": 10.9
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "restaurant"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "concert_hall"
+          },
+          "episodic_retrievals": [
+            "  Day 0, 19:30: restaurant -> concert_hall: bicycle (Given the short distance, overcast weather, and Anna's consistent cycling habits, the bicycle is the most efficient and sustainable choice for her daily routine.)",
+            "  Day 0, 20:30: concert_hall -> residential: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 1, 19:00: library -> restaurant: bicycle (Given the sunny weather and temperature above 10°C, and considering the moderate distance, cycling remains the most sustainable and efficient mode of transport for this trip, aligning with my consistent cycling habit and sustainable lifestyle beliefs.)"
+          ],
+          "weather": "sunny, 22°C"
+        },
+        {
+          "day": 1,
+          "time": "20:30",
+          "origin": "concert_hall",
+          "destination": "residential",
+          "origin_coordinates": [
+            386537,
+            5818957
+          ],
+          "destination_coordinates": [
+            386439,
+            5818890
+          ],
+          "chosen_mode": "bicycle",
+          "picked_fastest": true,
+          "picked_shortest": false,
+          "reasoning": "Given the sunny weather and higher temperature, cycling remains the most sustainable and efficient choice for the short distance, aligning with Anna's consistent mode of transport and her sustainable lifestyle beliefs.",
+          "distance_km": 0.17,
+          "duration_min": 1.9,
+          "available_options": [
+            {
+              "mode": "walk",
+              "distance_km": 0.15,
+              "duration_min": 2.7
+            },
+            {
+              "mode": "bicycle",
+              "distance_km": 0.17,
+              "duration_min": 1.9
+            },
+            {
+              "mode": "public transport",
+              "distance_km": 0.15,
+              "duration_min": 2.7
+            }
+          ],
+          "vehicle_locations_before": {
+            "car": "residential",
+            "bicycle": "concert_hall"
+          },
+          "vehicle_locations_after": {
+            "car": "residential",
+            "bicycle": "residential"
+          },
+          "episodic_retrievals": [
+            "  Day 1, 07:30: residential -> cafe: bicycle (Given the sunny weather and higher temperature, cycling remains the most sustainable and efficient choice for the short distance, aligning with Anna's consistent mode of transport and her sustainable lifestyle beliefs.)",
+            "  Day 0, 20:30: concert_hall -> residential: bicycle (Given Anna's sustainable lifestyle and the short distance, cycling is the most consistent and efficient choice, aligning with her previous trips and the current weather conditions.)",
+            "  Day 0, 07:30: residential -> cafe: bicycle (The distance and time are similar for all modes, but cycling is more in line with Anna's sustainable lifestyle and the weather is overcast and mild, making it a comfortable option.)"
+          ],
+          "weather": "sunny, 22°C"
+        }
+      ]
+    }
+  }
+}

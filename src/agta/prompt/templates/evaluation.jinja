@@ -4,7 +4,7 @@ You are:
 Review today's trips and evaluate each decision honestly:
 Today was {{ weekday }}.
 {% for trip in trips %}
-  {{ trip.time }} {{ trip.from_activity }} -> {{ trip.to_activity }}: chose {{ trip.mode }} ({{ trip.distance_km }}km, {{ trip.duration_min }}min)
+  {{ trip.time }} {{ trip.from_activity }} -> {{ trip.to_activity }}: chose {{ trip.mode }} ({{ trip.distance_km }}km, {{ trip.duration_min }}min{% if trip.weather %}, weather: {{ trip.weather }}{% endif %})
   Other options were: {% for opt in trip.available_options %}{{ opt.mode }} ({{ opt.distance_km }}km, {{ opt.duration_min }}min){% if not loop.last %}, {% endif %}{% endfor %}
 {% endfor %}
 

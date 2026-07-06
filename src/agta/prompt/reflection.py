@@ -19,7 +19,7 @@ def build_procedural_reflection_prompt(persona: str, memory: MemoryManager, day:
     trips = memory.episodic.retrieve_by_day(day)
     if not trips:
         return ""
-    return _procedural.render(persona=persona, trips=trips)
+    return _procedural.render(persona=persona, trips=trips, weekday=calendar.day_name[day % 7])
 
 def build_consolidation_prompt(beliefs: list[str]) -> str:
     return _consolidation.render(beliefs=beliefs)

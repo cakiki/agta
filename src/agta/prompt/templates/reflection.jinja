@@ -5,7 +5,7 @@ Today was {{ weekday }}.
 
 Today's trips:
 {% for t in trips %}
-  {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.reasoning }})
+  {{ t.time }} {{ t.from_activity }} -> {{ t.to_activity }}: {{ t.mode }} ({{ t.distance_km }}km, {{ t.duration_min }}min{% if t.weather %}, weather: {{ t.weather }}{% endif %}) - {{ t.reasoning }}
 {% endfor %}
 {% if evaluations %}
 
@@ -15,5 +15,5 @@ Your self-evaluation of today's trips:
 {% endfor %}
 {% endif %}
 
-Based on today's travel and your self-evaluation, what general beliefs or preferences about your transport habits can you extract? Include beliefs about modes you could have used but didn't.
+Extract 2-4 beliefs about your transport habits. Include at least one belief about a mode you did NOT use today. No subjective filler.
 Return JSON: {"beliefs": ["belief 1", "belief 2", ...]}
