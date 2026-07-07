@@ -1,0 +1,35 @@
+city: Berlin
+voice: first
+
+llm:
+  model: openai/openai/gpt-oss-120b
+  base_url: https://llm.scads.ai/v1
+  temperature: 0.1
+
+output:
+  path: data/personas.json
+
+data:
+  # path: data/mid/persons.parquet
+  # filter:
+  #   column: state
+  #   value: Berlin
+  id_column: id
+  inline:
+    - {id: 1, age: 37, gender: female, education: Realschulabschluss, employment: full-time retail manager, household_size: 3, income: 2000-2500 EUR/month, enjoyment_walking: 3, enjoyment_cycling: 4, enjoyment_car: 2, enjoyment_pt: 3}
+    - {id: 2, age: 63, gender: male, education: university degree, employment: retired, household_size: 1, income: 1500-2000 EUR/month, enjoyment_walking: 4, enjoyment_cycling: 1, enjoyment_car: 3, enjoyment_pt: 2}
+    - {id: 3, age: 24, gender: male, education: Abitur, employment: full-time software developer, household_size: 2, income: 3500-4000 EUR/month}
+
+demographics:
+  age: age
+  gender: gender
+  education: education
+  employment: employment
+  household_size: household size
+  income: household income
+
+attitudes:
+  enjoyment_walking: walking enjoyment
+  enjoyment_cycling: cycling enjoyment
+  enjoyment_car: car enjoyment
+  enjoyment_pt: public transport enjoyment

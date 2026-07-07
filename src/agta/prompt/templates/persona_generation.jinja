@@ -1,0 +1,24 @@
+Generate a persona description for a resident of {{ city }} with these attributes:
+{% for key, value in demographics.items() %}
+- {{ key }}: {{ value }}
+{% endfor %}
+{% if attitudes %}
+
+Attitudinal data:
+{% for key, value in attitudes.items() %}
+- {{ key }}: {{ value }}
+{% endfor %}
+{% endif %}
+
+{% if voice == "first" -%}
+Write in first person ("I am...").
+{% else -%}
+Write in third person ("{{ name }} is...").
+{% endif -%}
+Describe personality, lifestyle, daily routine, and interests in one paragraph.
+Do NOT restate the demographic attributes listed above. The narrative should add personality and lifestyle detail beyond what the structured data already provides.
+Do NOT mention how they travel, commute, or get around.
+Do NOT mention transport preferences, mobility habits, or vehicle usage.
+Ensure the description is internally consistent with the attributes and logically connected to them.
+Be specific and concrete rather than generic. Mention particular interests, habits, or routines, not vague generalities.
+The persona should convey WHO this person is, not HOW they move.
