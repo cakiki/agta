@@ -1,24 +1,32 @@
 Generate a persona description for a resident of {{ city }} with these attributes:
-{% for key, value in demographics.items() %}
+{%- for key, value in demographics.items() %}
 - {{ key }}: {{ value }}
-{% endfor %}
-{% if attitudes %}
+{%- endfor %}
+{%- if attitudes %}
 
 Attitudinal data:
-{% for key, value in attitudes.items() %}
+{%- for key, value in attitudes.items() %}
 - {{ key }}: {{ value }}
-{% endfor %}
-{% endif %}
+{%- endfor %}
+{%- endif %}
 
+{% if name -%}
+The person's name is {{ name }}.
+{% else -%}
+Assign a culturally appropriate first name based on the attributes.
+{% endif -%}
+Respond in {{ language }}.
 {% if voice == "first" -%}
 Write in first person ("I am...").
 {% else -%}
-Write in third person ("{{ name }} is...").
+Write in third person, using the name.
 {% endif -%}
 Describe personality, lifestyle, daily routine, and interests in one paragraph.
 Do NOT restate the demographic attributes listed above. The narrative should add personality and lifestyle detail beyond what the structured data already provides.
-Do NOT mention how they travel, commute, or get around.
-Do NOT mention transport preferences, mobility habits, or vehicle usage.
+Do NOT mention any form of movement, travel, commuting, or getting around, whether for transport or leisure.
+Do NOT mention walking, cycling, biking, driving, riding, running, jogging, or using any vehicle in any context.
+Do NOT mention transport preferences, mobility habits, or vehicle ownership.
+If a hobby or routine involves movement, describe only the destination or activity, never the mode of getting there.
 Ensure the description is internally consistent with the attributes and logically connected to them.
 Be specific and concrete rather than generic. Mention particular interests, habits, or routines, not vague generalities.
 The persona should convey WHO this person is, not HOW they move.

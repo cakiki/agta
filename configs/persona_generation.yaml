@@ -1,35 +1,82 @@
-city: Berlin
+city_states:
+  2: Hamburg
+  4: Bremen
+  11: Berlin
+
+bland:
+  1: Schleswig-Holstein
+  2: Hamburg
+  3: Niedersachsen
+  4: Bremen
+  5: Nordrhein-Westfalen
+  6: Hessen
+  7: Rheinland-Pfalz
+  8: Baden-Württemberg
+  9: Bayern
+  10: Saarland
+  11: Berlin
+  12: Brandenburg
+  13: Mecklenburg-Vorpommern
+  14: Sachsen
+  15: Sachsen-Anhalt
+  16: Thüringen
+
+gemtyp:
+  1: very peripheral area
+  2: peripheral small town
+  3: peripheral mid-size town
+  4: central small town
+  5: central mid-size town
+  6: central small city
+  7: very central small town
+  8: very central mid-size town
+  9: very central small city
+  10: very central large city
+
+sex:
+  1: male
+  2: female
+
+education:
+  1: no degree yet
+  2: Hauptschulabschluss
+  3: Realschulabschluss
+  4: Abitur / Fachhochschulreife
+  5: university degree
+  6: other degree
+
+employed:
+  1: "yes"
+  2: "no"
+
+hhtyp:
+  1: single, 18-29
+  2: single, 30-59
+  3: single, 60+
+  4: couple, youngest 18-29
+  5: couple, youngest 30-59
+  6: couple, youngest 60+
+  7: 3+ adults
+  8: household with child under 6
+  9: household with child under 14
+  10: household with child under 18
+  11: single parent
+
 voice: first
+language: English
 
 llm:
   model: openai/openai/gpt-oss-120b
   base_url: https://llm.scads.ai/v1
-  temperature: 0.1
+  temperature: 0.7
+  disable_fallbacks: true
 
 output:
-  path: data/personas.json
-
+  dir: data/personas
 data:
-  # path: data/mid/persons.parquet
-  # filter:
-  #   column: state
-  #   value: Berlin
-  id_column: id
-  inline:
-    - {id: 1, age: 37, gender: female, education: Realschulabschluss, employment: full-time retail manager, household_size: 3, income: 2000-2500 EUR/month, enjoyment_walking: 3, enjoyment_cycling: 4, enjoyment_car: 2, enjoyment_pt: 3}
-    - {id: 2, age: 63, gender: male, education: university degree, employment: retired, household_size: 1, income: 1500-2000 EUR/month, enjoyment_walking: 4, enjoyment_cycling: 1, enjoyment_car: 3, enjoyment_pt: 2}
-    - {id: 3, age: 24, gender: male, education: Abitur, employment: full-time software developer, household_size: 2, income: 3500-4000 EUR/month}
+  persons: data/census/B1_Standard-Datensatzpaket/CSV/MiD2017_Personen.csv
+  households: data/census/B1_Standard-Datensatzpaket/CSV/MiD2017_Haushalte.csv
+  trips: data/census/B1_Standard-Datensatzpaket/CSV/MiD2017_Wege.csv
 
-demographics:
-  age: age
-  gender: gender
-  education: education
-  employment: employment
-  household_size: household size
-  income: household income
-
-attitudes:
-  enjoyment_walking: walking enjoyment
-  enjoyment_cycling: cycling enjoyment
-  enjoyment_car: car enjoyment
-  enjoyment_pt: public transport enjoyment
+checkpoint_every: 3
+limit: 10
