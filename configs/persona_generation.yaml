@@ -78,5 +78,5 @@ data:
   households: data/census/B1_Standard-Datensatzpaket/CSV/MiD2017_Haushalte.csv
   trips: data/census/B1_Standard-Datensatzpaket/CSV/MiD2017_Wege.csv
 
-checkpoint_every: 3
-limit: 10
+checkpoint_every: 100
+limit: null
